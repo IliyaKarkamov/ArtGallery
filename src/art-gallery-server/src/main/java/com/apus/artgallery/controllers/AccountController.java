@@ -16,12 +16,12 @@ public class AccountController {
         accountRepository = repository;
     }
 
-    @GetMapping("/users")
-    public List<User> getAll() {
+    @GetMapping("/api/v1/users")
+    public List<User> getUsers() {
         return accountRepository.findAll();
     }
 
-    @GetMapping("/users/{username}")
+    @GetMapping("/api/v1/users/{username}")
     public User getUser(@PathVariable String username) {
         return accountRepository.findByUsername(username);
     }
