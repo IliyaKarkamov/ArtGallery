@@ -3,10 +3,10 @@ package com.apus.artgallery.models;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Data
 @Entity
@@ -18,12 +18,13 @@ public class User {
     private Long id;
 
     @NotBlank
-    @Size(min = 3, max = 100)
-    @Column(name = "username")
+    @Size(min = 3, max = 20)
+    @Column(name = "username", unique = true)
     private String username;
 
     @NotBlank
-    @Column(name = "email")
+    @Email
+    @Column(name = "email", unique = true)
     private String email;
 
     @NotBlank
@@ -57,15 +58,15 @@ public class User {
     @Column(name = "last_login_at")
     private LocalDateTime lastLoginAt;
 
-    public User(){}
+    public User() {
+    }
 
     public User(String username,
                 String email,
                 String password,
                 String firstName,
                 String secondName,
-                String lastName)
-    {
+                String lastName) {
         this.username = username;
         this.email = email;
         this.password = password;

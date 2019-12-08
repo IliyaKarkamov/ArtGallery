@@ -35,11 +35,10 @@ public class AccountController {
                                           @RequestParam("password") String password,
                                           @RequestParam("firstname") String firstName,
                                           @RequestParam("secondname") String secondName,
-                                          @RequestParam("lastname") String lastName)
-    {
+                                          @RequestParam("lastname") String lastName) {
         ResponseEntity<Object> responseEntity;
         try {
-            User user = accountService.CreateAccount(username,email, password, firstName, secondName, lastName);
+            User user = accountService.CreateAccount(username, email, password, firstName, secondName, lastName);
 
             responseEntity = ResponseEntity
                     .status(HttpStatus.CREATED)
