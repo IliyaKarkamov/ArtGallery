@@ -1,1 +1,10 @@
-Apus ftw
+<mat-toolbar color="primary">
+  <span>Art Gallery</span>
+  <button mat-button>Начало</button>
+  <button mat-button [routerLink]="'/account/signin'">Вписване</button>
+  <button mat-button [routerLink]="'/account/signup'">Регистриране</button>
+</mat-toolbar>
+
+<div>
+  <router-outlet></router-outlet>
+</div>
