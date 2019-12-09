@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+
 import {mustMatch} from '../../../validators/must-match';
+import {AccountService} from '../../../services/account/account.service';
 
 @Component({
   selector: 'app-account-sign-up',
@@ -15,7 +17,9 @@ export class AccountSignUpComponent implements OnInit {
   isConfirmPasswordVisible = false;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private accountService: AccountService
   ) {
   }
 
@@ -58,7 +62,13 @@ export class AccountSignUpComponent implements OnInit {
       return;
     }
 
-    console.log(this.registerForm.value);
+    this.accountService.create(this.registerForm.value)
+      .subscribe(data => {
+        console.log('success');
+        this.router.navigate(['account/login']);
+      }, error => {
+        console.log('greshka.' + error);
+      });
   }
 
   onReset() {
