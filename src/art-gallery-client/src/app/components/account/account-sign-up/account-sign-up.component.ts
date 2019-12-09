@@ -65,9 +65,9 @@ export class AccountSignUpComponent implements OnInit {
     this.accountService.create(this.registerForm.value)
       .subscribe(data => {
         console.log('success');
-        this.router.navigate(['account/login']);
+        this.router.navigate(['account/signin']);
       }, error => {
-        console.log('greshka.' + error);
+        console.log(error);
       });
   }
 
