@@ -29,16 +29,12 @@ public class AccountController {
         return accountRepository.findByUsernameIgnoreCase(username);
     }
 
-    @RequestMapping(value = "/api/v1/users", method = RequestMethod.PUT)
-    public ResponseEntity<Object> addUser(@RequestParam("username") String username,
-                                          @RequestParam("email") String email,
-                                          @RequestParam("password") String password,
-                                          @RequestParam("firstname") String firstName,
-                                          @RequestParam("secondname") String secondName,
-                                          @RequestParam("lastname") String lastName) {
+    @PutMapping(value = "/api/v1/users")
+    public ResponseEntity<Object> addUser(@RequestBody User user) {
         ResponseEntity<Object> responseEntity;
+
         try {
-            User user = accountService.CreateAccount(username, email, password, firstName, secondName, lastName);
+            accountService.createAccount(user);
 
             responseEntity = ResponseEntity
                     .status(HttpStatus.CREATED)

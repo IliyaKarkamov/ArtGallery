@@ -1,5 +1,6 @@
 package com.apus.artgallery.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -30,6 +31,7 @@ public class User {
     @NotBlank
     @Size(min = 8, max = 64)
     @Column(name = "password")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @NotBlank
@@ -73,5 +75,13 @@ public class User {
         this.lastName = lastName;
         this.secondName = secondName;
         this.firstName = firstName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }
