@@ -1,7 +1,6 @@
 package com.apus.artgallery.controllers;
 
 import com.apus.artgallery.models.User;
-import com.apus.artgallery.repositories.AccountRepository;
 import com.apus.artgallery.services.AccountService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,22 +10,20 @@ import java.util.List;
 
 @RestController
 public class AccountController {
-    private final AccountRepository accountRepository;
     private final AccountService accountService;
 
-    public AccountController(AccountRepository repository, AccountService accountService) {
-        this.accountRepository = repository;
+    public AccountController(AccountService accountService) {
         this.accountService = accountService;
     }
 
     @GetMapping("/api/v1/users")
     public List<User> getUsers() {
-        return accountRepository.findAll();
+        return accountService.getAllUsers();
     }
 
     @GetMapping("/api/v1/users/{username}")
     public User getUser(@PathVariable String username) {
-        return accountRepository.findByUsernameIgnoreCase(username);
+        return accountService.getUserByUsername(username);
     }
 
     @PutMapping(value = "/api/v1/users")
@@ -38,9 +35,11 @@ public class AccountController {
 
             responseEntity = ResponseEntity
                     .status(HttpStatus.CREATED)
-                    .body(user);
+                    .body("");
         } catch (Exception e) {
-            responseEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            responseEntity = ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
         }
 
         return responseEntity;
