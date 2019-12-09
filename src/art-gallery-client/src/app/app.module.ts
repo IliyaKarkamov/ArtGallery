@@ -1,10 +1,9 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {FlexLayoutModule} from '@angular/flex-layout';
 
@@ -16,8 +15,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 
-import { AccountSignUpComponent } from './components/account/account-sign-up/account-sign-up.component';
-import { AccountSignInComponent } from './components/account/account-sign-in/account-sign-in.component';
+import {AccountSignUpComponent} from './components/account/account-sign-up/account-sign-up.component';
+import {AccountSignInComponent} from './components/account/account-sign-in/account-sign-in.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +28,8 @@ import { AccountSignInComponent } from './components/account/account-sign-in/acc
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
 
     FlexLayoutModule,
 
@@ -39,7 +40,6 @@ import { AccountSignInComponent } from './components/account/account-sign-in/acc
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
