@@ -1,5 +1,7 @@
 package com.apus.artgallery.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
@@ -39,6 +41,7 @@ public class User {
     private String firstName;
 
     @Column(name = "second_name")
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private String secondName;
 
     @NotBlank
@@ -52,12 +55,17 @@ public class User {
     private Boolean isAdmin = false;
 
     @Column(name = "created_at")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt = LocalDateTime.now();
 
     @Column(name = "deactivated_at")
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime deactivatedAt;
 
     @Column(name = "last_login_at")
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime lastLoginAt;
 
     public User() {
