@@ -3,13 +3,12 @@ package com.apus.artgallery.controllers;
 import com.apus.artgallery.models.User;
 import com.apus.artgallery.services.AccountService;
 import com.apus.artgallery.utils.Response;
-import com.apus.artgallery.utils.ResponseExceptionBuilder;
+import com.apus.artgallery.utils.ResponseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @RestController
 public class AccountController {
@@ -20,56 +19,86 @@ public class AccountController {
     }
 
     @GetMapping("/api/v1/users")
-    public List<User> getUsers() {
-        return accountService.getAllUsers();
-    }
+    public ResponseEntity<Response> getUsers() {
+        Response response = new Response("AccountController.getUsers", LocalDateTime.now());
 
-    @GetMapping("/api/v1/users/exists")
-    public ResponseEntity<Object> userExists(@RequestParam(name = "username", required = false) String username,
-                                             @RequestParam(name = "email", required = false) String email) {
-        Response response = new Response("userExists", LocalDateTime.now());
-        ResponseExceptionBuilder builder = new ResponseExceptionBuilder();
+        HttpStatus status;
 
-        if (username != null) {
-            response.setResult(accountService.usernameExists(username));
-
-            return ResponseEntity
-                    .status(HttpStatus.CREATED)
-                    .body(response);
-        } else if (email != null) {
-            response.setResult(accountService.emailExists(email));
-
-            return ResponseEntity
-                    .status(HttpStatus.CREATED)
-                    .body(response);
+        try {
+            response.setResult(accountService.getAllUsers());
+            status = HttpStatus.OK;
+        } catch (Exception e) {
+            response.addException(ResponseException.create(e));
+            status = HttpStatus.BAD_REQUEST;
         }
 
         return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
+                .status(status)
+                .body(response);
+    }
+
+    @GetMapping("/api/v1/users/exists")
+    public ResponseEntity<Response> userExists(@RequestParam(name = "username", required = false) String username,
+                                               @RequestParam(name = "email", required = false) String email) {
+        Response response = new Response("AccountController.userExists", LocalDateTime.now());
+
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+
+        try {
+            if (username != null) {
+                response.setResult(accountService.usernameExists(username));
+                status = HttpStatus.OK;
+            } else if (email != null) {
+                response.setResult(accountService.emailExists(email));
+                status = HttpStatus.OK;
+            }
+        } catch (Exception e) {
+            response.addException(ResponseException.create(e));
+            status = HttpStatus.BAD_REQUEST;
+        }
+
+        return ResponseEntity
+                .status(status)
                 .body(response);
     }
 
     @GetMapping("/api/v1/users/{username}")
-    public User getUser(@PathVariable String username) {
-        return accountService.getUserByUsername(username);
+    public ResponseEntity<Response> getUser(@PathVariable String username) {
+        Response response = new Response("AccountController.getUser", LocalDateTime.now());
+
+        HttpStatus status;
+
+        try {
+            response.setResult(accountService.getUserByUsername(username));
+            status = HttpStatus.OK;
+        } catch (Exception e) {
+            response.addException(ResponseException.create(e));
+            status = HttpStatus.BAD_REQUEST;
+        }
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
     }
 
     @PutMapping(value = "/api/v1/users")
-    public ResponseEntity<Object> addUser(@RequestBody User user) {
-        ResponseEntity<Object> responseEntity;
+    public ResponseEntity<Response> addUser(@RequestBody User user) {
+        Response response = new Response("AccountController.addUser", LocalDateTime.now());
+
+        HttpStatus status;
 
         try {
             accountService.createAccount(user);
 
-            responseEntity = ResponseEntity
-                    .status(HttpStatus.CREATED)
-                    .body("");
+            response.setResult(true);
+            status = HttpStatus.OK;
         } catch (Exception e) {
-            responseEntity = ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body(e.getMessage());
+            response.addException(ResponseException.create(e));
+            status = HttpStatus.BAD_REQUEST;
         }
 
-        return responseEntity;
+        return ResponseEntity
+                .status(status)
+                .body(response);
     }
 }

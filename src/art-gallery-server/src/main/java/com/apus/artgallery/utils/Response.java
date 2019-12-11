@@ -44,10 +44,6 @@ public class Response {
         return exceptions;
     }
 
-    public void setExceptions(List<ResponseException> exceptions) {
-        this.exceptions = exceptions;
-    }
-
     public void addException(ResponseException exception) {
         this.exceptions.add(exception);
     }

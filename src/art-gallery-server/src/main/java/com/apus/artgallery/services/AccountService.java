@@ -4,8 +4,6 @@ import com.apus.artgallery.models.User;
 import com.apus.artgallery.repositories.AccountRepository;
 import org.springframework.stereotype.Service;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 import java.util.List;
 
 @Service
@@ -23,19 +21,7 @@ public class AccountService {
         if (accountRepository.findByEmailIgnoreCase(user.getEmail()) != null)
             throw new IllegalArgumentException("Email already exist!");
 
-        try {
-            accountRepository.save(user);
-        } catch (ConstraintViolationException e) {
-            StringBuilder errorMessage = new StringBuilder();
-
-            for (ConstraintViolation<?> constraintViolations : e.getConstraintViolations()) {
-                errorMessage.append(String.format("Validation error for field %s: %s \n",
-                        constraintViolations.getPropertyPath().toString(),
-                        constraintViolations.getMessage()));
-            }
-
-            throw new IllegalArgumentException(errorMessage.toString(), e);
-        }
+        accountRepository.save(user);
     }
 
     public Boolean usernameExists(String username) {
