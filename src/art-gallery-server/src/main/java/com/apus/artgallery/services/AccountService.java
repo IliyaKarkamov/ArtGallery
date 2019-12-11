@@ -2,12 +2,18 @@ package com.apus.artgallery.services;
 
 import com.apus.artgallery.models.User;
 import com.apus.artgallery.repositories.AccountRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class AccountService {
+public class AccountService implements UserDetailsService {
     private final AccountRepository accountRepository;
 
     public AccountService(AccountRepository repository) {
@@ -42,5 +48,19 @@ public class AccountService {
 
     public List<User> getActiveUsers() {
         return accountRepository.findByIsActiveTrue();
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = accountRepository.findByUsernameIgnoreCase(username);
+
+        if (user != null) {
+            return new org.springframework.security.core.userdetails.User(
+                    user.getUsername(),
+                    user.getPassword(),
+                    new ArrayList<>());
+        } else {
+            throw new UsernameNotFoundException("User not found with username: " + username);
+        }
     }
 }
