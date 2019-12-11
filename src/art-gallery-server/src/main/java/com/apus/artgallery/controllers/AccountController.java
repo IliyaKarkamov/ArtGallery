@@ -7,7 +7,6 @@ import com.apus.artgallery.models.User;
 import com.apus.artgallery.services.AccountService;
 import com.apus.artgallery.utils.Response;
 import com.apus.artgallery.utils.ResponseException;
-import com.apus.artgallery.utils.ResponseExceptionBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,12 +35,22 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/api/v1/authenticate", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+    public ResponseEntity<Response> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+        Response response = new Response("AccountController.createAuthenticationToken", LocalDateTime.now());
+
+        HttpStatus status;
+
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+
         final UserDetails userDetails = accountService
                 .loadUserByUsername(authenticationRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
-        return ResponseEntity.ok(new JwtResponse(token));
+
+        response.setResult(new JwtResponse(token));
+        status = HttpStatus.OK;
+        return ResponseEntity
+                .status(status)
+                .body(response);
     }
 
     @GetMapping("/api/v1/users")
