@@ -77,6 +77,10 @@ export class AccountSignUpComponent implements OnInit {
       return;
     }
 
+    if (this.isUsernameSpinnerVisible || this.isEmailSpinnerVisible) {
+      return;
+    }
+
     this.accountService.create(this.registerForm.value)
       .subscribe(data => {
         this.router.navigate(['account/signin']);
@@ -86,6 +90,17 @@ export class AccountSignUpComponent implements OnInit {
   }
 
   onReset() {
+    window.clearTimeout(this.timeoutHandleUsername);
+    window.clearTimeout(this.timeoutHandleEmail);
+
+    this.isUsernameChecked = false;
+    this.isUsernameSpinnerVisible = false;
+    this.matcherUsername.setError(false);
+
+    this.isEmailChecked = false;
+    this.isEmailSpinnerVisible = false;
+    this.matcherEmail.setError(false);
+
     this.registerForm.reset();
 
     Object.keys(this.f).forEach(key => {
