@@ -116,7 +116,7 @@ public class AccountController {
                 .body(response);
     }
 
-    @PutMapping(value = "/api/v1/users")
+    @PostMapping(value = "/api/v1/users")
     public ResponseEntity<Response> addUser(@RequestBody User user) {
         Response response = new Response("AccountController.addUser", LocalDateTime.now());
 

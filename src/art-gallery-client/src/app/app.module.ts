@@ -15,6 +15,7 @@ import {MatCardModule} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import {AccountSignUpComponent} from './components/account/account-sign-up/account-sign-up.component';
 import {AccountSignInComponent} from './components/account/account-sign-in/account-sign-in.component';
@@ -42,6 +43,7 @@ import {AccountSignInComponent} from './components/account/account-sign-in/accou
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

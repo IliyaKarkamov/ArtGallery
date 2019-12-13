@@ -20,7 +20,9 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Username" formControlName="username">
+        <input matInput placeholder="Username" (keyup)="checkUsername()" formControlName="username"
+               [errorStateMatcher]="matcherUsername">
+        <mat-spinner matSuffix [diameter]="20" *ngIf="isUsernameSpinnerVisible"></mat-spinner>
         <mat-error *ngIf="f.username.hasError('required')">
           Please enter your username!
         </mat-error>
@@ -30,15 +32,29 @@
         <mat-error *ngIf="f.username.hasError('maxlength')">
           The username can not be longer than 20 characters!
         </mat-error>
+        <mat-error *ngIf="isUsernameChecked && !isUsernameAvailable">
+          The username is already taken!
+        </mat-error>
+        <mat-hint *ngIf="isUsernameChecked && isUsernameAvailable">
+          The username is available!
+        </mat-hint>
       </mat-form-field>
       <mat-form-field>
-        <input matInput type="email" placeholder="Email name" formControlName="email">
+        <input matInput type="email" placeholder="Email name" (keyup)="checkEmail()" formControlName="email"
+               [errorStateMatcher]="matcherEmail">
+        <mat-spinner matSuffix [diameter]="20" *ngIf="isEmailSpinnerVisible"></mat-spinner>
         <mat-error *ngIf="f.email.hasError('required')">
           Please enter email address!
         </mat-error>
         <mat-error *ngIf="f.email.hasError('email')">
           Please enter a valid email address!
         </mat-error>
+        <mat-error *ngIf="isEmailChecked && !isEmailAvailable">
+          The email is already taken!
+        </mat-error>
+        <mat-hint *ngIf="isEmailChecked && isEmailAvailable">
+          The email is available!
+        </mat-hint>
       </mat-form-field>
       <mat-form-field>
         <input matInput [type]="getPasswordFieldType()" placeholder="Password" formControlName="password">
