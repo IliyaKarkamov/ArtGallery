@@ -28,6 +28,15 @@ public class AccountService  {
         accountRepository.save(user);
     }
 
+    public void login(String username, String password) {
+        User user = accountRepository.findByUsernameIgnoreCase(username);
+        if (user == null)
+            throw new IllegalArgumentException("Username not - exist!");
+        
+        if (!user.getPassword().equals(password))
+            throw new IllegalArgumentException("The password is incorrect!");
+    }
+    
     public Boolean usernameExists(String username) {
         return accountRepository.findByUsernameIgnoreCase(username) != null;
     }
