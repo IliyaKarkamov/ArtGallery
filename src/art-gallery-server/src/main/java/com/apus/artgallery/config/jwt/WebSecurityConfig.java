@@ -1,6 +1,7 @@
 package com.apus.artgallery.config.jwt;
 
 import com.apus.artgallery.services.AccountService;
+import com.apus.artgallery.services.UserDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,20 +18,23 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
     private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-
-    @Autowired
-    private AccountService accountService;
-
-    @Autowired
+    private UserDataService userDataService;
     private JwtRequestFilter jwtRequestFilter;
+
+    public WebSecurityConfig(JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint, UserDataService userDataService,
+                             JwtRequestFilter jwtRequestFilter){
+        this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
+        this.jwtRequestFilter = jwtRequestFilter;
+        this.userDataService = userDataService;
+    }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(accountService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDataService).passwordEncoder(passwordEncoder());
     }
 
+    @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }

@@ -5,6 +5,7 @@ import com.apus.artgallery.models.JwtRequest;
 import com.apus.artgallery.models.JwtResponse;
 import com.apus.artgallery.models.User;
 import com.apus.artgallery.services.AccountService;
+import com.apus.artgallery.services.UserDataService;
 import com.apus.artgallery.utils.Response;
 import com.apus.artgallery.utils.ResponseException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +24,16 @@ import java.time.LocalDateTime;
 @CrossOrigin
 public class AccountController {
     private final AccountService accountService;
-
-    @Autowired
     private AuthenticationManager authenticationManager;
-
-    @Autowired
     private JwtTokenUtil jwtTokenUtil;
+    private UserDataService userDataService;
 
-    public AccountController(AccountService accountService) {
+    public AccountController(AccountService accountService, AuthenticationManager authenticationManager,
+                             JwtTokenUtil jwtTokenUtil, UserDataService userDataService) {
         this.accountService = accountService;
+        this.authenticationManager = authenticationManager;
+        this.jwtTokenUtil = jwtTokenUtil;
+        this.userDataService = userDataService;
     }
 
     @RequestMapping(value = "/api/v1/authenticate", method = RequestMethod.POST)
@@ -42,7 +44,7 @@ public class AccountController {
 
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
-        final UserDetails userDetails = accountService
+        final UserDetails userDetails = userDataService
                 .loadUserByUsername(authenticationRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
 

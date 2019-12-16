@@ -1,6 +1,7 @@
 package com.apus.artgallery.config.jwt;
 
 import com.apus.artgallery.services.AccountService;
+import com.apus.artgallery.services.UserDataService;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,12 +19,13 @@ import java.io.IOException;
 
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
-
-    @Autowired
-    private AccountService accountService;
-
-    @Autowired
+    private UserDataService userDataService;
     private JwtTokenUtil jwtTokenUtil;
+
+    public JwtRequestFilter(UserDataService userDataService, JwtTokenUtil jwtTokenUtil){
+        this.userDataService = userDataService;
+        this.jwtTokenUtil = jwtTokenUtil;
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
@@ -46,7 +48,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = this.accountService.loadUserByUsername(username);
+            UserDetails userDetails = this.userDataService.loadUserByUsername(username);
 
             if (jwtTokenUtil.validateToken(jwtToken, userDetails)) {
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
