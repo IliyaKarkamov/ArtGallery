@@ -1,21 +1,14 @@
 package com.apus.artgallery.controllers;
 
-import com.apus.artgallery.config.jwt.JwtTokenUtil;
 import com.apus.artgallery.models.JwtRequest;
 import com.apus.artgallery.models.JwtResponse;
 import com.apus.artgallery.models.User;
 import com.apus.artgallery.services.AccountService;
-import com.apus.artgallery.services.UserDataService;
+import com.apus.artgallery.services.AuthenticationService;
 import com.apus.artgallery.utils.Response;
 import com.apus.artgallery.utils.ResponseException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.DisabledException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -24,32 +17,29 @@ import java.time.LocalDateTime;
 @CrossOrigin
 public class AccountController {
     private final AccountService accountService;
-    private AuthenticationManager authenticationManager;
-    private JwtTokenUtil jwtTokenUtil;
-    private UserDataService userDataService;
+    private final AuthenticationService authenticationService;
 
-    public AccountController(AccountService accountService, AuthenticationManager authenticationManager,
-                             JwtTokenUtil jwtTokenUtil, UserDataService userDataService) {
+    public AccountController(AccountService accountService, AuthenticationService authenticationService) {
         this.accountService = accountService;
-        this.authenticationManager = authenticationManager;
-        this.jwtTokenUtil = jwtTokenUtil;
-        this.userDataService = userDataService;
+        this.authenticationService = authenticationService;
     }
 
-    @RequestMapping(value = "/api/v1/authenticate", method = RequestMethod.POST)
-    public ResponseEntity<Response> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
-        Response response = new Response("AccountController.createAuthenticationToken", LocalDateTime.now());
+    @PostMapping(value = "/api/v1/authenticate")
+    public ResponseEntity<Response> authenticate(@RequestBody JwtRequest request) {
+        Response response = new Response("AccountController.authenticate", LocalDateTime.now());
 
         HttpStatus status;
 
-        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+        try {
+            String token = authenticationService.authenticate(request.getUsername(), request.getPassword());
 
-        final UserDetails userDetails = userDataService
-                .loadUserByUsername(authenticationRequest.getUsername());
-        final String token = jwtTokenUtil.generateToken(userDetails);
+            response.setResult(new JwtResponse(token));
+            status = HttpStatus.OK;
+        } catch (Exception e) {
+            response.addException(ResponseException.create(e));
+            status = HttpStatus.BAD_REQUEST;
+        }
 
-        response.setResult(new JwtResponse(token));
-        status = HttpStatus.OK;
         return ResponseEntity
                 .status(status)
                 .body(response);
@@ -137,15 +127,5 @@ public class AccountController {
         return ResponseEntity
                 .status(status)
                 .body(response);
-    }
-
-    private void authenticate(String username, String password) throws Exception {
-        try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-        } catch (DisabledException e) {
-            throw new Exception("USER_DISABLED", e);
-        } catch (BadCredentialsException e) {
-            throw new Exception("INVALID_CREDENTIALS", e);
-        }
     }
 }

@@ -1,12 +1,11 @@
 package com.apus.artgallery.config.jwt;
 
-import com.apus.artgallery.services.AccountService;
-import com.apus.artgallery.services.UserDataService;
 import io.jsonwebtoken.ExpiredJwtException;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -19,11 +18,11 @@ import java.io.IOException;
 
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
-    private UserDataService userDataService;
+    private UserDetailsService userDetailsService;
     private JwtTokenUtil jwtTokenUtil;
 
-    public JwtRequestFilter(UserDataService userDataService, JwtTokenUtil jwtTokenUtil){
-        this.userDataService = userDataService;
+    public JwtRequestFilter(@Qualifier("authenticationService") UserDetailsService userDetailsService, JwtTokenUtil jwtTokenUtil) {
+        this.userDetailsService = userDetailsService;
         this.jwtTokenUtil = jwtTokenUtil;
     }
 
@@ -48,7 +47,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = this.userDataService.loadUserByUsername(username);
+            UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
 
             if (jwtTokenUtil.validateToken(jwtToken, userDetails)) {
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
