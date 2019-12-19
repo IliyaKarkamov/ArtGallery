@@ -9,6 +9,7 @@ import com.apus.artgallery.utils.Response;
 import com.apus.artgallery.utils.ResponseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -19,9 +20,15 @@ public class AccountController {
     private final AccountService accountService;
     private final AuthenticationService authenticationService;
 
-    public AccountController(AccountService accountService, AuthenticationService authenticationService) {
+    public AccountController(AccountService accountService, AuthenticationService authenticationService, AuthenticationManager authenticationManager) {
         this.accountService = accountService;
         this.authenticationService = authenticationService;
+
+        //if it is not in setter it creates a circular dependency because:
+        // AuthenticationManager is from WebSecurityConfig, for the creation of AuthenticationService
+        // AuthenticationManager was needed but for the creation of WebSecurityConfig AuthenticationService was needed
+        // thus the circular dependency.
+        this.authenticationService.setAuthenticationManager(authenticationManager);
     }
 
     @PostMapping(value = "/api/v1/authenticate")

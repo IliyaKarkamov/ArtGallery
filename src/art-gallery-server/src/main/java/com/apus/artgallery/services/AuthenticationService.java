@@ -15,13 +15,17 @@ import java.util.ArrayList;
 @Service
 public class AuthenticationService implements UserDetailsService {
     private final AccountRepository accountRepository;
-    private final AuthenticationManager authenticationManager;
+    private AuthenticationManager authenticationManager;
     private final JwtTokenUtil jwtTokenUtil;
 
-    public AuthenticationService(AccountRepository accountRepository, AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil) {
+    public AuthenticationService(AccountRepository accountRepository, JwtTokenUtil jwtTokenUtil) {
         this.accountRepository = accountRepository;
-        this.authenticationManager = authenticationManager;
+        //this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
+    }
+
+    public void setAuthenticationManager(AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
     }
 
     @Override
