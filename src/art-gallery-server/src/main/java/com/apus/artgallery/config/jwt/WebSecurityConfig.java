@@ -22,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
     private JwtRequestFilter jwtRequestFilter;
 
-    public WebSecurityConfig(JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint,
+    public WebSecurityConfig(//JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint,
                              @Qualifier("authenticationService") UserDetailsService userDetailsService,
                              JwtRequestFilter jwtRequestFilter) {
         this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
@@ -50,7 +50,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
                 .authorizeRequests().antMatchers("/api/v1/authenticate").permitAll().
-                //and().exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).
+                anyRequest().authenticated().//and().
+                and().exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).
                         and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

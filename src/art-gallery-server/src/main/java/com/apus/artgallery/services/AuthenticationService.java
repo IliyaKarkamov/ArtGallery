@@ -20,7 +20,6 @@ public class AuthenticationService implements UserDetailsService {
 
     public AuthenticationService(AccountRepository accountRepository, JwtTokenUtil jwtTokenUtil) {
         this.accountRepository = accountRepository;
-        //this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
     }
 
