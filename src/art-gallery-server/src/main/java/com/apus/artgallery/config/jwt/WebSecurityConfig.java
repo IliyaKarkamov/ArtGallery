@@ -18,21 +18,18 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private UserDetailsService userDetailsService;
     private JwtRequestFilter jwtRequestFilter;
 
-    public WebSecurityConfig(//JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint,
-                             @Qualifier("authenticationService") UserDetailsService userDetailsService,
+    public WebSecurityConfig(@Qualifier("authenticationService") UserDetailsService userDetailsService,
                              JwtRequestFilter jwtRequestFilter) {
-        this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
         this.jwtRequestFilter = jwtRequestFilter;
         this.userDetailsService = userDetailsService;
     }
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
     @Bean
@@ -50,9 +47,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
                 .authorizeRequests().antMatchers("/api/v1/authenticate").permitAll().
-                anyRequest().authenticated().//and().
-                and().exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).
-                        and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                anyRequest().authenticated().
+                and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }

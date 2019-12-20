@@ -20,7 +20,8 @@ public class AccountController {
     private final AccountService accountService;
     private final AuthenticationService authenticationService;
 
-    public AccountController(AccountService accountService, AuthenticationService authenticationService, AuthenticationManager authenticationManager) {
+    public AccountController(AccountService accountService, AuthenticationService authenticationService,
+                             AuthenticationManager authenticationManager) {
         this.accountService = accountService;
         this.authenticationService = authenticationService;
 
