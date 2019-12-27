@@ -24,11 +24,6 @@ public class AccountController {
                              AuthenticationManager authenticationManager) {
         this.accountService = accountService;
         this.authenticationService = authenticationService;
-
-        //if it is not in setter it creates a circular dependency because:
-        // AuthenticationManager is from WebSecurityConfig, for the creation of AuthenticationService
-        // AuthenticationManager was needed but for the creation of WebSecurityConfig AuthenticationService was needed
-        // thus the circular dependency.
         this.authenticationService.setAuthenticationManager(authenticationManager);
     }
 

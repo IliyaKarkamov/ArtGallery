@@ -42,8 +42,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 return;
             }
         } else {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
-            return;
+            //response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            //return;
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
