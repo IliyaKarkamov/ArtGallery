@@ -11,5 +11,5 @@ import java.util.List;
 public interface EraRepository extends JpaRepository<Era, Long>{
     List<Era> findByActiveTrue();
 
-    Era findByNameIgnoreCase(@Param("email") String name);
+    Era findByNameIgnoreCase(@Param("name") String name);
 }

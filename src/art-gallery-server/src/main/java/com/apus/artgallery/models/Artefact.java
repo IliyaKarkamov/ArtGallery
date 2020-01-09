@@ -5,29 +5,30 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "era")
-public class Era {
-
+@Table(name = "artefact")
+public class Artefact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @NotBlank
+    @Column(name = "created_at")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createdAt = LocalDateTime.now();
+
+    @Column(name = "price")
+    private Float price = 0.0f;
+
     @Column(name = "name")
     private String name;
 
-    @Column(name = "created_at")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Boolean active = true;
+    @ManyToOne
+    private Era era;
 
-    @Column(name = "descriprion")
-    private String description;
-
-    public String getName() {
-        return name;
-    }
+    @ManyToOne
+    private Style style;
 }
