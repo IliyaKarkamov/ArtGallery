@@ -31,4 +31,11 @@ public class Artefact {
 
     @ManyToOne
     private Style style;
+
+    @ManyToOne
+    private Exhibition exhibition;
+
+    public Long getId() {
+        return id;
+    }
 }

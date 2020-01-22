@@ -25,4 +25,15 @@ public class ArtefactService {
     public List<Artefact> getArtefacts(String name){
         return artefactRepository.findByNameIgnoreCase(name);
     }
+
+    public void updateArtefact(Artefact artefact){
+        if (artefact.getId() != null)
+            artefactRepository.save(artefact);
+        else
+            throw new IllegalArgumentException("Cannot update non-existing artefact");
+    }
+
+    public List<Artefact> getArtefactFromExhibition(Long id){
+        return artefactRepository.findByExhibition_Id(id);
+    }
 }

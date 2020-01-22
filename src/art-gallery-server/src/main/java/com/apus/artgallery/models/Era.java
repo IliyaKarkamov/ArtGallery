@@ -20,8 +20,7 @@ public class Era {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "created_at")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @Column(name = "active")
     private Boolean active = true;
 
     @Column(name = "descriprion")
