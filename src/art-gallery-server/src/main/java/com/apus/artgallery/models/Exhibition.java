@@ -34,6 +34,9 @@ public class Exhibition {
     @ManyToOne
     private Style style;
 
+    @ManyToOne
+    private Artist artist; 
+
     public String getName() {
         return name;
     }

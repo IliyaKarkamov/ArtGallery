@@ -36,6 +36,9 @@ public class Artefact {
     @ManyToOne
     private Exhibition exhibition;
 
+    @ManyToOne
+    private Artist artist;
+
     public Long getId() {
         return id;
     }

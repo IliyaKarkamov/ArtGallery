@@ -59,7 +59,7 @@ public class ArtefactContraller {
     @GetMapping("/api/v1/artefact/{name}/{id}")
     public ResponseEntity<Response> getArtefacts(@PathVariable(required = false) String name,
                                                  @PathVariable(required = false) Long id){
-        Response response = new Response("ArtefactContraller.getArtefactseeee", LocalDateTime.now());
+        Response response = new Response("ArtefactContraller.getArtefacts", LocalDateTime.now());
 
         HttpStatus status;
 

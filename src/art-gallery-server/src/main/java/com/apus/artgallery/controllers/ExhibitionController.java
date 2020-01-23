@@ -1,6 +1,5 @@
 package com.apus.artgallery.controllers;
 
-import com.apus.artgallery.models.Artefact;
 import com.apus.artgallery.models.Exhibition;
 import com.apus.artgallery.services.ExhibitionService;
 import com.apus.artgallery.utils.Response;
