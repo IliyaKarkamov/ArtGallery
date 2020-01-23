@@ -1,5 +1,6 @@
 package com.apus.artgallery.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -24,12 +25,15 @@ public class Gallery {
     private String address;
 
     @Column(name = "longitude")
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private Float longitude;
 
     @Column(name = "latitude")
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private Float latitude;
 
     @Column(name = "description")
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private String description;
 
     public String getName() {

@@ -1,6 +1,7 @@
 package com.apus.artgallery.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -21,21 +22,26 @@ public class Exhibition {
     private String name;
 
     @Column(name = "start_date")
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime startDate;
 
     @Column(name = "end_date")
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime endDate;
 
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @ManyToOne
     private Era era;
 
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @ManyToOne
     private Style style;
 
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @ManyToOne
-    private Artist artist; 
+    private Artist artist;
 
     public String getName() {
         return name;

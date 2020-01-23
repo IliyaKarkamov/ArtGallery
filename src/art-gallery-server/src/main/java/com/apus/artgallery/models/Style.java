@@ -1,5 +1,6 @@
 package com.apus.artgallery.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -23,6 +24,7 @@ public class Style {
     private Boolean active = true;
 
     @Column(name = "descriprion")
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private String description;
 
     public String getName() {

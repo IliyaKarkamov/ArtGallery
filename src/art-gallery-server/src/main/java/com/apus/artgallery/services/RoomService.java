@@ -15,6 +15,9 @@ public class RoomService {
     }
 
     public void addRoom(Room room){
+        if (room.getGallery() == null)
+            throw new IllegalArgumentException("No gallery specified for this room");
+
         if (roomRepository.findByNameIgnoreCase(room.getName()) != null)
             throw new IllegalArgumentException("Room with this name already exists.");
 

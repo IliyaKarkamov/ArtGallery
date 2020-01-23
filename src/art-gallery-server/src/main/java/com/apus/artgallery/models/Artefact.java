@@ -1,6 +1,7 @@
 package com.apus.artgallery.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -27,12 +28,15 @@ public class Artefact {
     @Column(name = "name")
     private String name;
 
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @ManyToOne
     private Era era;
 
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @ManyToOne
     private Style style;
 
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @ManyToOne
     private Exhibition exhibition;
 
@@ -41,5 +45,9 @@ public class Artefact {
 
     public Long getId() {
         return id;
+    }
+
+    public Artist getArtist() {
+        return artist;
     }
 }

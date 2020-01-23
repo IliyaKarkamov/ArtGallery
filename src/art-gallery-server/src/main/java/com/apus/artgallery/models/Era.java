@@ -1,6 +1,7 @@
 package com.apus.artgallery.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -23,6 +24,7 @@ public class Era {
     @Column(name = "active")
     private Boolean active = true;
 
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @Column(name = "descriprion")
     private String description;
 

@@ -15,6 +15,9 @@ public class ArtefactService {
     }
 
     public void addArtefact(Artefact artefact){
+        if (artefact.getArtist() == null)
+            throw new IllegalArgumentException("No artist specified for this artefact");
+
         artefactRepository.save(artefact);
     }
 
@@ -27,10 +30,13 @@ public class ArtefactService {
     }
 
     public void updateArtefact(Artefact artefact){
-        if (artefact.getId() != null)
-            artefactRepository.save(artefact);
-        else
+        if (artefact.getArtist() == null)
+            throw new IllegalArgumentException("No artist specified for this artefact");
+
+        if (artefact.getId() == null)
             throw new IllegalArgumentException("Cannot update non-existing artefact");
+
+        artefactRepository.save(artefact);
     }
 
     public List<Artefact> getArtefactFromExhibition(Long id){

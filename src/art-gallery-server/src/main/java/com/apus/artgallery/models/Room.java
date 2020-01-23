@@ -1,5 +1,6 @@
 package com.apus.artgallery.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class Room {
     private String name;
 
     @Column(name = "location")
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private String location;
 
     @ManyToOne
@@ -27,5 +29,9 @@ public class Room {
 
     public String getName() {
         return name;
+    }
+
+    public Gallery getGallery() {
+        return gallery;
     }
 }
