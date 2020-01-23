@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.time.LocalDateTime;
 
 @Controller
-public class RoomConstroller {
+public class RoomController {
     private final RoomService roomService;
 
-    public RoomConstroller(RoomService roomService){
+    public RoomController(RoomService roomService){
         this.roomService = roomService;
     }
 
@@ -40,7 +40,7 @@ public class RoomConstroller {
                 .body(response);
     }
 
-    @GetMapping("/api/v1/exhibition")
+    @GetMapping("/api/v1/room")
     public ResponseEntity<Response> getAllRooms(){
         Response response = new Response("RoomConstroller.getAllRooms", LocalDateTime.now());
 

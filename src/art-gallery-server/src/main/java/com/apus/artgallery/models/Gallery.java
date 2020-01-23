@@ -7,8 +7,8 @@ import javax.validation.constraints.NotBlank;
 
 @Data
 @Entity
-@Table(name = "room")
-public class Room {
+@Table(name = "gallery")
+public class Gallery {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,13 +19,24 @@ public class Room {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "location")
-    private String location;
+    @NotBlank
+    @Column(name = "address")
+    private String address;
 
-    @ManyToOne
-    private Gallery gallery;
+    @Column(name = "longitude")
+    private Float longitude;
+
+    @Column(name = "latitude")
+    private Float latitude;
+
+    @Column(name = "description")
+    private String description;
 
     public String getName() {
         return name;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

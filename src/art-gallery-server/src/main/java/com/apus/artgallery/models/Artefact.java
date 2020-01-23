@@ -23,6 +23,7 @@ public class Artefact {
     @Column(name = "price")
     private Float price = 0.0f;
 
+    @NotBlank
     @Column(name = "name")
     private String name;
 
