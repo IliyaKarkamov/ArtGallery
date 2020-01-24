@@ -1,6 +1,5 @@
 package com.apus.artgallery.services;
 
-import com.apus.artgallery.models.Era;
 import com.apus.artgallery.models.Style;
 import com.apus.artgallery.repositories.StyleRepository;
 import org.springframework.stereotype.Service;
@@ -11,20 +10,20 @@ import java.util.List;
 public class StyleService {
     private final StyleRepository styleRepository;
 
-    public StyleService(StyleRepository styleRepository){
+    public StyleService(StyleRepository styleRepository) {
         this.styleRepository = styleRepository;
     }
 
-    public List<Style> getAllActive(){
+    public List<Style> getAllActive() {
         return styleRepository.findByActiveTrue();
     }
 
-    public List<Style> getAll(){
+    public List<Style> getAll() {
         return styleRepository.findAll();
     }
 
 
-    public void addStyle(Style style){
+    public void addStyle(Style style) {
         if (styleRepository.findByNameIgnoreCase(style.getName()) != null)
             throw new IllegalArgumentException("Name already exist!");
 

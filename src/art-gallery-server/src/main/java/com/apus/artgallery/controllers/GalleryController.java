@@ -17,20 +17,20 @@ import java.time.LocalDateTime;
 public class GalleryController {
     private final GalleryService galleryService;
 
-    public GalleryController(GalleryService galleryService){
+    public GalleryController(GalleryService galleryService) {
         this.galleryService = galleryService;
     }
 
     @PostMapping("/api/v1/gallery")
-    public ResponseEntity<Response> addGallery(@RequestBody Gallery gallery){
+    public ResponseEntity<Response> addGallery(@RequestBody Gallery gallery) {
         Response response = new Response("GalleryController.addGallery", LocalDateTime.now());
 
         HttpStatus status = HttpStatus.OK;
 
-        try{
+        try {
             galleryService.addGallery(gallery);
             response.setResult(true);
-        } catch (Exception e){
+        } catch (Exception e) {
             response.addException(ResponseException.create(e));
             status = HttpStatus.BAD_REQUEST;
         }
@@ -41,14 +41,14 @@ public class GalleryController {
     }
 
     @GetMapping("/api/v1/gallery")
-    public ResponseEntity<Response> getAllGalleries(){
+    public ResponseEntity<Response> getAllGalleries() {
         Response response = new Response("GalleryController.getAllGalleries", LocalDateTime.now());
 
         HttpStatus status = HttpStatus.OK;
 
-        try{
+        try {
             response.setResult(galleryService.getAllGalleries());
-        } catch (Exception e){
+        } catch (Exception e) {
             response.addException(ResponseException.create(e));
             status = HttpStatus.BAD_REQUEST;
         }

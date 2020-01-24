@@ -10,18 +10,18 @@ import java.util.List;
 public class GalleryService {
     private final GalleryRepository galleryRepository;
 
-    public GalleryService(GalleryRepository galleryRepository){
+    public GalleryService(GalleryRepository galleryRepository) {
         this.galleryRepository = galleryRepository;
     }
 
-    public void addGallery(Gallery gallery){
+    public void addGallery(Gallery gallery) {
         if (galleryRepository.findByNameIgnoreCase(gallery.getName()) != null)
             throw new IllegalArgumentException("Gallery with the same name already exists.");
 
         galleryRepository.save(gallery);
     }
 
-    public List<Gallery> getAllGalleries(){
+    public List<Gallery> getAllGalleries() {
         return galleryRepository.findAll();
     }
 }

@@ -10,11 +10,11 @@ import java.util.List;
 public class ArtistService {
     private final ArtistRepository artistRepository;
 
-    public ArtistService(ArtistRepository artistRepository){
+    public ArtistService(ArtistRepository artistRepository) {
         this.artistRepository = artistRepository;
     }
 
-    public void addArtist(Artist artist){
+    public void addArtist(Artist artist) {
         if (artistRepository.findByFirstNameIgnoreCaseAndLastNameIgnoreCase(artist.getFirstName(), artist.getFirstName()) != null)
             throw new IllegalArgumentException("Artist with this FirstName and LastName already exists.");
 
@@ -24,7 +24,7 @@ public class ArtistService {
         artistRepository.save(artist);
     }
 
-    public List<Artist> getAllArtists(){
+    public List<Artist> getAllArtists() {
         return artistRepository.findAll();
     }
 }

@@ -17,20 +17,20 @@ import java.time.LocalDateTime;
 public class ExhibitionController {
     private final ExhibitionService exhibitionService;
 
-    public ExhibitionController(ExhibitionService exhibitionService){
+    public ExhibitionController(ExhibitionService exhibitionService) {
         this.exhibitionService = exhibitionService;
     }
 
     @PostMapping("/api/v1/exhibition")
-    public ResponseEntity<Response> addExhibition(@RequestBody Exhibition exhibition){
+    public ResponseEntity<Response> addExhibition(@RequestBody Exhibition exhibition) {
         Response response = new Response("ExhibitionController.addExhibition", LocalDateTime.now());
 
         HttpStatus status = HttpStatus.OK;
 
-        try{
+        try {
             exhibitionService.addExhibition(exhibition);
             response.setResult(true);
-        } catch (Exception e){
+        } catch (Exception e) {
             response.addException(ResponseException.create(e));
             status = HttpStatus.BAD_REQUEST;
         }
@@ -41,14 +41,14 @@ public class ExhibitionController {
     }
 
     @GetMapping("/api/v1/exhibition")
-    public ResponseEntity<Response> getAllExhibitions(){
+    public ResponseEntity<Response> getAllExhibitions() {
         Response response = new Response("ExhibitionController.getAllExhibitions", LocalDateTime.now());
 
         HttpStatus status = HttpStatus.OK;
 
-        try{
+        try {
             response.setResult(exhibitionService.getExhibitions());
-        } catch (Exception e){
+        } catch (Exception e) {
             response.addException(ResponseException.create(e));
             status = HttpStatus.BAD_REQUEST;
         }
@@ -59,14 +59,14 @@ public class ExhibitionController {
     }
 
     @GetMapping("/api/v1/exhibition/active")
-    public ResponseEntity<Response> getActiveExhibitions(){
+    public ResponseEntity<Response> getActiveExhibitions() {
         Response response = new Response("ExhibitionController.getActiveExhibitions", LocalDateTime.now());
 
         HttpStatus status = HttpStatus.OK;
 
-        try{
+        try {
             response.setResult(exhibitionService.getActiveExhibitions());
-        } catch (Exception e){
+        } catch (Exception e) {
             response.addException(ResponseException.create(e));
             status = HttpStatus.BAD_REQUEST;
         }

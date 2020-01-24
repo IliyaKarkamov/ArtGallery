@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AccountService  {
+public class AccountService {
     private final AccountRepository accountRepository;
     private final PasswordEncoder bcryptEncoder;
 

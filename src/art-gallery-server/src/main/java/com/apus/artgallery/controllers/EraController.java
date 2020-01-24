@@ -15,12 +15,12 @@ import java.time.LocalDateTime;
 public class EraController {
     private final EraService eraService;
 
-    public EraController(EraService eraService){
+    public EraController(EraService eraService) {
         this.eraService = eraService;
     }
 
     @GetMapping("/api/v1/era")
-    public ResponseEntity<Response> getEras(){
+    public ResponseEntity<Response> getEras() {
         Response response = new Response("EraController.getUsers", LocalDateTime.now());
 
         HttpStatus status = HttpStatus.OK;
@@ -38,7 +38,7 @@ public class EraController {
     }
 
     @GetMapping("/api/v1/era/active")
-    public ResponseEntity<Response> getActiveEras(){
+    public ResponseEntity<Response> getActiveEras() {
         Response response = new Response("EraController.getActiveEras", LocalDateTime.now());
 
         HttpStatus status = HttpStatus.OK;

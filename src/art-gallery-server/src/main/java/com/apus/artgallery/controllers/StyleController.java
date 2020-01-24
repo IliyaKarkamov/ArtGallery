@@ -15,12 +15,12 @@ import java.time.LocalDateTime;
 public class StyleController {
     private final StyleService styleService;
 
-    public StyleController(StyleService styleService){
+    public StyleController(StyleService styleService) {
         this.styleService = styleService;
     }
 
     @GetMapping("/api/v1/style")
-    public ResponseEntity<Response> getStyles(){
+    public ResponseEntity<Response> getStyles() {
         Response response = new Response("StyleController.getStyles", LocalDateTime.now());
 
         HttpStatus status = HttpStatus.OK;
@@ -38,7 +38,7 @@ public class StyleController {
     }
 
     @GetMapping("/api/v1/style/active")
-    public ResponseEntity<Response> getActiveStyles(){
+    public ResponseEntity<Response> getActiveStyles() {
         Response response = new Response("StyleController.getStyles", LocalDateTime.now());
 
         HttpStatus status = HttpStatus.OK;

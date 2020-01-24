@@ -47,7 +47,7 @@ public class Exhibition {
         return name;
     }
 
-    public LocalDateTime getStartDate(){
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 

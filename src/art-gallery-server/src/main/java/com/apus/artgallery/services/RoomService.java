@@ -10,11 +10,11 @@ import java.util.List;
 public class RoomService {
     private final RoomRepository roomRepository;
 
-    public RoomService(RoomRepository roomRepository){
+    public RoomService(RoomRepository roomRepository) {
         this.roomRepository = roomRepository;
     }
 
-    public void addRoom(Room room){
+    public void addRoom(Room room) {
         if (room.getGallery() == null)
             throw new IllegalArgumentException("No gallery specified for this room");
 
@@ -24,7 +24,7 @@ public class RoomService {
         roomRepository.save(room);
     }
 
-    public List<Room> getAllRooms(){
+    public List<Room> getAllRooms() {
         return roomRepository.findAll();
     }
 }

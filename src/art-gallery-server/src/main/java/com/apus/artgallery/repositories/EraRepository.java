@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface EraRepository extends JpaRepository<Era, Long>{
+public interface EraRepository extends JpaRepository<Era, Long> {
     List<Era> findByActiveTrue();
 
     Era findByNameIgnoreCase(@Param("name") String name);

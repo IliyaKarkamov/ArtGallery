@@ -10,19 +10,19 @@ import java.util.List;
 public class EraService {
     private final EraRepository eraRepository;
 
-    public EraService(EraRepository eraRepository){
+    public EraService(EraRepository eraRepository) {
         this.eraRepository = eraRepository;
     }
 
-    public List<Era> getAllActive(){
+    public List<Era> getAllActive() {
         return eraRepository.findByActiveTrue();
     }
 
-    public List<Era> getAll(){
-       return eraRepository.findAll();
+    public List<Era> getAll() {
+        return eraRepository.findAll();
     }
 
-    public void addEra(Era era){
+    public void addEra(Era era) {
         if (eraRepository.findByNameIgnoreCase(era.getName()) != null)
             throw new IllegalArgumentException("Name already exist!");
 

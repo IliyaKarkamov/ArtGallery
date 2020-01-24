@@ -17,20 +17,20 @@ import java.time.LocalDateTime;
 public class RoomController {
     private final RoomService roomService;
 
-    public RoomController(RoomService roomService){
+    public RoomController(RoomService roomService) {
         this.roomService = roomService;
     }
 
     @PostMapping("/api/v1/room")
-    public ResponseEntity<Response> addRoom(@RequestBody Room room){
-        Response response = new Response("RoomConstroller.addRoom", LocalDateTime.now());
+    public ResponseEntity<Response> addRoom(@RequestBody Room room) {
+        Response response = new Response("RoomController.addRoom", LocalDateTime.now());
 
         HttpStatus status = HttpStatus.OK;
 
-        try{
+        try {
             roomService.addRoom(room);
             response.setResult(true);
-        } catch (Exception e){
+        } catch (Exception e) {
             response.addException(ResponseException.create(e));
             status = HttpStatus.BAD_REQUEST;
         }
@@ -41,14 +41,14 @@ public class RoomController {
     }
 
     @GetMapping("/api/v1/room")
-    public ResponseEntity<Response> getAllRooms(){
-        Response response = new Response("RoomConstroller.getAllRooms", LocalDateTime.now());
+    public ResponseEntity<Response> getAllRooms() {
+        Response response = new Response("RoomController.getAllRooms", LocalDateTime.now());
 
         HttpStatus status = HttpStatus.OK;
 
-        try{
+        try {
             response.setResult(roomService.getAllRooms());
-        } catch (Exception e){
+        } catch (Exception e) {
             response.addException(ResponseException.create(e));
             status = HttpStatus.BAD_REQUEST;
         }

@@ -17,20 +17,20 @@ import java.time.LocalDateTime;
 public class ArtistController {
     private final ArtistService artistService;
 
-    public ArtistController(ArtistService artistService){
+    public ArtistController(ArtistService artistService) {
         this.artistService = artistService;
     }
 
     @PostMapping("/api/v1/artist")
-    public ResponseEntity<Response> addArtist(@RequestBody Artist artist){
+    public ResponseEntity<Response> addArtist(@RequestBody Artist artist) {
         Response response = new Response("ArtistController.addArtist", LocalDateTime.now());
 
         HttpStatus status = HttpStatus.OK;
 
-        try{
+        try {
             artistService.addArtist(artist);
             response.setResult(true);
-        } catch (Exception e){
+        } catch (Exception e) {
             response.addException(ResponseException.create(e));
             status = HttpStatus.BAD_REQUEST;
         }
@@ -41,14 +41,14 @@ public class ArtistController {
     }
 
     @GetMapping("/api/v1/artist")
-    public ResponseEntity<Response> getAllArtists(){
+    public ResponseEntity<Response> getAllArtists() {
         Response response = new Response("ArtistController.getAllArtists", LocalDateTime.now());
 
         HttpStatus status = HttpStatus.OK;
 
-        try{
+        try {
             response.setResult(artistService.getAllArtists());
-        } catch (Exception e){
+        } catch (Exception e) {
             response.addException(ResponseException.create(e));
             status = HttpStatus.BAD_REQUEST;
         }
