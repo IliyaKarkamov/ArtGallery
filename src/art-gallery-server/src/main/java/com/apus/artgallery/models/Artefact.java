@@ -7,6 +7,7 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Data
 @Entity
@@ -42,6 +43,9 @@ public class Artefact {
 
     @ManyToOne
     private Artist artist;
+
+    @OneToMany(mappedBy = "artefact")
+    Set<PictureArtefactModel> pictures;
 
     public Long getId() {
         return id;
