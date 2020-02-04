@@ -1,0 +1,47 @@
+<mat-card style="width: 500px; margin: 20px;">
+  <mat-card-header>
+    <mat-card-title>Sign in</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-hint *ngIf="isSignedInSuccessfully">
+      <p>
+        <b>You have successfully signed in!</b> We are glad that you chose our
+        services again! See our latest exhibitions <a [routerLink]="''">here</a>!
+      </p>
+    </mat-hint>
+    <div *ngIf="!isSignedInSuccessfully">
+      <mat-error *ngIf="signingErrorMessage.length > 0">
+        <b>An error occurred!</b> {{signingErrorMessage}}
+      </mat-error>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+          <input matInput placeholder="Username" formControlName="username">
+          <mat-error *ngIf="f.username.hasError('required')">
+            Please enter your username!
+          </mat-error>
+          <mat-error *ngIf="f.username.hasError('minlength')">
+            The username must be at least 3 characters!
+          </mat-error>
+          <mat-error *ngIf="f.username.hasError('maxlength')">
+            The username can not be longer than 20 characters!
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="password" placeholder="Password" formControlName="password">
+          <mat-error *ngIf="f.password.hasError('required')">
+            Please enter your password!
+          </mat-error>
+          <mat-error *ngIf="f.password.hasError('minlength')">
+            The password must be at least 8 characters!
+          </mat-error>
+          <mat-error *ngIf="f.password.hasError('maxlength')">
+            The password can not be longer than 64 characters!
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button type="submit" color="primary">Sign in</button>
+        <button mat-button type="reset" color="primary" (click)="onReset()">Reset</button>
+      </form>
+    </div>
+  </mat-card-content>
+</mat-card>

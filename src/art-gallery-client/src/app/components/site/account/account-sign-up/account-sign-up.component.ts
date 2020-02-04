@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 
-import {mustMatch} from '../../../utils/must-match';
-import {AccountService} from '../../../services/account/account.service';
-import {CustomErrorStateMatcher} from '../../../utils/custom-error-state-matcher';
+import {mustMatch} from '../../../../utils/must-match';
+import {AccountService} from '../../../../services/account/account.service';
+import {CustomErrorStateMatcher} from '../../../../utils/custom-error-state-matcher';
 
 @Component({
   selector: 'app-account-sign-up',
@@ -13,6 +13,9 @@ import {CustomErrorStateMatcher} from '../../../utils/custom-error-state-matcher
 })
 export class AccountSignUpComponent implements OnInit {
   private registerForm: FormGroup;
+
+  private isSignedUnSuccessfully = false;
+  private signingErrorMessage = '';
 
   private isPasswordVisible = false;
   private isConfirmPasswordVisible = false;
@@ -83,9 +86,13 @@ export class AccountSignUpComponent implements OnInit {
 
     this.accountService.create(this.registerForm.value)
       .subscribe(data => {
-        this.router.navigate(['account/signin']);
+        this.isSignedUnSuccessfully = true;
       }, error => {
-        console.log(error);
+        this.signingErrorMessage = '';
+
+        for (const exception of error.error.exceptions) {
+          this.signingErrorMessage += exception.message;
+        }
       });
   }
 

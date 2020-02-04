@@ -19,6 +19,24 @@ export class AccountService {
     return this.http.post(environment.apiUrl + '/api/v1/users', account);
   }
 
+  getAll(): Observable<Response<Account[]>> {
+    return this.http.get(environment.apiUrl + '/api/v1/users')
+      .pipe(map((data: any) => {
+        const response = new Response<Account[]>();
+        Object.assign(response, data);
+        return response;
+      }));
+  }
+
+  get(id: number): Observable<Response<Account[]>> {
+    return this.http.get(environment.apiUrl + '/api/v1/users')
+      .pipe(map((data: any) => {
+        const response = new Response<Account[]>();
+        Object.assign(response, data);
+        return response;
+      }));
+  }
+
   checkUsername(username: string): Observable<Response<boolean>> {
     return this.http.get(environment.apiUrl + '/api/v1/users/exists/?username=' + username, {})
       .pipe(map((data: any) => {
