@@ -62,9 +62,7 @@ public class StyleController {
         HttpStatus status = HttpStatus.OK;
 
         try {
-            styleService.addStyle(style);
-
-            response.setResult(true);
+            response.setResult(styleService.addStyle(style));
         } catch (Exception e) {
             response.addException(ResponseException.create(e));
             status = HttpStatus.BAD_REQUEST;

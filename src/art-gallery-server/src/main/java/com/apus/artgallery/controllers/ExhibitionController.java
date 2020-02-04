@@ -28,8 +28,7 @@ public class ExhibitionController {
         HttpStatus status = HttpStatus.OK;
 
         try {
-            exhibitionService.addExhibition(exhibition);
-            response.setResult(true);
+            response.setResult(exhibitionService.addExhibition(exhibition));
         } catch (Exception e) {
             response.addException(ResponseException.create(e));
             status = HttpStatus.BAD_REQUEST;

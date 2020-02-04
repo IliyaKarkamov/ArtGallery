@@ -26,8 +26,7 @@ public class ArtefactContraller {
         HttpStatus status = HttpStatus.OK;
 
         try {
-            artefactService.addArtefact(artefact);
-            response.setResult(true);
+            response.setResult(artefactService.addArtefact(artefact));
         } catch (Exception e) {
             response.addException(ResponseException.create(e));
             status = HttpStatus.BAD_REQUEST;

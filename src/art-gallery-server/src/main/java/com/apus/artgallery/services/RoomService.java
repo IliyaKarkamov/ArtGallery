@@ -14,7 +14,7 @@ public class RoomService {
         this.roomRepository = roomRepository;
     }
 
-    public void addRoom(Room room) {
+    public Room addRoom(Room room) {
         if (room.getGallery() == null)
             throw new IllegalArgumentException("No gallery specified for this room");
 
@@ -22,6 +22,7 @@ public class RoomService {
             throw new IllegalArgumentException("Room with this name already exists.");
 
         roomRepository.save(room);
+        return room;
     }
 
     public List<Room> getAllRooms() {

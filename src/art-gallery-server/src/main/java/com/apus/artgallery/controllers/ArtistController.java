@@ -28,8 +28,7 @@ public class ArtistController {
         HttpStatus status = HttpStatus.OK;
 
         try {
-            artistService.addArtist(artist);
-            response.setResult(true);
+            response.setResult(artistService.addArtist(artist));
         } catch (Exception e) {
             response.addException(ResponseException.create(e));
             status = HttpStatus.BAD_REQUEST;

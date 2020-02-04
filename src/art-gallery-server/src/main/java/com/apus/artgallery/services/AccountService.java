@@ -17,7 +17,7 @@ public class AccountService {
         this.bcryptEncoder = bcryptEncoder;
     }
 
-    public void createAccount(User user) {
+    public User createAccount(User user) {
         if (accountRepository.findByUsernameIgnoreCase(user.getUsername()) != null)
             throw new IllegalArgumentException("Username already exist!");
 
@@ -26,6 +26,8 @@ public class AccountService {
 
         user.setPassword(bcryptEncoder.encode(user.getPassword()));
         accountRepository.save(user);
+
+        return user;
     }
 
     public Boolean usernameExists(String username) {

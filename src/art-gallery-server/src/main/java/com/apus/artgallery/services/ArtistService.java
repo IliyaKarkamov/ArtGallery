@@ -1,5 +1,6 @@
 package com.apus.artgallery.services;
 
+import com.apus.artgallery.models.Artefact;
 import com.apus.artgallery.models.Artist;
 import com.apus.artgallery.repositories.ArtistRepository;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ public class ArtistService {
         this.artistRepository = artistRepository;
     }
 
-    public void addArtist(Artist artist) {
+    public Artist addArtist(Artist artist) {
         if (artistRepository.findByFirstNameIgnoreCaseAndLastNameIgnoreCase(artist.getFirstName(), artist.getFirstName()) != null)
             throw new IllegalArgumentException("Artist with this FirstName and LastName already exists.");
 
@@ -22,6 +23,7 @@ public class ArtistService {
             throw new IllegalArgumentException("Artist with this alias already exists");
 
         artistRepository.save(artist);
+        return artist;
     }
 
     public List<Artist> getAllArtists() {

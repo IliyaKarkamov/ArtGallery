@@ -15,11 +15,12 @@ public class ExhibitionService {
         this.exhibitionRepository = exhibitionRepository;
     }
 
-    public void addExhibition(Exhibition exhibition) {
+    public Exhibition addExhibition(Exhibition exhibition) {
         if (exhibitionRepository.findByNameIgnoreCase(exhibition.getName()) != null)
             throw new IllegalArgumentException("Name already exist!");
 
         exhibitionRepository.save(exhibition);
+        return exhibition;
     }
 
     public Boolean isExhibitionActive(Exhibition exhibition) {

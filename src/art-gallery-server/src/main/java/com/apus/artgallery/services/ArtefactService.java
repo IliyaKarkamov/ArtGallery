@@ -15,11 +15,12 @@ public class ArtefactService {
         this.artefactRepository = artefactRepository;
     }
 
-    public void addArtefact(Artefact artefact) {
+    public Artefact addArtefact(Artefact artefact) {
         if (artefact.getArtist() == null)
             throw new IllegalArgumentException("No artist specified for this artefact");
 
         artefactRepository.save(artefact);
+        return artefact;
     }
 
     public List<Artefact> getArtefacts() {

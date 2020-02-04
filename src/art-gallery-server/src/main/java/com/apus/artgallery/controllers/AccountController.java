@@ -115,13 +115,10 @@ public class AccountController {
     public ResponseEntity<Response> addUser(@RequestBody User user) {
         Response response = new Response("AccountController.addUser", LocalDateTime.now());
 
-        HttpStatus status;
+        HttpStatus status = HttpStatus.OK;;
 
         try {
-            accountService.createAccount(user);
-
-            response.setResult(true);
-            status = HttpStatus.OK;
+            response.setResult(accountService.createAccount(user));
         } catch (Exception e) {
             response.addException(ResponseException.create(e));
             status = HttpStatus.BAD_REQUEST;

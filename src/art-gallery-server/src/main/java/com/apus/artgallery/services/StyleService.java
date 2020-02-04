@@ -23,10 +23,11 @@ public class StyleService {
     }
 
 
-    public void addStyle(Style style) {
+    public Style addStyle(Style style) {
         if (styleRepository.findByNameIgnoreCase(style.getName()) != null)
             throw new IllegalArgumentException("Name already exist!");
 
         styleRepository.save(style);
+        return style;
     }
 }

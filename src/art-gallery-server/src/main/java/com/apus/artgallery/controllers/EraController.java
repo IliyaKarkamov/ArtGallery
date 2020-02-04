@@ -62,9 +62,7 @@ public class EraController {
         HttpStatus status = HttpStatus.OK;
 
         try {
-            eraService.addEra(era);
-
-            response.setResult(true);
+            response.setResult(eraService.addEra(era));
         } catch (Exception e) {
             response.addException(ResponseException.create(e));
             status = HttpStatus.BAD_REQUEST;

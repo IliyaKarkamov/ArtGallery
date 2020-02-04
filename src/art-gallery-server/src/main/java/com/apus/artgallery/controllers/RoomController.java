@@ -28,8 +28,7 @@ public class RoomController {
         HttpStatus status = HttpStatus.OK;
 
         try {
-            roomService.addRoom(room);
-            response.setResult(true);
+            response.setResult(roomService.addRoom(room));
         } catch (Exception e) {
             response.addException(ResponseException.create(e));
             status = HttpStatus.BAD_REQUEST;

@@ -14,11 +14,12 @@ public class GalleryService {
         this.galleryRepository = galleryRepository;
     }
 
-    public void addGallery(Gallery gallery) {
+    public Gallery addGallery(Gallery gallery) {
         if (galleryRepository.findByNameIgnoreCase(gallery.getName()) != null)
             throw new IllegalArgumentException("Gallery with the same name already exists.");
 
         galleryRepository.save(gallery);
+        return gallery;
     }
 
     public List<Gallery> getAllGalleries() {

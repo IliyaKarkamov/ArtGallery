@@ -28,8 +28,7 @@ public class GalleryController {
         HttpStatus status = HttpStatus.OK;
 
         try {
-            galleryService.addGallery(gallery);
-            response.setResult(true);
+            response.setResult(galleryService.addGallery(gallery));
         } catch (Exception e) {
             response.addException(ResponseException.create(e));
             status = HttpStatus.BAD_REQUEST;

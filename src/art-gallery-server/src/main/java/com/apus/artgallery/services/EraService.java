@@ -22,10 +22,11 @@ public class EraService {
         return eraRepository.findAll();
     }
 
-    public void addEra(Era era) {
+    public Era addEra(Era era) {
         if (eraRepository.findByNameIgnoreCase(era.getName()) != null)
             throw new IllegalArgumentException("Name already exist!");
 
         eraRepository.save(era);
+        return era;
     }
 }
