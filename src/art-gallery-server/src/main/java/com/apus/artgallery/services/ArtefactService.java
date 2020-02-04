@@ -4,6 +4,7 @@ import com.apus.artgallery.models.Artefact;
 import com.apus.artgallery.repositories.ArtefactRepository;
 import org.springframework.stereotype.Service;
 
+import java.io.InputStream;
 import java.util.List;
 
 @Service
