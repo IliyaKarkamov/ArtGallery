@@ -74,6 +74,24 @@ public class GalleryController {
                 .body(response);
     }
 
+    @GetMapping("/api/v1/galleries/active")
+    public ResponseEntity<Response> getAllActive() {
+        Response response = new Response("GalleryController.getAllActive", LocalDateTime.now());
+
+        HttpStatus status = HttpStatus.OK;
+
+        try {
+            response.setResult(galleryService.getAllActive());
+        } catch (Exception e) {
+            response.addException(ResponseException.create(e));
+            status = HttpStatus.BAD_REQUEST;
+        }
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
+
     @PutMapping("/api/v1/galleries/edit/{id}")
     public ResponseEntity<Response> editGalleryById(@RequestBody Gallery gallery, @PathVariable Long id) {
         Response response = new Response("GalleryController.editGalleryById", LocalDateTime.now());

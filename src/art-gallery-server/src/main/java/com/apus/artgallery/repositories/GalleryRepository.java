@@ -9,12 +9,16 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 public interface GalleryRepository extends JpaRepository<Gallery, Long> {
     Gallery findByNameIgnoreCase(@Param("name") String name);
 
     boolean existsByNameAndIdIsNot(@Param("name") String name,
                                    @Param("id") Long id);
+
+    List<Gallery> findByActiveTrue();
 
     @Modifying
     @Transactional(propagation = Propagation.REQUIRED)

@@ -42,4 +42,8 @@ public class GalleryService {
     public void deactivate(Long id, Boolean active) {
         galleryRepository.activate(active, id);
     }
+
+    public List<Gallery> getAllActive(){
+        return galleryRepository.findByActiveTrue();
+    }
 }
