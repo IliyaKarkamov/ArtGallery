@@ -1,0 +1,31 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Добавяне на стил</mat-card-title>
+  </mat-card-header>
+  <mat-card-content style="padding: 20px;">
+    <mat-hint *ngIf="isAddedSuccessfully">Успешно добавихте данни за нов стил!</mat-hint>
+    <div *ngIf="!isAddedSuccessfully">
+      <mat-error *ngIf="errorMessage.length > 0">
+        <b>An error occurred!</b> {{errorMessage}}
+      </mat-error>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+          <input matInput placeholder="Име" formControlName="name">
+          <mat-error *ngIf="f.name.hasError('required')">
+            Моля въведете име!
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <textarea matInput type="text" placeholder="Описание" formControlName="description"></textarea>
+        </mat-form-field>
+        <mat-checkbox formControlName="active">Активен</mat-checkbox>
+
+        <button mat-raised-button type="submit" color="primary">Добавяне</button>
+        <button mat-button type="reset" color="primary" (click)="onReset()">Изчистване</button>
+      </form>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button [routerLink]="'/admin/styles'">Назад</button>
+  </mat-card-actions>
+</mat-card>

@@ -44,6 +44,11 @@ import {AccountListComponent} from './components/admin/account/account-list/acco
 import {AccountRemoveComponent} from './components/admin/account/account-remove/account-remove.component';
 import {AccountEditComponent} from './components/admin/account/account-edit/account-edit.component';
 import { AccountPreviewComponent } from './components/admin/account/account-preview/account-preview.component';
+import { StylesPreviewComponent } from './components/admin/styles/styles-preview/styles-preview.component';
+import { StylesListComponent } from './components/admin/styles/styles-list/styles-list.component';
+import { StylesEditComponent } from './components/admin/styles/styles-edit/styles-edit.component';
+import { StylesRemoveComponent } from './components/admin/styles/styles-remove/styles-remove.component';
+import { StylesAddComponent } from './components/admin/styles/styles-add/styles-add.component';
 
 export function getJwtToken() {
   return localStorage.getItem('jwtToken');
@@ -70,7 +75,12 @@ export function getJwtToken() {
     AccountListComponent,
     AccountRemoveComponent,
     AccountEditComponent,
-    AccountPreviewComponent
+    AccountPreviewComponent,
+    StylesPreviewComponent,
+    StylesListComponent,
+    StylesEditComponent,
+    StylesRemoveComponent,
+    StylesAddComponent
   ],
   imports: [
     BrowserModule,

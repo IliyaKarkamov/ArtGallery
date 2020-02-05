@@ -112,7 +112,7 @@ public class AccountController {
     }
 
     @GetMapping("/api/v1/users/id/{id}")
-    public ResponseEntity<Response> getUserById(@PathVariable long id) {
+    public ResponseEntity<Response> getUserById(@PathVariable Long id) {
         Response response = new Response("AccountController.getUserById", LocalDateTime.now());
 
         HttpStatus status;
@@ -131,13 +131,13 @@ public class AccountController {
     }
 
     @PutMapping("/api/v1/users/id/{id}")
-    public ResponseEntity<Response> editUserById(@RequestBody User user) {
+    public ResponseEntity<Response> editUserById(@RequestBody User user, @PathVariable Long id) {
         Response response = new Response("AccountController.editUserById", LocalDateTime.now());
 
         HttpStatus status;
 
         try {
-            accountService.edit(user);
+            accountService.edit(id, user);
 
             response.setResult(true);
             status = HttpStatus.OK;

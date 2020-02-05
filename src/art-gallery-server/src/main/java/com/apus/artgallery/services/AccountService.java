@@ -54,14 +54,16 @@ public class AccountService {
         return accountRepository.findByIsActiveTrue();
     }
 
-    public void edit(User user) {
-        if (accountRepository.existsByUsernameAndIdIsNot(user.getUsername(), user.getId()))
+    public void edit(Long id, User user) {
+        if (accountRepository.existsByUsernameAndIdIsNot(user.getUsername(), id))
             throw new IllegalArgumentException("Username already exist!");
 
-        if (accountRepository.existsByEmailAndIdIsNot(user.getEmail(), user.getId()))
+        if (accountRepository.existsByEmailAndIdIsNot(user.getEmail(), id))
             throw new IllegalArgumentException("Email already exist!");
 
-        accountRepository.saveById(user.getUsername(), user.getEmail(), user.getFirstName(), user.getSecondName(), user.getLastName(), user.getActive(), user.getAdmin(), user.getId());
+        accountRepository.saveById(user.getUsername(), user.getEmail(),
+                user.getFirstName(), user.getSecondName(), user.getLastName(),
+                user.getActive(), user.getAdmin(), id);
     }
 
     public void remove(Long id) {

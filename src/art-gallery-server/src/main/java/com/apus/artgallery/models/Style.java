@@ -30,4 +30,12 @@ public class Style {
     public String getName() {
         return name;
     }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }

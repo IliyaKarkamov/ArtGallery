@@ -64,7 +64,7 @@ export class AccountService {
       }));
   }
 
-  remove(id: number): Observable<Response<boolean>> {
+  deactivate(id: number): Observable<Response<boolean>> {
     return this.http.delete(environment.apiUrl + '/api/v1/users/id/' + id)
       .pipe(map((data: any) => {
         const response = new Response<boolean>();

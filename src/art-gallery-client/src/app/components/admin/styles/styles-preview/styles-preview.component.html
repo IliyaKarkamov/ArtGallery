@@ -1,0 +1,28 @@
+<mat-card>
+  <mat-card-title>Преглед на стил</mat-card-title>
+  <mat-card-content style="padding: 20px;">
+    <mat-error *ngIf="loadingErrorMessage.length > 0"><b>An error occurred!</b> {{loadingErrorMessage}}</mat-error>
+    <table *ngIf="style != null">
+      <tr>
+        <td><b>Име:</b></td>
+        <td>{{style.name}}</td>
+      </tr>
+      <tr>
+        <td><b>Описание:</b></td>
+        <td>{{style.description}}</td>
+      </tr>
+      <tr>
+        <td><b>Активен:</b></td>
+        <td *ngIf="style.active">
+          <mat-icon color="primary">done</mat-icon>
+        </td>
+        <td *ngIf="!style.active">
+          <mat-icon color="primary">clear</mat-icon>
+        </td>
+      </tr>
+    </table>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button [routerLink]="'/admin/styles'">Назад</button>
+  </mat-card-actions>
+</mat-card>

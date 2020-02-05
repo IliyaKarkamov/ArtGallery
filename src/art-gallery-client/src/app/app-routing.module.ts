@@ -18,6 +18,11 @@ import {AccountListComponent} from './components/admin/account/account-list/acco
 import {AccountEditComponent} from './components/admin/account/account-edit/account-edit.component';
 import {AccountRemoveComponent} from './components/admin/account/account-remove/account-remove.component';
 import {AccountPreviewComponent} from './components/admin/account/account-preview/account-preview.component';
+import {StylesListComponent} from './components/admin/styles/styles-list/styles-list.component';
+import {StylesPreviewComponent} from './components/admin/styles/styles-preview/styles-preview.component';
+import {StylesAddComponent} from './components/admin/styles/styles-add/styles-add.component';
+import {StylesEditComponent} from './components/admin/styles/styles-edit/styles-edit.component';
+import {StylesRemoveComponent} from './components/admin/styles/styles-remove/styles-remove.component';
 
 const routes: Routes = [
   // Site routes
@@ -39,10 +44,18 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {path: '', component: AdminHomeComponent, pathMatch: 'full'},
+      // Account routes
       {path: 'accounts', component: AccountListComponent},
-      {path: 'account/edit/:id', component: AccountEditComponent},
-      {path: 'account/remove/:id', component: AccountRemoveComponent},
-      {path: 'account/preview/:id', component: AccountPreviewComponent}
+      {path: 'accounts/edit/:id', component: AccountEditComponent},
+      {path: 'accounts/remove/:id', component: AccountRemoveComponent},
+      {path: 'accounts/preview/:id', component: AccountPreviewComponent},
+
+      // Styles routes
+      {path: 'styles', component: StylesListComponent},
+      {path: 'styles/add', component: StylesAddComponent},
+      {path: 'styles/edit/:id', component: StylesEditComponent},
+      {path: 'styles/remove/:id', component: StylesRemoveComponent},
+      {path: 'styles/preview/:id', component: StylesPreviewComponent}
     ]
   }
 ];

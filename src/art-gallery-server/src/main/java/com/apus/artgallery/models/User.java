@@ -85,7 +85,7 @@ public class User {
         this.firstName = firstName;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

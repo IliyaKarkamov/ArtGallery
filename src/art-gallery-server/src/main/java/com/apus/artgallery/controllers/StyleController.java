@@ -19,7 +19,7 @@ public class StyleController {
         this.styleService = styleService;
     }
 
-    @GetMapping("/api/v1/style")
+    @GetMapping("/api/v1/styles")
     public ResponseEntity<Response> getStyles() {
         Response response = new Response("StyleController.getStyles", LocalDateTime.now());
 
@@ -27,6 +27,24 @@ public class StyleController {
 
         try {
             response.setResult(styleService.getAll());
+        } catch (Exception e) {
+            response.addException(ResponseException.create(e));
+            status = HttpStatus.BAD_REQUEST;
+        }
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
+
+    @GetMapping("/api/v1/styles/id/{id}")
+    public ResponseEntity<Response> getStyleById(@PathVariable Long id) {
+        Response response = new Response("StyleController.getStyleById", LocalDateTime.now());
+
+        HttpStatus status = HttpStatus.OK;
+
+        try {
+            response.setResult(styleService.get(id));
         } catch (Exception e) {
             response.addException(ResponseException.create(e));
             status = HttpStatus.BAD_REQUEST;
@@ -55,9 +73,47 @@ public class StyleController {
                 .body(response);
     }
 
-    @PostMapping("/api/v1/style")
-    public ResponseEntity<Response> AddStyle(@RequestBody Style style) {
-        Response response = new Response("StyleController.AddStyle", LocalDateTime.now());
+    @PutMapping("/api/v1/styles/id/{id}")
+    public ResponseEntity<Response> editStyleById(@RequestBody Style style, @PathVariable Long id) {
+        Response response = new Response("AccountController.editStyleById", LocalDateTime.now());
+
+        HttpStatus status = HttpStatus.OK;
+
+        try {
+            styleService.edit(id, style);
+            response.setResult(true);
+        } catch (Exception e) {
+            response.addException(ResponseException.create(e));
+            status = HttpStatus.BAD_REQUEST;
+        }
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
+
+    @DeleteMapping("/api/v1/styles/id/{id}")
+    public ResponseEntity<Response> deactivateStyleById(@PathVariable Long id) {
+        Response response = new Response("AccountController.deactivateStyleById", LocalDateTime.now());
+
+        HttpStatus status = HttpStatus.OK;
+
+        try {
+            styleService.deactivate(id);
+            response.setResult(true);
+        } catch (Exception e) {
+            response.addException(ResponseException.create(e));
+            status = HttpStatus.BAD_REQUEST;
+        }
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
+
+    @PostMapping("/api/v1/styles")
+    public ResponseEntity<Response> addStyle(@RequestBody Style style) {
+        Response response = new Response("StyleController.addStyle", LocalDateTime.now());
 
         HttpStatus status = HttpStatus.OK;
 

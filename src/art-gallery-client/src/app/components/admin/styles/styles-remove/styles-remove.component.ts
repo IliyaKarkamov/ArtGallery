@@ -1,23 +1,23 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {AccountService} from '../../../../services/account/account.service';
+import {StylesService} from '../../../../services/styles/styles.service';
 
 @Component({
-  selector: 'app-account-remove',
-  templateUrl: './account-remove.component.html',
-  styleUrls: ['./account-remove.component.scss']
+  selector: 'app-styles-remove',
+  templateUrl: './styles-remove.component.html',
+  styleUrls: ['./styles-remove.component.scss']
 })
-export class AccountRemoveComponent implements OnInit {
+export class StylesRemoveComponent implements OnInit {
   private errorMessage = '';
   private isRemovedSuccessfully = false;
 
-  constructor(private route: ActivatedRoute, private accountService: AccountService) {
+  constructor(private route: ActivatedRoute, private stylesService: StylesService) {
   }
 
   ngOnInit() {
-    const userId = +this.route.snapshot.paramMap.get('id');
+    const styleId = +this.route.snapshot.paramMap.get('id');
 
-    this.accountService.deactivate(userId)
+    this.stylesService.deactivate(styleId)
       .subscribe(data => {
         this.isRemovedSuccessfully = data.result;
       }, error => {

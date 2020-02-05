@@ -30,4 +30,23 @@ public class StyleService {
         styleRepository.save(style);
         return style;
     }
+
+    public Style get(Long id) {
+        var style = styleRepository.findById(id);
+
+        if (style.isPresent())
+            return style.get();
+
+        throw new IllegalArgumentException("Style with the given id doesnt exists!");
+    }
+
+    public void edit(Long id, Style style) {
+        if (styleRepository.existsByNameAndIdIsNot(style.getName(), id))
+            throw new IllegalArgumentException("Name already exist!");
+
+        styleRepository.saveById(style.getName(), style.getDescription(), style.getActive(), id);
+    }
+
+    public void deactivate(Long id) {
+    }
 }

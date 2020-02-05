@@ -21,9 +21,9 @@ public interface AccountRepository extends JpaRepository<User, Long> {
 
     List<User> findByIsActiveTrue();
 
-    boolean existsByUsernameAndIdIsNot(@Param("username") String username, @Param("id") long id);
+    boolean existsByUsernameAndIdIsNot(@Param("username") String username, @Param("id") Long id);
 
-    boolean existsByEmailAndIdIsNot(@Param("username") String username, @Param("id") long id);
+    boolean existsByEmailAndIdIsNot(@Param("username") String username, @Param("id") Long id);
 
     @Modifying
     @Transactional(propagation = Propagation.REQUIRED)
