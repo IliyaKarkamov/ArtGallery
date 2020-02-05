@@ -24,7 +24,7 @@ export class GalleriesService {
   }
 
   getAllActive(): Observable<Response<Gallery[]>> {
-    return this.http.get(environment.apiUrl + '/api/v1/galleries')
+    return this.http.get(environment.apiUrl + '/api/v1/galleries/active')
       .pipe(map((data: any) => {
         const response = new Response<Gallery[]>();
         Object.assign(response, data);
