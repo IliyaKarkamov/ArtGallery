@@ -29,4 +29,9 @@ public class EraService {
         eraRepository.save(era);
         return era;
     }
+
+    public Era getById(Long id) {
+        return eraRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Era with the given id doesnt exists!"));
+    }
 }

@@ -29,4 +29,9 @@ public interface AccountRepository extends JpaRepository<User, Long> {
     @Transactional(propagation = Propagation.REQUIRED)
     @Query("update User u set u.username = ?1, u.email = ?2, u.firstName = ?3, u.secondName = ?4, u.lastName = ?5, u.isActive = ?6, u.isAdmin = ?7 where u.id = ?8")
     void saveById(String username, String email, String firstName, String secondName, String lastName, Boolean isActive, Boolean isAdmin, Long id);
+
+    @Modifying
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Query("update User u set  u.isActive = ?1 where u.id = ?2")
+    void deactivate(Boolean isActive, Long id);
 }

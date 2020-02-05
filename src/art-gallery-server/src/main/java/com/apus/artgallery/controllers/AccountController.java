@@ -111,7 +111,7 @@ public class AccountController {
                 .body(response);
     }
 
-    @GetMapping("/api/v1/users/id/{id}")
+    @GetMapping("/api/v1/users/{id}")
     public ResponseEntity<Response> getUserById(@PathVariable Long id) {
         Response response = new Response("AccountController.getUserById", LocalDateTime.now());
 
@@ -130,7 +130,7 @@ public class AccountController {
                 .body(response);
     }
 
-    @PutMapping("/api/v1/users/id/{id}")
+    @PutMapping("/api/v1/users/{id}")
     public ResponseEntity<Response> editUserById(@RequestBody User user, @PathVariable Long id) {
         Response response = new Response("AccountController.editUserById", LocalDateTime.now());
 
@@ -151,14 +151,15 @@ public class AccountController {
                 .body(response);
     }
 
-    @DeleteMapping("/api/v1/users/id/{id}")
-    public ResponseEntity<Response> removeUserById(@PathVariable Long id) {
-        Response response = new Response("AccountController.removeUserById", LocalDateTime.now());
+    @PutMapping("/api/v1/users/deactivate/{id}")
+    public ResponseEntity<Response> deactivateUserById(@PathVariable Long id,
+                                                       @RequestParam Boolean active) {
+        Response response = new Response("AccountController.deactivateUserById", LocalDateTime.now());
 
         HttpStatus status;
 
         try {
-            accountService.remove(id);
+            accountService.remove(id, active);
 
             response.setResult(true);
             status = HttpStatus.OK;

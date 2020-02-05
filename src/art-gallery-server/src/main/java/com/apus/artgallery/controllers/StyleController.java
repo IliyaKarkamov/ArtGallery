@@ -75,7 +75,7 @@ public class StyleController {
 
     @PutMapping("/api/v1/styles/edit/{id}")
     public ResponseEntity<Response> editStyleById(@RequestBody Style style, @PathVariable Long id) {
-        Response response = new Response("AccountController.editStyleById", LocalDateTime.now());
+        Response response = new Response("StyleController.editStyleById", LocalDateTime.now());
 
         HttpStatus status = HttpStatus.OK;
 
@@ -95,7 +95,7 @@ public class StyleController {
     @PutMapping("/api/v1/styles/deactivate/{id}")
     public ResponseEntity<Response> deactivateStyleById(@PathVariable Long id,
                                                         @RequestParam Boolean active) {
-        Response response = new Response("AccountController.deactivateStyleById", LocalDateTime.now());
+        Response response = new Response("StyleController.deactivateStyleById", LocalDateTime.now());
 
         HttpStatus status = HttpStatus.OK;
 

@@ -66,7 +66,7 @@ public class AccountService {
                 user.getActive(), user.getAdmin(), id);
     }
 
-    public void remove(Long id) {
-        accountRepository.deleteById(id);
+    public void remove(Long id, Boolean active) {
+        accountRepository.deactivate(active, id);
     }
 }
