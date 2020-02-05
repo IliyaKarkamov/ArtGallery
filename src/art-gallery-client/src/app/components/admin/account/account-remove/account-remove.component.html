@@ -1,1 +1,10 @@
-<p>account-remove works!</p>
+<mat-card>
+  <mat-card-title>Премахване на потребител</mat-card-title>
+  <mat-card-content style="padding: 20px;">
+    <mat-error *ngIf="errorMessage.length > 0"><b>An error occurred!</b> {{errorMessage}}</mat-error>
+    <mat-hint *ngIf="isRemovedSuccessfully">Успешно премахнахте избрания потребители!</mat-hint>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button [routerLink]="'/admin/accounts'">Назад</button>
+  </mat-card-actions>
+</mat-card>

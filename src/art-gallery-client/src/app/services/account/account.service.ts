@@ -28,17 +28,17 @@ export class AccountService {
       }));
   }
 
-  get(id: number): Observable<Response<Account[]>> {
-    return this.http.get(environment.apiUrl + '/api/v1/users')
+  get(id: number): Observable<Response<Account>> {
+    return this.http.get(environment.apiUrl + '/api/v1/users/id/' + id)
       .pipe(map((data: any) => {
-        const response = new Response<Account[]>();
+        const response = new Response<Account>();
         Object.assign(response, data);
         return response;
       }));
   }
 
   checkUsername(username: string): Observable<Response<boolean>> {
-    return this.http.get(environment.apiUrl + '/api/v1/users/exists/?username=' + username, {})
+    return this.http.get(environment.apiUrl + '/api/v1/users/exists/?username=' + username)
       .pipe(map((data: any) => {
         const response = new Response<boolean>();
         Object.assign(response, data);
@@ -47,7 +47,25 @@ export class AccountService {
   }
 
   checkEmail(email: string): Observable<Response<boolean>> {
-    return this.http.get(environment.apiUrl + '/api/v1/users/exists/?email=' + email, {})
+    return this.http.get(environment.apiUrl + '/api/v1/users/exists/?email=' + email)
+      .pipe(map((data: any) => {
+        const response = new Response<boolean>();
+        Object.assign(response, data);
+        return response;
+      }));
+  }
+
+  edit(id: number, account: Account): Observable<Response<boolean>> {
+    return this.http.put(environment.apiUrl + '/api/v1/users/id/' + id, account)
+      .pipe(map((data: any) => {
+        const response = new Response<boolean>();
+        Object.assign(response, data);
+        return response;
+      }));
+  }
+
+  remove(id: number): Observable<Response<boolean>> {
+    return this.http.delete(environment.apiUrl + '/api/v1/users/id/' + id)
       .pipe(map((data: any) => {
         const response = new Response<boolean>();
         Object.assign(response, data);

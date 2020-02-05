@@ -85,12 +85,36 @@ public class User {
         this.firstName = firstName;
     }
 
+    public long getId() {
+        return id;
+    }
+
     public String getUsername() {
         return username;
     }
 
     public String getEmail() {
         return email;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getSecondName() {
+        return secondName;
+    }
+
+    public String getLastName() {
+        return secondName;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public Boolean getAdmin() {
+        return isAdmin;
     }
 
     public String getPassword() {

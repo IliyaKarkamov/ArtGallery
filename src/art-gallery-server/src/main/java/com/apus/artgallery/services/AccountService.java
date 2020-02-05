@@ -46,7 +46,25 @@ public class AccountService {
         return accountRepository.findByUsernameIgnoreCase(username);
     }
 
+    public User getUserById(long id) {
+        return accountRepository.findById(id);
+    }
+
     public List<User> getActiveUsers() {
         return accountRepository.findByIsActiveTrue();
+    }
+
+    public void edit(User user) {
+        if (accountRepository.existsByUsernameAndIdIsNot(user.getUsername(), user.getId()))
+            throw new IllegalArgumentException("Username already exist!");
+
+        if (accountRepository.existsByEmailAndIdIsNot(user.getEmail(), user.getId()))
+            throw new IllegalArgumentException("Email already exist!");
+
+        accountRepository.saveById(user.getUsername(), user.getEmail(), user.getFirstName(), user.getSecondName(), user.getLastName(), user.getActive(), user.getAdmin(), user.getId());
+    }
+
+    public void remove(Long id) {
+        accountRepository.deleteById(id);
     }
 }

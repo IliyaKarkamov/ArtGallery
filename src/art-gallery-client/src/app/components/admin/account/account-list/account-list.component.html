@@ -28,13 +28,13 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Действия</th>
         <td mat-cell *matCellDef="let element">
-          <button mat-button [routerLink]="'/admin/account/preview/' + element.id" title="Преглед на потребител">
+          <button mat-button [routerLink]="'/admin/account/preview/' + element.id" matTooltip="Преглед на потребител">
             <mat-icon>search</mat-icon>
           </button>
-          <button mat-button [routerLink]="'/admin/account/edit/' + element.id" title="Редактиране на потребител">
+          <button mat-button [routerLink]="'/admin/account/edit/' + element.id" matTooltip="Редактиране на потребител">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-button [routerLink]="'/admin/account/remove/' + element.id" title="Премахване на потребител">
+          <button mat-button [routerLink]="'/admin/account/remove/' + element.id" matTooltip="Премахване на потребител">
             <mat-icon>delete</mat-icon>
           </button>
         </td>

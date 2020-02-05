@@ -18,7 +18,10 @@ export class AccountListComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(private accountService: AccountService) {
-    accountService.getAll()
+  }
+
+  ngOnInit() {
+    this.accountService.getAll()
       .subscribe(data => {
         this.dataSource = new MatTableDataSource<Account>(data.result);
         this.dataSource.paginator = this.paginator;
@@ -30,9 +33,6 @@ export class AccountListComponent implements OnInit {
           this.loadingErrorMessage += exception.message;
         }
       });
-  }
-
-  ngOnInit() {
   }
 
   applyFilter(filterValue: string) {

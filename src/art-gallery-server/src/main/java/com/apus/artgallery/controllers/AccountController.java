@@ -111,6 +111,67 @@ public class AccountController {
                 .body(response);
     }
 
+    @GetMapping("/api/v1/users/id/{id}")
+    public ResponseEntity<Response> getUserById(@PathVariable long id) {
+        Response response = new Response("AccountController.getUserById", LocalDateTime.now());
+
+        HttpStatus status;
+
+        try {
+            response.setResult(accountService.getUserById(id));
+            status = HttpStatus.OK;
+        } catch (Exception e) {
+            response.addException(ResponseException.create(e));
+            status = HttpStatus.BAD_REQUEST;
+        }
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
+
+    @PutMapping("/api/v1/users/id/{id}")
+    public ResponseEntity<Response> editUserById(@RequestBody User user) {
+        Response response = new Response("AccountController.editUserById", LocalDateTime.now());
+
+        HttpStatus status;
+
+        try {
+            accountService.edit(user);
+
+            response.setResult(true);
+            status = HttpStatus.OK;
+        } catch (Exception e) {
+            response.addException(ResponseException.create(e));
+            status = HttpStatus.BAD_REQUEST;
+        }
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
+
+    @DeleteMapping("/api/v1/users/id/{id}")
+    public ResponseEntity<Response> removeUserById(@PathVariable Long id) {
+        Response response = new Response("AccountController.removeUserById", LocalDateTime.now());
+
+        HttpStatus status;
+
+        try {
+            accountService.remove(id);
+
+            response.setResult(true);
+            status = HttpStatus.OK;
+        } catch (Exception e) {
+            response.addException(ResponseException.create(e));
+            status = HttpStatus.BAD_REQUEST;
+        }
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
+
     @PostMapping(value = "/api/v1/users")
     public ResponseEntity<Response> addUser(@RequestBody User user) {
         Response response = new Response("AccountController.addUser", LocalDateTime.now());

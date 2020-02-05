@@ -8,4 +8,8 @@ export class Account {
   username: string;
   email: string;
   password: string;
+
+  isActive: boolean;
+  isAdmin: boolean;
+  createdAt: string;
 }

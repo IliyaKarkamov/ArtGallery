@@ -1,8 +1,53 @@
 <mat-card>
   <mat-card-title>Преглед на потребител</mat-card-title>
-  <mat-card-content>
-    <mat-nav-list>
-
-    </mat-nav-list>
+  <mat-card-content style="padding: 20px;">
+    <mat-error *ngIf="loadingErrorMessage.length > 0"><b>An error occurred!</b> {{loadingErrorMessage}}</mat-error>
+    <table *ngIf="account != null">
+      <tr>
+        <td><b>Потребителско име:</b></td>
+        <td>{{account.username}}</td>
+      </tr>
+      <tr>
+        <td><b>Електронна поща:</b></td>
+        <td>{{account.email}}</td>
+      </tr>
+      <tr>
+        <td><b>Име:</b></td>
+        <td>{{account.firstName}}</td>
+      </tr>
+      <tr>
+        <td><b>Презиме:</b></td>
+        <td>{{account.secondName}}</td>
+      </tr>
+      <tr>
+        <td><b>Фамилия:</b></td>
+        <td>{{account.lastName}}</td>
+      </tr>
+      <tr>
+        <td><b>Активен:</b></td>
+        <td *ngIf="account.isActive">
+          <mat-icon color="primary">done</mat-icon>
+        </td>
+        <td *ngIf="!account.isActive">
+          <mat-icon color="primary">clear</mat-icon>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Администратор:</b></td>
+        <td *ngIf="account.isAdmin">
+          <mat-icon color="primary">done</mat-icon>
+        </td>
+        <td *ngIf="!account.isAdmin">
+          <mat-icon color="warn">clear</mat-icon>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Дата на създаване:</b></td>
+        <td>{{account.createdAt}}</td>
+      </tr>
+    </table>
   </mat-card-content>
+  <mat-card-actions>
+    <button mat-button [routerLink]="'/admin/accounts'">Назад</button>
+  </mat-card-actions>
 </mat-card>
