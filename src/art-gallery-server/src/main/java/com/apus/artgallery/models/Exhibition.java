@@ -24,12 +24,12 @@ public class Exhibition {
 
     @Column(name = "start_date")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
 
     @Column(name = "end_date")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
