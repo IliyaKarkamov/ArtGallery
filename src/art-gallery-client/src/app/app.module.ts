@@ -49,6 +49,11 @@ import {StylesListComponent} from './components/admin/styles/styles-list/styles-
 import {StylesEditComponent} from './components/admin/styles/styles-edit/styles-edit.component';
 import {StylesAddComponent} from './components/admin/styles/styles-add/styles-add.component';
 import {StylesActivationComponent} from './components/admin/styles/styles-activation/styles-activation.component';
+import {ErasListComponent} from './components/admin/eras/eras-list/eras-list.component';
+import {ErasAddComponent} from './components/admin/eras/eras-add/eras-add.component';
+import {ErasPreviewComponent} from './components/admin/eras/eras-preview/eras-preview.component';
+import {ErasEditComponent} from './components/admin/eras/eras-edit/eras-edit.component';
+import {ErasActivationComponent} from './components/admin/eras/eras-activation/eras-activation.component';
 
 export function getJwtToken() {
   return localStorage.getItem('jwtToken');
@@ -80,7 +85,12 @@ export function getJwtToken() {
     StylesListComponent,
     StylesEditComponent,
     StylesAddComponent,
-    StylesActivationComponent
+    StylesActivationComponent,
+    ErasListComponent,
+    ErasAddComponent,
+    ErasPreviewComponent,
+    ErasEditComponent,
+    ErasActivationComponent
   ],
   imports: [
     BrowserModule,
