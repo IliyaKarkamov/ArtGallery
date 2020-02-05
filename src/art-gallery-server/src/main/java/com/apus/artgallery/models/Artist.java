@@ -50,6 +50,9 @@ public class Artist {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private String longBio;
 
+    @Column(name = "active")
+    private Boolean active = true;
+
     public Long getId() {
         return id;
     }
@@ -64,5 +67,29 @@ public class Artist {
 
     public String getAlias() {
         return alias;
+    }
+
+    public String getSecondName() {
+        return secondName;
+    }
+
+    public LocalDateTime getBirthDate() {
+        return birthDate;
+    }
+
+    public String getBirthPlace() {
+        return birthPlace;
+    }
+
+    public String getShortBio() {
+        return shortBio;
+    }
+
+    public String getLongBio() {
+        return longBio;
+    }
+
+    public Boolean getActive() {
+        return active;
     }
 }
