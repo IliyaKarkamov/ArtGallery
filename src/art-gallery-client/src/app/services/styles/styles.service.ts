@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {map} from 'rxjs/operators';
@@ -33,7 +33,7 @@ export class StylesService {
   }
 
   get(id: number): Observable<Response<Style>> {
-    return this.http.get(environment.apiUrl + '/api/v1/styles/id/' + id)
+    return this.http.get(environment.apiUrl + '/api/v1/styles/' + id)
       .pipe(map((data: any) => {
         const response = new Response<Style>();
         Object.assign(response, data);
@@ -42,7 +42,7 @@ export class StylesService {
   }
 
   edit(id: number, style: Style): Observable<Response<boolean>> {
-    return this.http.put(environment.apiUrl + '/api/v1/styles/id/' + id, style)
+    return this.http.put(environment.apiUrl + '/api/v1/styles/edit/' + id, style)
       .pipe(map((data: any) => {
         const response = new Response<boolean>();
         Object.assign(response, data);
@@ -50,8 +50,10 @@ export class StylesService {
       }));
   }
 
-  deactivate(id: number): Observable<Response<boolean>> {
-    return this.http.delete(environment.apiUrl + '/api/v1/styles/id/' + id)
+  activation(id: number, activate: boolean): Observable<Response<boolean>> {
+    const params = new HttpParams().set('active', String(activate));
+
+    return this.http.put(environment.apiUrl + '/api/v1/styles/deactivate/' + id, {}, {params})
       .pipe(map((data: any) => {
         const response = new Response<boolean>();
         Object.assign(response, data);

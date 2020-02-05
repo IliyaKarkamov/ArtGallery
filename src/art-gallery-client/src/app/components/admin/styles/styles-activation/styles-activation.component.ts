@@ -3,23 +3,28 @@ import {ActivatedRoute} from '@angular/router';
 import {StylesService} from '../../../../services/styles/styles.service';
 
 @Component({
-  selector: 'app-styles-remove',
-  templateUrl: './styles-remove.component.html',
-  styleUrls: ['./styles-remove.component.scss']
+  selector: 'app-styles-activation',
+  templateUrl: './styles-activation.component.html',
+  styleUrls: ['./styles-activation.component.scss']
 })
-export class StylesRemoveComponent implements OnInit {
+export class StylesActivationComponent implements OnInit {
   private errorMessage = '';
-  private isRemovedSuccessfully = false;
+  private isActivationSuccessfully = false;
+
+  private isActivation = false;
 
   constructor(private route: ActivatedRoute, private stylesService: StylesService) {
   }
 
   ngOnInit() {
     const styleId = +this.route.snapshot.paramMap.get('id');
+    const activateAction = this.route.snapshot.queryParamMap.get('activate');
 
-    this.stylesService.deactivate(styleId)
+    this.isActivation = activateAction === 'true';
+
+    this.stylesService.activation(styleId, this.isActivation)
       .subscribe(data => {
-        this.isRemovedSuccessfully = data.result;
+        this.isActivationSuccessfully = data.result;
       }, error => {
         this.errorMessage = '';
 

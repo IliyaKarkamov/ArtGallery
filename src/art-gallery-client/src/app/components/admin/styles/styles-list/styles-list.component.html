@@ -37,8 +37,13 @@
           <button mat-button [routerLink]="'/admin/styles/edit/' + element.id" matTooltip="Редактиране на стил">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-button [routerLink]="'/admin/styles/remove/' + element.id" matTooltip="Премахване на стил">
-            <mat-icon>delete</mat-icon>
+          <button mat-button [routerLink]="'/admin/styles/activation/' + element.id" [queryParams]="{activate:false}"
+                  *ngIf="element.active" matTooltip="Деактивиране на стил">
+            <mat-icon>visibility_off</mat-icon>
+          </button>
+          <button mat-button [routerLink]="'/admin/styles/activation/' + element.id" [queryParams]="{activate:true}"
+                  *ngIf="!element.active" matTooltip="Активиране на стил">
+            <mat-icon>visibility</mat-icon>
           </button>
         </td>
       </ng-container>

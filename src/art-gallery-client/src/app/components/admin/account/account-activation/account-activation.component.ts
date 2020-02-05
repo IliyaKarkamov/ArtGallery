@@ -3,23 +3,28 @@ import {ActivatedRoute} from '@angular/router';
 import {AccountService} from '../../../../services/account/account.service';
 
 @Component({
-  selector: 'app-account-remove',
-  templateUrl: './account-remove.component.html',
-  styleUrls: ['./account-remove.component.scss']
+  selector: 'app-account-activation',
+  templateUrl: './account-activation.component.html',
+  styleUrls: ['./account-activation.component.scss']
 })
-export class AccountRemoveComponent implements OnInit {
+export class AccountActivationComponent implements OnInit {
   private errorMessage = '';
-  private isRemovedSuccessfully = false;
+  private isActivationSuccessfully = false;
+
+  private isActivation = false;
 
   constructor(private route: ActivatedRoute, private accountService: AccountService) {
   }
 
   ngOnInit() {
     const userId = +this.route.snapshot.paramMap.get('id');
+    const activateAction = this.route.snapshot.queryParamMap.get('activate');
 
-    this.accountService.deactivate(userId)
+    this.isActivation = activateAction === 'true';
+
+    this.accountService.activation(userId, this.isActivation)
       .subscribe(data => {
-        this.isRemovedSuccessfully = data.result;
+        this.isActivationSuccessfully = data.result;
       }, error => {
         this.errorMessage = '';
 

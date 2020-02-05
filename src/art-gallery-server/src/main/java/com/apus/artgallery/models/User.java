@@ -106,7 +106,7 @@ public class User {
     }
 
     public String getLastName() {
-        return secondName;
+        return lastName;
     }
 
     public Boolean getActive() {

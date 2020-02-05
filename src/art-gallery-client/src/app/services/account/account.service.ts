@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 
 import {environment} from '../../../environments/environment';
 import {map} from 'rxjs/operators';
@@ -29,7 +29,7 @@ export class AccountService {
   }
 
   get(id: number): Observable<Response<Account>> {
-    return this.http.get(environment.apiUrl + '/api/v1/users/id/' + id)
+    return this.http.get(environment.apiUrl + '/api/v1/users/' + id)
       .pipe(map((data: any) => {
         const response = new Response<Account>();
         Object.assign(response, data);
@@ -56,7 +56,7 @@ export class AccountService {
   }
 
   edit(id: number, account: Account): Observable<Response<boolean>> {
-    return this.http.put(environment.apiUrl + '/api/v1/users/id/' + id, account)
+    return this.http.put(environment.apiUrl + '/api/v1/users/' + id, account)
       .pipe(map((data: any) => {
         const response = new Response<boolean>();
         Object.assign(response, data);
@@ -64,8 +64,10 @@ export class AccountService {
       }));
   }
 
-  deactivate(id: number): Observable<Response<boolean>> {
-    return this.http.delete(environment.apiUrl + '/api/v1/users/id/' + id)
+  activation(id: number, activate: boolean): Observable<Response<boolean>> {
+    const params = new HttpParams().set('active', String(activate));
+
+    return this.http.put(environment.apiUrl + '/api/v1/users/deactivate/' + id, {}, {params})
       .pipe(map((data: any) => {
         const response = new Response<boolean>();
         Object.assign(response, data);

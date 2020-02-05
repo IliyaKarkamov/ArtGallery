@@ -92,25 +92,6 @@ public class AccountController {
                 .body(response);
     }
 
-    @GetMapping("/api/v1/users/{username}")
-    public ResponseEntity<Response> getUser(@PathVariable String username) {
-        Response response = new Response("AccountController.getUser", LocalDateTime.now());
-
-        HttpStatus status;
-
-        try {
-            response.setResult(accountService.getUserByUsername(username));
-            status = HttpStatus.OK;
-        } catch (Exception e) {
-            response.addException(ResponseException.create(e));
-            status = HttpStatus.BAD_REQUEST;
-        }
-
-        return ResponseEntity
-                .status(status)
-                .body(response);
-    }
-
     @GetMapping("/api/v1/users/{id}")
     public ResponseEntity<Response> getUserById(@PathVariable Long id) {
         Response response = new Response("AccountController.getUserById", LocalDateTime.now());

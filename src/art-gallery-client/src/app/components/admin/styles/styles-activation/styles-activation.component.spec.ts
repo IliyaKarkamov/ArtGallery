@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StylesRemoveComponent } from './styles-remove.component';
+import { StylesActivationComponent } from './styles-activation.component';
 
-describe('StylesRemoveComponent', () => {
-  let component: StylesRemoveComponent;
-  let fixture: ComponentFixture<StylesRemoveComponent>;
+describe('StylesActivationComponent', () => {
+  let component: StylesActivationComponent;
+  let fixture: ComponentFixture<StylesActivationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StylesRemoveComponent ]
+      declarations: [ StylesActivationComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StylesRemoveComponent);
+    fixture = TestBed.createComponent(StylesActivationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

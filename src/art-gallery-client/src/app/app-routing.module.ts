@@ -16,13 +16,13 @@ import {AdminLayoutComponent} from './components/admin/_layout/admin-layout/admi
 import {HomeComponent as AdminHomeComponent} from './components/site/home/home.component';
 import {AccountListComponent} from './components/admin/account/account-list/account-list.component';
 import {AccountEditComponent} from './components/admin/account/account-edit/account-edit.component';
-import {AccountRemoveComponent} from './components/admin/account/account-remove/account-remove.component';
 import {AccountPreviewComponent} from './components/admin/account/account-preview/account-preview.component';
+import {AccountActivationComponent} from './components/admin/account/account-activation/account-activation.component';
 import {StylesListComponent} from './components/admin/styles/styles-list/styles-list.component';
 import {StylesPreviewComponent} from './components/admin/styles/styles-preview/styles-preview.component';
 import {StylesAddComponent} from './components/admin/styles/styles-add/styles-add.component';
 import {StylesEditComponent} from './components/admin/styles/styles-edit/styles-edit.component';
-import {StylesRemoveComponent} from './components/admin/styles/styles-remove/styles-remove.component';
+import {StylesActivationComponent} from './components/admin/styles/styles-activation/styles-activation.component';
 
 const routes: Routes = [
   // Site routes
@@ -47,14 +47,14 @@ const routes: Routes = [
       // Account routes
       {path: 'accounts', component: AccountListComponent},
       {path: 'accounts/edit/:id', component: AccountEditComponent},
-      {path: 'accounts/remove/:id', component: AccountRemoveComponent},
+      {path: 'accounts/activation/:id', component: AccountActivationComponent},
       {path: 'accounts/preview/:id', component: AccountPreviewComponent},
 
       // Styles routes
       {path: 'styles', component: StylesListComponent},
       {path: 'styles/add', component: StylesAddComponent},
       {path: 'styles/edit/:id', component: StylesEditComponent},
-      {path: 'styles/remove/:id', component: StylesRemoveComponent},
+      {path: 'styles/activation/:id', component: StylesActivationComponent},
       {path: 'styles/preview/:id', component: StylesPreviewComponent}
     ]
   }

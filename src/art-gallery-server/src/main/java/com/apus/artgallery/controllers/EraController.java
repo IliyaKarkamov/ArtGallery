@@ -56,13 +56,13 @@ public class EraController {
     }
 
     @GetMapping("/api/v1/era/{id}")
-    public ResponseEntity<Response> getEraById() {
+    public ResponseEntity<Response> getEraById(@PathVariable Long id) {
         Response response = new Response("EraController.getEraById", LocalDateTime.now());
 
         HttpStatus status = HttpStatus.OK;
 
         try {
-            response.setResult(eraService.getById());
+            response.setResult(eraService.getById(id));
         } catch (Exception e) {
             response.addException(ResponseException.create(e));
             status = HttpStatus.BAD_REQUEST;

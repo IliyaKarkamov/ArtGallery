@@ -9,7 +9,7 @@ import {Account} from '../../../../models/account';
   styleUrls: ['./account-list.component.scss']
 })
 export class AccountListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'username', 'email', 'actions'];
+  displayedColumns: string[] = ['id', 'username', 'email', 'isActive', 'actions'];
   dataSource: MatTableDataSource<Account>;
 
   loadingErrorMessage = '';

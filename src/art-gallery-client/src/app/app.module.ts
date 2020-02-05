@@ -41,14 +41,14 @@ import {AdminContentComponent} from './components/admin/_layout/admin-content/ad
 import {AdminFooterComponent} from './components/admin/_layout/admin-footer/admin-footer.component';
 import {HomeComponent as AdminHomeComponent} from './components/admin/home/home.component';
 import {AccountListComponent} from './components/admin/account/account-list/account-list.component';
-import {AccountRemoveComponent} from './components/admin/account/account-remove/account-remove.component';
 import {AccountEditComponent} from './components/admin/account/account-edit/account-edit.component';
-import { AccountPreviewComponent } from './components/admin/account/account-preview/account-preview.component';
-import { StylesPreviewComponent } from './components/admin/styles/styles-preview/styles-preview.component';
-import { StylesListComponent } from './components/admin/styles/styles-list/styles-list.component';
-import { StylesEditComponent } from './components/admin/styles/styles-edit/styles-edit.component';
-import { StylesRemoveComponent } from './components/admin/styles/styles-remove/styles-remove.component';
-import { StylesAddComponent } from './components/admin/styles/styles-add/styles-add.component';
+import {AccountActivationComponent} from './components/admin/account/account-activation/account-activation.component';
+import {AccountPreviewComponent} from './components/admin/account/account-preview/account-preview.component';
+import {StylesPreviewComponent} from './components/admin/styles/styles-preview/styles-preview.component';
+import {StylesListComponent} from './components/admin/styles/styles-list/styles-list.component';
+import {StylesEditComponent} from './components/admin/styles/styles-edit/styles-edit.component';
+import {StylesAddComponent} from './components/admin/styles/styles-add/styles-add.component';
+import {StylesActivationComponent} from './components/admin/styles/styles-activation/styles-activation.component';
 
 export function getJwtToken() {
   return localStorage.getItem('jwtToken');
@@ -73,14 +73,14 @@ export function getJwtToken() {
     AdminContentComponent,
     AdminFooterComponent,
     AccountListComponent,
-    AccountRemoveComponent,
     AccountEditComponent,
     AccountPreviewComponent,
+    AccountActivationComponent,
     StylesPreviewComponent,
     StylesListComponent,
     StylesEditComponent,
-    StylesRemoveComponent,
-    StylesAddComponent
+    StylesAddComponent,
+    StylesActivationComponent
   ],
   imports: [
     BrowserModule,
