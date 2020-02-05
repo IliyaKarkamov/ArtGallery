@@ -54,11 +54,16 @@ import {ErasAddComponent} from './components/admin/eras/eras-add/eras-add.compon
 import {ErasPreviewComponent} from './components/admin/eras/eras-preview/eras-preview.component';
 import {ErasEditComponent} from './components/admin/eras/eras-edit/eras-edit.component';
 import {ErasActivationComponent} from './components/admin/eras/eras-activation/eras-activation.component';
-import { ArtistsActivationComponent } from './components/admin/artists/artists-activation/artists-activation.component';
-import { ArtistsAddComponent } from './components/admin/artists/artists-add/artists-add.component';
-import { ArtistsListComponent } from './components/admin/artists/artists-list/artists-list.component';
-import { ArtistsPreviewComponent } from './components/admin/artists/artists-preview/artists-preview.component';
-import { ArtistsEditComponent } from './components/admin/artists/artists-edit/artists-edit.component';
+import {ArtistsActivationComponent} from './components/admin/artists/artists-activation/artists-activation.component';
+import {ArtistsAddComponent} from './components/admin/artists/artists-add/artists-add.component';
+import {ArtistsListComponent} from './components/admin/artists/artists-list/artists-list.component';
+import {ArtistsPreviewComponent} from './components/admin/artists/artists-preview/artists-preview.component';
+import {ArtistsEditComponent} from './components/admin/artists/artists-edit/artists-edit.component';
+import {GalleriesEditComponent} from './components/admin/galleies/galleries-edit/galleries-edit.component';
+import {GalleriesListComponent} from './components/admin/galleies/galleries-list/galleries-list.component';
+import {GalleriesAddComponent} from './components/admin/galleies/galleries-add/galleries-add.component';
+import {GalleriesPreviewComponent} from './components/admin/galleies/galleries-preview/galleries-preview.component';
+import {GalleriesActivationComponent} from './components/admin/galleies/galleries-activation/galleries-activation.component';
 
 export function getJwtToken() {
   return localStorage.getItem('jwtToken');
@@ -100,7 +105,12 @@ export function getJwtToken() {
     ArtistsAddComponent,
     ArtistsListComponent,
     ArtistsPreviewComponent,
-    ArtistsEditComponent
+    ArtistsEditComponent,
+    GalleriesEditComponent,
+    GalleriesListComponent,
+    GalleriesAddComponent,
+    GalleriesPreviewComponent,
+    GalleriesActivationComponent
   ],
   imports: [
     BrowserModule,

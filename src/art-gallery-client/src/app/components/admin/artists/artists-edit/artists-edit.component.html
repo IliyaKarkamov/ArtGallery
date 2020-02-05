@@ -1,1 +1,63 @@
-<p>artists-edit works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Редактиране на артист</mat-card-title>
+  </mat-card-header>
+  <mat-card-content style="padding: 20px;">
+    <mat-hint *ngIf="isEditedSuccessfully">Успешно редактирахте данните за избрания артист!</mat-hint>
+    <div *ngIf="!isEditedSuccessfully && form != null">
+      <mat-error *ngIf="errorMessage.length > 0">
+        <b>An error occurred!</b> {{errorMessage}}
+      </mat-error>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <!-- firstName -->
+        <mat-form-field>
+          <input matInput placeholder="Име" formControlName="firstName">
+          <mat-error *ngIf="f.firstName.hasError('required')">
+            Моля въведете име!
+          </mat-error>
+        </mat-form-field>
+        <!-- secondName -->
+        <mat-form-field>
+          <input matInput placeholder="Презиме" formControlName="secondName">
+        </mat-form-field>
+        <!-- lastName -->
+        <mat-form-field>
+          <input matInput placeholder="Фамилия" formControlName="lastName">
+          <mat-error *ngIf="f.lastName.hasError('required')">
+            Моля въведете фамилия!
+          </mat-error>
+        </mat-form-field>
+        <!-- alias -->
+        <mat-form-field>
+          <input matInput placeholder="Псеводним" formControlName="alias">
+        </mat-form-field>
+        <!-- birthDate -->
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Дата на раждане" formControlName="birthDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <!-- birthPlace -->
+        <mat-form-field>
+          <input matInput placeholder="Място на раждане" formControlName="birthPlace"/>
+        </mat-form-field>
+        <!-- shortBio -->
+        <mat-form-field>
+          <textarea matInput type="text" placeholder="Кратка биография" formControlName="shortBio"></textarea>
+        </mat-form-field>
+        <!-- longBio -->
+        <mat-form-field>
+          <textarea matInput type="text" placeholder="Биография" formControlName="longBio"></textarea>
+        </mat-form-field>
+        <!-- active -->
+        <mat-checkbox formControlName="active">Активен</mat-checkbox>
+
+        <button mat-raised-button type="submit" color="primary">Редактиране</button>
+        <button mat-button type="reset" color="primary" (click)="onReset()">Изчистване</button>
+      </form>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button [routerLink]="'/admin/artists'">Назад</button>
+  </mat-card-actions>
+</mat-card>

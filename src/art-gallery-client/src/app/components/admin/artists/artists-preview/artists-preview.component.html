@@ -1,1 +1,53 @@
-<p>artists-preview works!</p>
+<mat-card>
+  <mat-card-title>Преглед на артист</mat-card-title>
+  <mat-card-content style="padding: 20px;">
+    <mat-error *ngIf="loadingErrorMessage.length > 0"><b>An error occurred!</b> {{loadingErrorMessage}}</mat-error>
+    <table *ngIf="artist != null">
+      <tr>
+        <td><b>Име:</b></td>
+        <td>{{artist.firstName}}</td>
+      </tr>
+      <tr>
+        <td><b>Презиме:</b></td>
+        <td>{{artist.secondName}}</td>
+      </tr>
+      <tr>
+        <td><b>Фамилия:</b></td>
+        <td>{{artist.lastName}}</td>
+      </tr>
+      <tr>
+        <td><b>Псевдоним:</b></td>
+        <td>{{artist.alias}}</td>
+      </tr>
+      <tr>
+        <td><b>Дата на раждане:</b></td>
+        <td>{{artist.birthDate}}</td>
+      </tr>
+      <tr>
+        <td><b>Място на раждане:</b></td>
+        <td>{{artist.birthPlace}}</td>
+      </tr>
+      <tr>
+        <td><b>Кратка биография:</b></td>
+        <td>{{artist.shortBio}}</td>
+      </tr>
+      <tr>
+        <td><b>Биография:</b></td>
+        <td>{{artist.longBio}}</td>
+      </tr>
+      <tr>
+      <tr>
+        <td><b>Активен:</b></td>
+        <td *ngIf="artist.active">
+          <mat-icon color="primary">done</mat-icon>
+        </td>
+        <td *ngIf="!artist.active">
+          <mat-icon color="warn">clear</mat-icon>
+        </td>
+      </tr>
+    </table>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button [routerLink]="'/admin/artists'">Назад</button>
+  </mat-card-actions>
+</mat-card>

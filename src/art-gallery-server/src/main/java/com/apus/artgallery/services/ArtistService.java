@@ -35,14 +35,14 @@ public class ArtistService {
     }
 
     public void editById(Long id, Artist artist) {
-        if (artistRepository.existsByFirstNameAndLastNameAndIdIsNot(artist.getFirstName(), artist.getLastName(), artist.getId()))
+        if (artistRepository.existsByFirstNameAndLastNameAndIdIsNot(artist.getFirstName(), artist.getLastName(), id))
             throw new IllegalArgumentException("First and Last name already exist!");
-        else if (artistRepository.existsByAliasAndIdIsNot(artist.getAlias(), artist.getId()))
+        else if (artistRepository.existsByAliasAndIdIsNot(artist.getAlias(), id))
             throw new IllegalArgumentException("Alias already exist!");
 
         artistRepository.saveById(artist.getFirstName(), artist.getSecondName(), artist.getLastName(),
                 artist.getAlias(), artist.getBirthDate(), artist.getBirthPlace(), artist.getLongBio(),
-                artist.getShortBio(), artist.getActive(), artist.getId());
+                artist.getShortBio(), artist.getActive(), id);
     }
 
     public void deactivate(Long id, Boolean active) {

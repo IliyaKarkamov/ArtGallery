@@ -1,0 +1,40 @@
+<mat-card>
+  <mat-card-title>Преглед на галерия</mat-card-title>
+  <mat-card-content style="padding: 20px;">
+    <mat-error *ngIf="loadingErrorMessage.length > 0"><b>An error occurred!</b> {{loadingErrorMessage}}</mat-error>
+    <table *ngIf="gallery != null">
+      <tr>
+        <td><b>Име:</b></td>
+        <td>{{gallery.name}}</td>
+      </tr>
+      <tr>
+        <td><b>Адрес:</b></td>
+        <td>{{gallery.address}}</td>
+      </tr>
+      <tr>
+        <td><b>Географска дължина:</b></td>
+        <td>{{gallery.longitude}}</td>
+      </tr>
+      <tr>
+        <td><b>Географска ширина:</b></td>
+        <td>{{gallery.latitude}}</td>
+      </tr>
+      <tr>
+        <td><b>Описание:</b></td>
+        <td>{{gallery.description}}</td>
+      </tr>
+      <tr>
+        <td><b>Активен:</b></td>
+        <td *ngIf="gallery.active">
+          <mat-icon color="primary">done</mat-icon>
+        </td>
+        <td *ngIf="!gallery.active">
+          <mat-icon color="warn">clear</mat-icon>
+        </td>
+      </tr>
+    </table>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button [routerLink]="'/admin/galleries'">Назад</button>
+  </mat-card-actions>
+</mat-card>

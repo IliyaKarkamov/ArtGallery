@@ -33,6 +33,11 @@ import {ArtistsAddComponent} from './components/admin/artists/artists-add/artist
 import {ArtistsEditComponent} from './components/admin/artists/artists-edit/artists-edit.component';
 import {ArtistsActivationComponent} from './components/admin/artists/artists-activation/artists-activation.component';
 import {ArtistsPreviewComponent} from './components/admin/artists/artists-preview/artists-preview.component';
+import {GalleriesListComponent} from './components/admin/galleies/galleries-list/galleries-list.component';
+import {GalleriesAddComponent} from './components/admin/galleies/galleries-add/galleries-add.component';
+import {GalleriesEditComponent} from './components/admin/galleies/galleries-edit/galleries-edit.component';
+import {GalleriesActivationComponent} from './components/admin/galleies/galleries-activation/galleries-activation.component';
+import {GalleriesPreviewComponent} from './components/admin/galleies/galleries-preview/galleries-preview.component';
 
 const routes: Routes = [
   // Site routes
@@ -79,7 +84,14 @@ const routes: Routes = [
       {path: 'artists/add', component: ArtistsAddComponent},
       {path: 'artists/edit/:id', component: ArtistsEditComponent},
       {path: 'artists/activation/:id', component: ArtistsActivationComponent},
-      {path: 'artists/preview/:id', component: ArtistsPreviewComponent}
+      {path: 'artists/preview/:id', component: ArtistsPreviewComponent},
+
+      // Galleries routes
+      {path: 'galleries', component: GalleriesListComponent},
+      {path: 'galleries/add', component: GalleriesAddComponent},
+      {path: 'galleries/edit/:id', component: GalleriesEditComponent},
+      {path: 'galleries/activation/:id', component: GalleriesActivationComponent},
+      {path: 'galleries/preview/:id', component: GalleriesPreviewComponent}
     ]
   }
 ];
