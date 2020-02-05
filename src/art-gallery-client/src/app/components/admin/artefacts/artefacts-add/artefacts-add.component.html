@@ -3,7 +3,7 @@
     <mat-card-title>Добавяне на артефакт</mat-card-title>
   </mat-card-header>
   <mat-card-content class="form-content">
-    <mat-hint *ngIf="isAddedSuccessfully">Успешно добавихте данни за нова артефакт!</mat-hint>
+    <mat-hint *ngIf="isAddedSuccessfully">Успешно добавихте данни за нов артефакт!</mat-hint>
     <div *ngIf="!isAddedSuccessfully">
       <mat-error *ngIf="errorMessage.length > 0">
         <b>An error occurred!</b> {{errorMessage}}
