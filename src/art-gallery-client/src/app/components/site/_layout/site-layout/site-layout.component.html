@@ -1,10 +1,16 @@
-<mat-toolbar color="primary">
-  <span>Art Gallery</span>
-  <button mat-button [routerLink]="''">Начало</button>
-  <button mat-button [routerLink]="'/account/signin'">Вписване</button>
-  <button mat-button [routerLink]="'/account/signup'">Регистриране</button>
-</mat-toolbar>
-
-<div>
-  <router-outlet></router-outlet>
+<div
+  gdAreas="header | content | footer"
+  gdGap="16px"
+  gdRows="auto auto auto"
+  gdColumns="auto"
+>
+  <div gdArea="header">
+    <app-site-header></app-site-header>
+  </div>
+  <div gdArea="content">
+    <app-site-content></app-site-content>
+  </div>
+  <div gdArea="footer">
+    <app-site-footer></app-site-footer>
+  </div>
 </div>

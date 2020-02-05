@@ -78,6 +78,9 @@ import {ArtefactsAddComponent} from './components/admin/artefacts/artefacts-add/
 import {ArtefactsEditComponent} from './components/admin/artefacts/artefacts-edit/artefacts-edit.component';
 import {ArtefactsPreviewComponent} from './components/admin/artefacts/artefacts-preview/artefacts-preview.component';
 import {ArtefactsActivationComponent} from './components/admin/artefacts/artefacts-activation/artefacts-activation.component';
+import { SiteHeaderComponent } from './components/site/_layout/site-header/site-header.component';
+import { SiteContentComponent } from './components/site/_layout/site-content/site-content.component';
+import { SiteFooterComponent } from './components/site/_layout/site-footer/site-footer.component';
 
 export function getJwtToken() {
   return localStorage.getItem('jwtToken');
@@ -138,7 +141,10 @@ export function getJwtToken() {
     ArtefactsAddComponent,
     ArtefactsEditComponent,
     ArtefactsPreviewComponent,
-    ArtefactsActivationComponent
+    ArtefactsActivationComponent,
+    SiteHeaderComponent,
+    SiteContentComponent,
+    SiteFooterComponent
   ],
   imports: [
     BrowserModule,
