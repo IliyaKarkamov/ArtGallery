@@ -37,14 +37,14 @@ public class StyleController {
                 .body(response);
     }
 
-    @GetMapping("/api/v1/styles/id/{id}")
+    @GetMapping("/api/v1/styles/{id}")
     public ResponseEntity<Response> getStyleById(@PathVariable Long id) {
         Response response = new Response("StyleController.getStyleById", LocalDateTime.now());
 
         HttpStatus status = HttpStatus.OK;
 
         try {
-            response.setResult(styleService.get(id));
+            response.setResult(styleService.getById(id));
         } catch (Exception e) {
             response.addException(ResponseException.create(e));
             status = HttpStatus.BAD_REQUEST;
@@ -55,7 +55,7 @@ public class StyleController {
                 .body(response);
     }
 
-    @GetMapping("/api/v1/style/active")
+    @GetMapping("/api/v1/styles/active")
     public ResponseEntity<Response> getActiveStyles() {
         Response response = new Response("StyleController.getStyles", LocalDateTime.now());
 
@@ -73,7 +73,7 @@ public class StyleController {
                 .body(response);
     }
 
-    @PutMapping("/api/v1/styles/id/{id}")
+    @PutMapping("/api/v1/styles/edit/{id}")
     public ResponseEntity<Response> editStyleById(@RequestBody Style style, @PathVariable Long id) {
         Response response = new Response("AccountController.editStyleById", LocalDateTime.now());
 
@@ -92,14 +92,15 @@ public class StyleController {
                 .body(response);
     }
 
-    @DeleteMapping("/api/v1/styles/id/{id}")
-    public ResponseEntity<Response> deactivateStyleById(@PathVariable Long id) {
+    @PutMapping("/api/v1/styles/deactivate/{id}")
+    public ResponseEntity<Response> deactivateStyleById(@PathVariable Long id,
+                                                        @RequestParam Boolean active) {
         Response response = new Response("AccountController.deactivateStyleById", LocalDateTime.now());
 
         HttpStatus status = HttpStatus.OK;
 
         try {
-            styleService.deactivate(id);
+            styleService.deactivate(id, active);
             response.setResult(true);
         } catch (Exception e) {
             response.addException(ResponseException.create(e));

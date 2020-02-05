@@ -31,13 +31,9 @@ public class StyleService {
         return style;
     }
 
-    public Style get(Long id) {
-        var style = styleRepository.findById(id);
-
-        if (style.isPresent())
-            return style.get();
-
-        throw new IllegalArgumentException("Style with the given id doesnt exists!");
+    public Style getById(Long id) {
+        return styleRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Style with the given id doesnt exists!"));
     }
 
     public void edit(Long id, Style style) {
@@ -47,6 +43,7 @@ public class StyleService {
         styleRepository.saveById(style.getName(), style.getDescription(), style.getActive(), id);
     }
 
-    public void deactivate(Long id) {
+    public void deactivate(Long id, Boolean active) {
+        styleRepository.activate(active, id);
     }
 }
