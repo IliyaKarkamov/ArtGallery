@@ -1,11 +1,12 @@
 package com.apus.artgallery.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.UUID;
 
 @Data
 @Entity
@@ -22,8 +23,13 @@ public class Picture {
 
     @NotBlank
     @Column(name = "stored_name")
-    @JsonIgnore
-    private String StoredName = UUID.randomUUID().toString();
+    private String storedName;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "artefact_id")
+    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonManagedReference
+    private Artefact artefact;
 
     public Long getId() {
         return id;
@@ -34,6 +40,10 @@ public class Picture {
     }
 
     public String getStoredName() {
-        return StoredName;
+        return storedName;
+    }
+
+    public void setStoredName(String storedName) {
+        this.storedName = storedName;
     }
 }

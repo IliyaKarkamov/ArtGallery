@@ -1,7 +1,6 @@
 package com.apus.artgallery.models;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -22,8 +21,8 @@ public class Artefact {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    @Column(name = "price")
-    private Float price = 0.0f;
+    @Column(name = "price", columnDefinition = "real2 default 0")
+    private Float price;
 
     @NotBlank
     @Column(name = "name")
@@ -44,8 +43,10 @@ public class Artefact {
     @ManyToOne
     private Artist artist;
 
-    @OneToMany(mappedBy = "artefact")
-    Set<PictureArtefactModel> pictures;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "artefact")
+    @JsonBackReference
+    //@JsonIgnore
+    private Set<Picture> pictures;
 
     public Long getId() {
         return id;
@@ -53,5 +54,9 @@ public class Artefact {
 
     public Artist getArtist() {
         return artist;
+    }
+
+    public Set<Picture> getPictures() {
+        return pictures;
     }
 }

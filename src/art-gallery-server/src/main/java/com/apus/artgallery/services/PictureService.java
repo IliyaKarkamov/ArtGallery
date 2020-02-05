@@ -10,6 +10,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.util.UUID;
 
 @Service
 public class PictureService {
@@ -40,6 +41,9 @@ public class PictureService {
     }
 
     public Picture savePicture(Picture picture) {
+        if (picture.getStoredName() == null || picture.getStoredName().isBlank())
+            picture.setStoredName(UUID.randomUUID().toString());
+
         pictureRepository.save(picture);
 
         return picture;
@@ -57,5 +61,13 @@ public class PictureService {
                 .orElseThrow(() -> new IllegalArgumentException("No picture found"));
 
         return new FileSystemResource(generateNewFile(picture.getStoredName()));
+    }
+
+    public void updateArtefact(Long artefactId, Long id) {
+        pictureRepository.setArtefact(artefactId, id);
+    }
+
+    public Picture getPictureById(Long id) {
+        return pictureRepository.findById(id).orElse(null);
     }
 }
