@@ -18,7 +18,7 @@ public class ArtistService {
         if (artistRepository.findByFirstNameIgnoreCaseAndLastNameIgnoreCase(artist.getFirstName(), artist.getFirstName()) != null)
             throw new IllegalArgumentException("Artist with this FirstName and LastName already exists.");
 
-        if (artistRepository.findByAliasIgnoreCase(artist.getAlias()) != null)
+        if (!artist.getAlias().isBlank() && artistRepository.findByAliasIgnoreCase(artist.getAlias()) != null)
             throw new IllegalArgumentException("Artist with this alias already exists");
 
         artistRepository.save(artist);
