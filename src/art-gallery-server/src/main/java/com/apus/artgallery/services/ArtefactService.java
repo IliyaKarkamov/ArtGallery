@@ -36,13 +36,13 @@ public class ArtefactService {
 
         artefactRepository.save(artefact);
 
-//        for (Picture picture : artefact.getPictures()) {
-//            if (picture != null)
-//                if (pictureService.getPictureById(picture.getId()) == null)
-//                    pictureService.savePicture(picture);
-//                else
-//                    pictureService.updateArtefact(artefact.getId(), picture.getId());
-//        }
+        for (Picture picture : artefact.getPictures()) {
+            if (picture != null)
+                if (pictureService.getPictureById(picture.getId()) == null)
+                    pictureService.savePicture(picture);
+                else
+                    pictureService.updateArtefact(artefact.getId(), picture.getId());
+        }
         return artefact;
     }
 
@@ -81,5 +81,9 @@ public class ArtefactService {
 
     public void deactivate(Long id, Boolean active) {
         artefactRepository.activate(active, id);
+    }
+
+    public List<Picture> getPictures(Long id){
+        return pictureService.getPicturesForArtefact(id);
     }
 }

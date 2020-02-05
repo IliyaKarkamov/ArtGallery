@@ -1,8 +1,6 @@
 package com.apus.artgallery.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -48,9 +46,9 @@ public class Artefact {
     @Column(name = "active")
     private Boolean active = true;
 
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "artefact")
-//    //@JsonBackReference
-//    private Set<Picture> pictures;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "artefact")
+    @JsonBackReference
+    private Set<Picture> pictures;
 
     public Long getId() {
         return id;
@@ -60,9 +58,9 @@ public class Artefact {
         return artist;
     }
 
-//    public Set<Picture> getPictures() {
-//        return pictures;
-//    }
+    public Set<Picture> getPictures() {
+        return pictures;
+    }
 
     public LocalDate getCreatedAt() {
         return createdAt;

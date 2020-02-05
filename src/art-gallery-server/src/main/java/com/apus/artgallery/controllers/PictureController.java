@@ -72,4 +72,22 @@ public class PictureController {
         }
 
     }
+
+    @GetMapping("/api/v1/pictures")
+    public ResponseEntity<Response> getRoomById() {
+        Response response = new Response("RoomController.getRoomById", LocalDateTime.now());
+
+        HttpStatus status = HttpStatus.OK;
+
+        try {
+            response.setResult(pictureService.getAllPictures());
+        } catch (Exception e) {
+            response.addException(ResponseException.create(e));
+            status = HttpStatus.BAD_REQUEST;
+        }
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
 }

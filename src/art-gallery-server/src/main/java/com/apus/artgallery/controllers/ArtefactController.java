@@ -101,13 +101,31 @@ public class ArtefactController {
     }
 
     @GetMapping("/api/v1/artefacts/{id}")
-    public ResponseEntity<Response> getRoomById(@PathVariable Long id) {
-        Response response = new Response("ArtefactController.getRoomById", LocalDateTime.now());
+    public ResponseEntity<Response> getArtefactById(@PathVariable Long id) {
+        Response response = new Response("ArtefactController.getArtefactById", LocalDateTime.now());
 
         HttpStatus status = HttpStatus.OK;
 
         try {
             response.setResult(artefactService.getById(id));
+        } catch (Exception e) {
+            response.addException(ResponseException.create(e));
+            status = HttpStatus.BAD_REQUEST;
+        }
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
+
+    @GetMapping("/api/v1/artefacts/pictures/{id}")
+    public ResponseEntity<Response> getPictures(@PathVariable Long id) {
+        Response response = new Response("ArtefactController.getPictures", LocalDateTime.now());
+
+        HttpStatus status = HttpStatus.OK;
+
+        try {
+            response.setResult(artefactService.getPictures(id));
         } catch (Exception e) {
             response.addException(ResponseException.create(e));
             status = HttpStatus.BAD_REQUEST;

@@ -10,6 +10,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -63,11 +64,20 @@ public class PictureService {
         return new FileSystemResource(generateNewFile(picture.getStoredName()));
     }
 
-//    public void updateArtefact(Long artefactId, Long id) {
-//        pictureRepository.setArtefact(artefactId, id);
-//    }
+    public void updateArtefact(Long artefactId, Long id) {
+        pictureRepository.setArtefact(artefactId, id);
+    }
 
     public Picture getPictureById(Long id) {
         return pictureRepository.findById(id).orElse(null);
     }
+
+    public List<Picture> getAllPictures(){
+        return pictureRepository.findAll();
+    }
+
+    public List<Picture> getPicturesForArtefact(Long id){
+        return pictureRepository.findByArtefact_Id(id);
+    }
 }
+

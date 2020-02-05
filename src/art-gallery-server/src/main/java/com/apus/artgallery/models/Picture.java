@@ -1,8 +1,6 @@
 package com.apus.artgallery.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -11,6 +9,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 @Entity
 @Table(name = "pictures")
+@JsonIgnoreProperties({ "artefact", "storedName" })
 public class Picture {
 
     @Id
@@ -23,13 +22,14 @@ public class Picture {
 
     @NotBlank
     @Column(name = "stored_name")
+    @JsonProperty("storedName")
     private String storedName;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "artefact_id")
-//    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-//    @JsonManagedReference
-//    private Artefact artefact;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "artefact_id")
+    @JsonManagedReference
+    @JsonProperty("artefact")
+    private Artefact artefact;
 
     public Long getId() {
         return id;
@@ -45,5 +45,9 @@ public class Picture {
 
     public void setStoredName(String storedName) {
         this.storedName = storedName;
+    }
+
+    public Artefact getArtefact() {
+        return artefact;
     }
 }
