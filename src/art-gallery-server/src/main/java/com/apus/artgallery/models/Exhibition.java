@@ -6,6 +6,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -24,12 +25,12 @@ public class Exhibition {
     @Column(name = "start_date")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime startDate;
+    private LocalDate startDate;
 
     @Column(name = "end_date")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime endDate;
+    private LocalDate endDate;
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @ManyToOne
@@ -47,11 +48,27 @@ public class Exhibition {
         return name;
     }
 
-    public LocalDateTime getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public LocalDateTime getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Era getEra() {
+        return era;
+    }
+
+    public Style getStyle() {
+        return style;
+    }
+
+    public Artist getArtist() {
+        return artist;
     }
 }

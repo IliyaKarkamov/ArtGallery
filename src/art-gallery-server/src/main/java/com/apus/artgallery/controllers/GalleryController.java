@@ -75,8 +75,8 @@ public class GalleryController {
     }
 
     @PutMapping("/api/v1/galleries/edit/{id}")
-    public ResponseEntity<Response> editGalleyById(@RequestBody Gallery gallery, @PathVariable Long id) {
-        Response response = new Response("GalleryController.editGalleyById", LocalDateTime.now());
+    public ResponseEntity<Response> editGalleryById(@RequestBody Gallery gallery, @PathVariable Long id) {
+        Response response = new Response("GalleryController.editGalleryById", LocalDateTime.now());
 
         HttpStatus status = HttpStatus.OK;
 
