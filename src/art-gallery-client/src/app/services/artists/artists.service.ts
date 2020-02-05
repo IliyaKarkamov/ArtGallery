@@ -23,6 +23,15 @@ export class ArtistsService {
       }));
   }
 
+  getAllActive(): Observable<Response<Artist[]>> {
+    return this.http.get(environment.apiUrl + '/api/v1/artists/active')
+      .pipe(map((data: any) => {
+        const response = new Response<Artist[]>();
+        Object.assign(response, data);
+        return response;
+      }));
+  }
+
   add(artist: Artist): Observable<Response<Artist>> {
     return this.http.post(environment.apiUrl + '/api/v1/artists', artist)
       .pipe(map((data: any) => {

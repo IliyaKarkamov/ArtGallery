@@ -23,6 +23,15 @@ export class ErasService {
       }));
   }
 
+  getAllActive(): Observable<Response<Era[]>> {
+    return this.http.get(environment.apiUrl + '/api/v1/eras/active')
+      .pipe(map((data: any) => {
+        const response = new Response<Era[]>();
+        Object.assign(response, data);
+        return response;
+      }));
+  }
+
   add(style: Era): Observable<Response<Era>> {
     return this.http.post(environment.apiUrl + '/api/v1/eras', style)
       .pipe(map((data: any) => {

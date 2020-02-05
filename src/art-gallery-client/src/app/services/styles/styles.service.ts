@@ -23,6 +23,15 @@ export class StylesService {
       }));
   }
 
+  getAllActive(): Observable<Response<Style[]>> {
+    return this.http.get(environment.apiUrl + '/api/v1/styles/active')
+      .pipe(map((data: any) => {
+        const response = new Response<Style[]>();
+        Object.assign(response, data);
+        return response;
+      }));
+  }
+
   add(style: Style): Observable<Response<Style>> {
     return this.http.post(environment.apiUrl + '/api/v1/styles', style)
       .pipe(map((data: any) => {
