@@ -1,0 +1,17 @@
+#side {
+  margin-left: 16px;
+}
+
+#content {
+  margin-right: 16px;
+}
+
+@media screen and (max-width: 959px) {
+  #side {
+    margin-right: 16px;
+  }
+
+  #content {
+    margin-left: 16px;
+  }
+}

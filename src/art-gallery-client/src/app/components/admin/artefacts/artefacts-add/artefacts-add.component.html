@@ -1,0 +1,83 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Добавяне на артефакт</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="form-content">
+    <mat-hint *ngIf="isAddedSuccessfully">Успешно добавихте данни за нова артефакт!</mat-hint>
+    <div *ngIf="!isAddedSuccessfully">
+      <mat-error *ngIf="errorMessage.length > 0">
+        <b>An error occurred!</b> {{errorMessage}}
+      </mat-error>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <!-- Name -->
+        <mat-form-field>
+          <input matInput placeholder="Име" formControlName="name">
+          <mat-error *ngIf="f.name.hasError('required')">
+            Моля въведете име!
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Created At -->
+        <mat-form-field>
+          <input matInput [matDatepicker]="startDatePicker" placeholder="Дата на създаване" formControlName="createdAt">
+          <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #startDatePicker></mat-datepicker>
+        </mat-form-field>
+
+        <!-- Price -->
+        <mat-form-field>
+          <input matInput type="number" step="0.01" placeholder="Цена (USD)" formControlName="price">
+        </mat-form-field>
+
+        <!-- Era -->
+        <mat-form-field>
+          <mat-label>Ера</mat-label>
+          <mat-select formControlName="era">
+            <mat-option *ngFor="let era of eras" [value]="era.id">
+              {{era.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Style -->
+        <mat-form-field>
+          <mat-label>Стил</mat-label>
+          <mat-select formControlName="style">
+            <mat-option *ngFor="let style of styles" [value]="style.id">
+              {{style.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Exhibition -->
+        <mat-form-field>
+          <mat-label>Изложба</mat-label>
+          <mat-select formControlName="exhibition">
+            <mat-option *ngFor="let exhibition of exhibitions" [value]="exhibition.id">
+              {{exhibition.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Artist -->
+        <mat-form-field>
+          <mat-label>Артист</mat-label>
+          <mat-select formControlName="artist">
+            <mat-option *ngFor="let artist of artists" [value]="artist.id">
+              {{artist.firstName}} {{artist.lastName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Active -->
+        <mat-checkbox formControlName="active">Активен</mat-checkbox>
+
+        <button mat-raised-button type="submit" color="primary">Добавяне</button>
+        <button mat-button type="reset" color="primary" (click)="onReset()">Изчистване</button>
+      </form>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button [routerLink]="'/admin/artefacts'">Назад</button>
+  </mat-card-actions>
+</mat-card>

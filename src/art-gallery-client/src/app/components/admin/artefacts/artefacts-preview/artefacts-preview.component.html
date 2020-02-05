@@ -1,0 +1,64 @@
+<mat-card>
+  <mat-card-title>Преглед на артефакт</mat-card-title>
+  <mat-card-content class="table-content">
+    <mat-error *ngIf="loadingErrorMessage.length > 0"><b>An error occurred!</b> {{loadingErrorMessage}}</mat-error>
+    <table *ngIf="artefact != null">
+      <tr>
+        <td><b>Име:</b></td>
+        <td>{{artefact.name}}</td>
+      </tr>
+      <tr>
+        <td><b>Дата на създаване:</b></td>
+        <td>{{artefact.createdAt}}</td>
+      </tr>
+      <tr>
+        <td><b>Цена (USD):</b></td>
+        <td>{{artefact.price}}</td>
+      </tr>
+      <tr>
+        <td><b>Ера:</b></td>
+        <td>
+          <a [routerLink]="'/admin/eras/preview/' + artefact.era.id" matTooltip="Преглед на ера">
+            {{artefact.era.name}}
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Стил:</b></td>
+        <td>
+          <a [routerLink]="'/admin/styles/preview/' + artefact.style.id" matTooltip="Преглед на стил">
+            {{artefact.style.name}}
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Изложба:</b></td>
+        <td>
+          <a [routerLink]="'/admin/exhibition/preview/' + artefact.exhibition.id" matTooltip="Преглед на изложба">
+            {{artefact.exhibition.name}}
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Артист:</b></td>
+        <td>
+          <a [routerLink]="'/admin/artists/preview/' + artefact.artist.id" matTooltip="Преглед на артист">
+            {{artefact.artist.firstName}} {{artefact.artist.lastName}}
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Активен:</b></td>
+        <td *ngIf="artefact.active">
+          <mat-icon color="primary">done</mat-icon>
+        </td>
+        <td *ngIf="!artefact.active">
+          <mat-icon color="warn">clear</mat-icon>
+        </td>
+      </tr>
+    </table>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button [routerLink]="'/admin/artefacts'">Назад</button>
+  </mat-card-actions>
+</mat-card>

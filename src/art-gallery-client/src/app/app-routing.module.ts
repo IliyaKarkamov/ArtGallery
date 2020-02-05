@@ -13,7 +13,7 @@ import {AccountSignOutComponent} from './components/site/account/account-sign-ou
 
 // Admin components
 import {AdminLayoutComponent} from './components/admin/_layout/admin-layout/admin-layout.component';
-import {HomeComponent as AdminHomeComponent} from './components/site/home/home.component';
+import {HomeComponent as AdminHomeComponent} from './components/admin/home/home.component';
 import {AccountListComponent} from './components/admin/account/account-list/account-list.component';
 import {AccountEditComponent} from './components/admin/account/account-edit/account-edit.component';
 import {AccountPreviewComponent} from './components/admin/account/account-preview/account-preview.component';
@@ -33,11 +33,11 @@ import {ArtistsAddComponent} from './components/admin/artists/artists-add/artist
 import {ArtistsEditComponent} from './components/admin/artists/artists-edit/artists-edit.component';
 import {ArtistsActivationComponent} from './components/admin/artists/artists-activation/artists-activation.component';
 import {ArtistsPreviewComponent} from './components/admin/artists/artists-preview/artists-preview.component';
-import {GalleriesListComponent} from './components/admin/galleies/galleries-list/galleries-list.component';
-import {GalleriesAddComponent} from './components/admin/galleies/galleries-add/galleries-add.component';
-import {GalleriesEditComponent} from './components/admin/galleies/galleries-edit/galleries-edit.component';
-import {GalleriesActivationComponent} from './components/admin/galleies/galleries-activation/galleries-activation.component';
-import {GalleriesPreviewComponent} from './components/admin/galleies/galleries-preview/galleries-preview.component';
+import {GalleriesListComponent} from './components/admin/galleries/galleries-list/galleries-list.component';
+import {GalleriesAddComponent} from './components/admin/galleries/galleries-add/galleries-add.component';
+import {GalleriesEditComponent} from './components/admin/galleries/galleries-edit/galleries-edit.component';
+import {GalleriesActivationComponent} from './components/admin/galleries/galleries-activation/galleries-activation.component';
+import {GalleriesPreviewComponent} from './components/admin/galleries/galleries-preview/galleries-preview.component';
 import {ExhibitionsListComponent} from './components/admin/exhibitions/exhibitions-list/exhibitions-list.component';
 import {ExhibitionsAddComponent} from './components/admin/exhibitions/exhibitions-add/exhibitions-add.component';
 import {ExhibitionsEditComponent} from './components/admin/exhibitions/exhibitions-edit/exhibitions-edit.component';
@@ -47,6 +47,11 @@ import {RoomsAddComponent} from './components/admin/rooms/rooms-add/rooms-add.co
 import {RoomsEditComponent} from './components/admin/rooms/rooms-edit/rooms-edit.component';
 import {RoomsActivationComponent} from './components/admin/rooms/rooms-activation/rooms-activation.component';
 import {RoomsPreviewComponent} from './components/admin/rooms/rooms-preview/rooms-preview.component';
+import {ArtefactsListComponent} from './components/admin/artefacts/artefacts-list/artefacts-list.component';
+import {ArtefactsAddComponent} from './components/admin/artefacts/artefacts-add/artefacts-add.component';
+import {ArtefactsEditComponent} from './components/admin/artefacts/artefacts-edit/artefacts-edit.component';
+import {ArtefactsActivationComponent} from './components/admin/artefacts/artefacts-activation/artefacts-activation.component';
+import {ArtefactsPreviewComponent} from './components/admin/artefacts/artefacts-preview/artefacts-preview.component';
 
 const routes: Routes = [
   // Site routes
@@ -113,7 +118,14 @@ const routes: Routes = [
       {path: 'exhibitions', component: ExhibitionsListComponent},
       {path: 'exhibitions/add', component: ExhibitionsAddComponent},
       {path: 'exhibitions/edit/:id', component: ExhibitionsEditComponent},
-      {path: 'exhibitions/preview/:id', component: ExhibitionsPreviewComponent}
+      {path: 'exhibitions/preview/:id', component: ExhibitionsPreviewComponent},
+
+      // Artefacts routes
+      {path: 'artefacts', component: ArtefactsListComponent},
+      {path: 'artefacts/add', component: ArtefactsAddComponent},
+      {path: 'artefacts/edit/:id', component: ArtefactsEditComponent},
+      {path: 'artefacts/activation/:id', component: ArtefactsActivationComponent},
+      {path: 'artefacts/preview/:id', component: ArtefactsPreviewComponent}
     ]
   }
 ];

@@ -59,20 +59,25 @@ import {ArtistsAddComponent} from './components/admin/artists/artists-add/artist
 import {ArtistsListComponent} from './components/admin/artists/artists-list/artists-list.component';
 import {ArtistsPreviewComponent} from './components/admin/artists/artists-preview/artists-preview.component';
 import {ArtistsEditComponent} from './components/admin/artists/artists-edit/artists-edit.component';
-import {GalleriesEditComponent} from './components/admin/galleies/galleries-edit/galleries-edit.component';
-import {GalleriesListComponent} from './components/admin/galleies/galleries-list/galleries-list.component';
-import {GalleriesAddComponent} from './components/admin/galleies/galleries-add/galleries-add.component';
-import {GalleriesPreviewComponent} from './components/admin/galleies/galleries-preview/galleries-preview.component';
-import {GalleriesActivationComponent} from './components/admin/galleies/galleries-activation/galleries-activation.component';
-import { ExhibitionsListComponent } from './components/admin/exhibitions/exhibitions-list/exhibitions-list.component';
-import { ExhibitionsAddComponent } from './components/admin/exhibitions/exhibitions-add/exhibitions-add.component';
-import { ExhibitionsEditComponent } from './components/admin/exhibitions/exhibitions-edit/exhibitions-edit.component';
-import { ExhibitionsPreviewComponent } from './components/admin/exhibitions/exhibitions-preview/exhibitions-preview.component';
-import { RoomsListComponent } from './components/admin/rooms/rooms-list/rooms-list.component';
-import { RoomsAddComponent } from './components/admin/rooms/rooms-add/rooms-add.component';
-import { RoomsPreviewComponent } from './components/admin/rooms/rooms-preview/rooms-preview.component';
-import { RoomsActivationComponent } from './components/admin/rooms/rooms-activation/rooms-activation.component';
-import { RoomsEditComponent } from './components/admin/rooms/rooms-edit/rooms-edit.component';
+import {GalleriesEditComponent} from './components/admin/galleries/galleries-edit/galleries-edit.component';
+import {GalleriesListComponent} from './components/admin/galleries/galleries-list/galleries-list.component';
+import {GalleriesAddComponent} from './components/admin/galleries/galleries-add/galleries-add.component';
+import {GalleriesPreviewComponent} from './components/admin/galleries/galleries-preview/galleries-preview.component';
+import {GalleriesActivationComponent} from './components/admin/galleries/galleries-activation/galleries-activation.component';
+import {ExhibitionsListComponent} from './components/admin/exhibitions/exhibitions-list/exhibitions-list.component';
+import {ExhibitionsAddComponent} from './components/admin/exhibitions/exhibitions-add/exhibitions-add.component';
+import {ExhibitionsEditComponent} from './components/admin/exhibitions/exhibitions-edit/exhibitions-edit.component';
+import {ExhibitionsPreviewComponent} from './components/admin/exhibitions/exhibitions-preview/exhibitions-preview.component';
+import {RoomsListComponent} from './components/admin/rooms/rooms-list/rooms-list.component';
+import {RoomsAddComponent} from './components/admin/rooms/rooms-add/rooms-add.component';
+import {RoomsPreviewComponent} from './components/admin/rooms/rooms-preview/rooms-preview.component';
+import {RoomsActivationComponent} from './components/admin/rooms/rooms-activation/rooms-activation.component';
+import {RoomsEditComponent} from './components/admin/rooms/rooms-edit/rooms-edit.component';
+import {ArtefactsListComponent} from './components/admin/artefacts/artefacts-list/artefacts-list.component';
+import {ArtefactsAddComponent} from './components/admin/artefacts/artefacts-add/artefacts-add.component';
+import {ArtefactsEditComponent} from './components/admin/artefacts/artefacts-edit/artefacts-edit.component';
+import {ArtefactsPreviewComponent} from './components/admin/artefacts/artefacts-preview/artefacts-preview.component';
+import {ArtefactsActivationComponent} from './components/admin/artefacts/artefacts-activation/artefacts-activation.component';
 
 export function getJwtToken() {
   return localStorage.getItem('jwtToken');
@@ -128,7 +133,12 @@ export function getJwtToken() {
     RoomsAddComponent,
     RoomsPreviewComponent,
     RoomsActivationComponent,
-    RoomsEditComponent
+    RoomsEditComponent,
+    ArtefactsListComponent,
+    ArtefactsAddComponent,
+    ArtefactsEditComponent,
+    ArtefactsPreviewComponent,
+    ArtefactsActivationComponent
   ],
   imports: [
     BrowserModule,
