@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.websocket.server.PathParam;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Repository
 public interface ArtistRepository extends JpaRepository<Artist, Long> {
@@ -29,6 +30,8 @@ public interface ArtistRepository extends JpaRepository<Artist, Long> {
     boolean existsByAliasAndIdIsNot(
             @Param("alias") String alias,
             @Param("id") Long id);
+
+    List<Artist> findByActiveTrue();
 
     @Modifying
     @Transactional(propagation = Propagation.REQUIRED)

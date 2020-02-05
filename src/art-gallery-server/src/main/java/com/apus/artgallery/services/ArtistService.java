@@ -48,4 +48,8 @@ public class ArtistService {
     public void deactivate(Long id, Boolean active) {
         artistRepository.deactivate(active, id);
     }
+
+    public List<Artist> getAllActive(){
+        return artistRepository.findByActiveTrue();
+    }
 }

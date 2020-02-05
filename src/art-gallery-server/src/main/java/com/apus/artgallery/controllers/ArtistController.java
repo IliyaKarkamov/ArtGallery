@@ -73,6 +73,24 @@ public class ArtistController {
                 .body(response);
     }
 
+    @GetMapping("/api/v1/artists/active")
+    public ResponseEntity<Response> getActiveArtists() {
+        Response response = new Response("ArtistController.getActiveArtists", LocalDateTime.now());
+
+        HttpStatus status = HttpStatus.OK;
+
+        try {
+            response.setResult(artistService.getAllActive());
+        } catch (Exception e) {
+            response.addException(ResponseException.create(e));
+            status = HttpStatus.BAD_REQUEST;
+        }
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
+
     @PutMapping("/api/v1/artists/edit/{id}")
     public ResponseEntity<Response> editArtistById(@RequestBody Artist artist, @PathVariable Long id) {
         Response response = new Response("ArtistController.editArtistById", LocalDateTime.now());
