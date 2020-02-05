@@ -36,11 +36,34 @@ public class Gallery {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private String description;
 
+    @Column(name = "active")
+    private Boolean active = true;
+
     public String getName() {
         return name;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public Float getLongitude() {
+        return longitude;
+    }
+
+    public Float getLatitude() {
+        return latitude;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Boolean getActive() {
+        return active;
     }
 }

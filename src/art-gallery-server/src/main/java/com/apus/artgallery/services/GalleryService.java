@@ -25,4 +25,21 @@ public class GalleryService {
     public List<Gallery> getAllGalleries() {
         return galleryRepository.findAll();
     }
+
+    public Gallery getById(Long id) {
+        return galleryRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Style with the given id doesnt exists!"));
+    }
+
+    public void editById(Long id, Gallery gallery) {
+        if (galleryRepository.existsByNameAndIdIsNot(gallery.getName(), id))
+            throw new IllegalArgumentException("Name already exist!");
+
+        galleryRepository.saveById(gallery.getName(), gallery.getAddress(), gallery.getDescription(),
+                gallery.getLatitude(), gallery.getLongitude(), gallery.getActive(), id);
+    }
+
+    public void deactivate(Long id, Boolean active) {
+        galleryRepository.activate(active, id);
+    }
 }
