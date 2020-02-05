@@ -34,4 +34,15 @@ public class EraService {
         return eraRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Era with the given id doesnt exists!"));
     }
+
+    public void editById(Long id, Era era) {
+        if (eraRepository.existsByNameAndIdIsNot(era.getName(), id))
+            throw new IllegalArgumentException("Name already exist!");
+
+        eraRepository.saveById(era.getName(), era.getDescription(), era.getActive(), id);
+    }
+
+    public void deactivate(Long id, Boolean active) {
+        eraRepository.activate(active, id);
+    }
 }

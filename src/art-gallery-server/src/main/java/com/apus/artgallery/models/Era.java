@@ -30,4 +30,16 @@ public class Era {
     public String getName() {
         return name;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }

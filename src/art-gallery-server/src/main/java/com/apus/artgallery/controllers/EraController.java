@@ -90,4 +90,44 @@ public class EraController {
                 .status(status)
                 .body(response);
     }
+
+    @PutMapping("/api/v1/eras/edit/{id}")
+    public ResponseEntity<Response> editEraById(@PathVariable Long id,
+                                                @RequestBody Era era) {
+        Response response = new Response("EraController.editEraById", LocalDateTime.now());
+
+        HttpStatus status = HttpStatus.OK;
+
+        try {
+            eraService.editById(id, era);
+            response.setResult(true);
+        } catch (Exception e) {
+            response.addException(ResponseException.create(e));
+            status = HttpStatus.BAD_REQUEST;
+        }
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
+
+    @PutMapping("/api/v1/eras/deactivate/{id}")
+    public ResponseEntity<Response> deactivate(@PathVariable Long id,
+                                                @RequestParam Boolean active) {
+        Response response = new Response("EraController.deactivate", LocalDateTime.now());
+
+        HttpStatus status = HttpStatus.OK;
+
+        try {
+            eraService.deactivate(id, active);
+            response.setResult(true);
+        } catch (Exception e) {
+            response.addException(ResponseException.create(e));
+            status = HttpStatus.BAD_REQUEST;
+        }
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
 }
