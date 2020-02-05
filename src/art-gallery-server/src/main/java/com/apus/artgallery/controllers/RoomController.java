@@ -7,9 +7,7 @@ import com.apus.artgallery.utils.ResponseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 
@@ -21,7 +19,7 @@ public class RoomController {
         this.roomService = roomService;
     }
 
-    @PostMapping("/api/v1/room")
+    @PostMapping("/api/v1/rooms")
     public ResponseEntity<Response> addRoom(@RequestBody Room room) {
         Response response = new Response("RoomController.addRoom", LocalDateTime.now());
 
@@ -39,7 +37,7 @@ public class RoomController {
                 .body(response);
     }
 
-    @GetMapping("/api/v1/room")
+    @GetMapping("/api/v1/rooms")
     public ResponseEntity<Response> getAllRooms() {
         Response response = new Response("RoomController.getAllRooms", LocalDateTime.now());
 
@@ -47,6 +45,62 @@ public class RoomController {
 
         try {
             response.setResult(roomService.getAllRooms());
+        } catch (Exception e) {
+            response.addException(ResponseException.create(e));
+            status = HttpStatus.BAD_REQUEST;
+        }
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
+
+    @GetMapping("/api/v1/rooms/{id}")
+    public ResponseEntity<Response> getRoomById(@PathVariable Long id) {
+        Response response = new Response("RoomController.getRoomById", LocalDateTime.now());
+
+        HttpStatus status = HttpStatus.OK;
+
+        try {
+            response.setResult(roomService.getById(id));
+        } catch (Exception e) {
+            response.addException(ResponseException.create(e));
+            status = HttpStatus.BAD_REQUEST;
+        }
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
+
+    @PutMapping("/api/v1/rooms/edit/{id}")
+    public ResponseEntity<Response> editGalleyById(@RequestBody Room room, @PathVariable Long id) {
+        Response response = new Response("RoomController.editGalleyById", LocalDateTime.now());
+
+        HttpStatus status = HttpStatus.OK;
+
+        try {
+            roomService.editById(id, room);
+            response.setResult(true);
+        } catch (Exception e) {
+            response.addException(ResponseException.create(e));
+            status = HttpStatus.BAD_REQUEST;
+        }
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
+
+    @PutMapping("/api/v1/rooms/deactivate/{id}")
+    public ResponseEntity<Response> deactivateById(@RequestParam Boolean active, @PathVariable Long id) {
+        Response response = new Response("RoomController.deactivateById", LocalDateTime.now());
+
+        HttpStatus status = HttpStatus.OK;
+
+        try {
+            roomService.deactivate(id, active);
+            response.setResult(true);
         } catch (Exception e) {
             response.addException(ResponseException.create(e));
             status = HttpStatus.BAD_REQUEST;

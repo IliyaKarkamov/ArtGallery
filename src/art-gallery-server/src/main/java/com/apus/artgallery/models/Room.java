@@ -24,6 +24,9 @@ public class Room {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private String location;
 
+    @Column(name = "active")
+    private Boolean active = true;
+
     @ManyToOne
     private Gallery gallery;
 
@@ -33,5 +36,17 @@ public class Room {
 
     public Gallery getGallery() {
         return gallery;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public Boolean getActive() {
+        return active;
     }
 }
