@@ -1,0 +1,36 @@
+<mat-card>
+  <mat-card-title>Преглед на зала</mat-card-title>
+  <mat-card-content class="table-content">
+    <mat-error *ngIf="loadingErrorMessage.length > 0"><b>An error occurred!</b> {{loadingErrorMessage}}</mat-error>
+    <table *ngIf="room != null">
+      <tr>
+        <td><b>Име:</b></td>
+        <td>{{room.name}}</td>
+      </tr>
+      <tr>
+        <td><b>Местоположение:</b></td>
+        <td>{{room.location}}</td>
+      </tr>
+      <tr>
+        <td><b>Галерия:</b></td>
+        <td>
+          <a [routerLink]="'/admin/galleries/preview/' + room.gallery.id" matTooltip="Преглед на галерия">
+            {{room.gallery.name}}
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Активна:</b></td>
+        <td *ngIf="room.active">
+          <mat-icon color="primary">done</mat-icon>
+        </td>
+        <td *ngIf="!room.active">
+          <mat-icon color="warn">clear</mat-icon>
+        </td>
+      </tr>
+    </table>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button [routerLink]="'/admin/rooms'">Назад</button>
+  </mat-card-actions>
+</mat-card>

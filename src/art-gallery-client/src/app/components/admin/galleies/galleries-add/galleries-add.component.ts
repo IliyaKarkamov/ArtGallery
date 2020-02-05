@@ -23,7 +23,7 @@ export class GalleriesAddComponent implements OnInit {
       longitude: [''],
       latitude: [''],
       description: [''],
-      active: [''],
+      active: ['']
     });
   }
 

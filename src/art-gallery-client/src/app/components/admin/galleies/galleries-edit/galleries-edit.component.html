@@ -1,1 +1,49 @@
-<p>galleries-edit works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Редактиране на галерия</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="form-content">
+    <mat-hint *ngIf="isEditedSuccessfully">Успешно редактирахте данните за избраната галерия!</mat-hint>
+    <div *ngIf="!isEditedSuccessfully && form != null">
+      <mat-error *ngIf="errorMessage.length > 0">
+        <b>An error occurred!</b> {{errorMessage}}
+      </mat-error>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <!-- name -->
+        <mat-form-field>
+          <input matInput placeholder="Име" formControlName="name">
+          <mat-error *ngIf="f.name.hasError('required')">
+            Моля въведете име!
+          </mat-error>
+        </mat-form-field>
+        <!-- address -->
+        <mat-form-field>
+          <input matInput placeholder="Адрес" formControlName="address">
+          <mat-error *ngIf="f.address.hasError('required')">
+            Моля въведете адрес!
+          </mat-error>
+        </mat-form-field>
+        <!-- longitude -->
+        <mat-form-field>
+          <input matInput placeholder="Географска дължина" formControlName="longitude">
+        </mat-form-field>
+        <!-- latitude -->
+        <mat-form-field>
+          <input matInput placeholder="Географска ширина" formControlName="latitude">
+        </mat-form-field>
+        <!-- description -->
+        <mat-form-field>
+          <textarea matInput type="text" placeholder="Описание" formControlName="description"></textarea>
+        </mat-form-field>
+        <!-- active -->
+        <mat-checkbox formControlName="active">Активен</mat-checkbox>
+
+        <button mat-raised-button type="submit" color="primary">Редактиране</button>
+        <button mat-button type="reset" color="primary" (click)="onReset()">Изчистване</button>
+      </form>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button [routerLink]="'/admin/galleries'">Назад</button>
+  </mat-card-actions>
+</mat-card>

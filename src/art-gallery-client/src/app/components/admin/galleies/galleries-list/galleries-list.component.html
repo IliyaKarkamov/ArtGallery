@@ -37,18 +37,18 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Действия</th>
         <td mat-cell *matCellDef="let element">
-          <button mat-button [routerLink]="'/admin/galleries/preview/' + element.id" matTooltip="Преглед на ера">
+          <button mat-button [routerLink]="'/admin/galleries/preview/' + element.id" matTooltip="Преглед на галерия">
             <mat-icon>search</mat-icon>
           </button>
-          <button mat-button [routerLink]="'/admin/galleries/edit/' + element.id" matTooltip="Редактиране на ера">
+          <button mat-button [routerLink]="'/admin/galleries/edit/' + element.id" matTooltip="Редактиране на галерия">
             <mat-icon>edit</mat-icon>
           </button>
           <button mat-button [routerLink]="'/admin/galleries/activation/' + element.id" [queryParams]="{activate:false}"
-                  *ngIf="element.active" matTooltip="Деактивиране на ера">
+                  *ngIf="element.active" matTooltip="Деактивиране на галерия">
             <mat-icon>visibility_off</mat-icon>
           </button>
           <button mat-button [routerLink]="'/admin/galleries/activation/' + element.id" [queryParams]="{activate:true}"
-                  *ngIf="!element.active" matTooltip="Активиране на ера">
+                  *ngIf="!element.active" matTooltip="Активиране на галерия">
             <mat-icon>visibility</mat-icon>
           </button>
         </td>

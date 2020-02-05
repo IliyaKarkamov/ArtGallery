@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Style} from '../../../../models/style';
 import {ActivatedRoute} from '@angular/router';
 import {ErasService} from '../../../../services/eras/eras.service';
+import {Era} from '../../../../models/era';
 
 @Component({
   selector: 'app-eras-preview',
@@ -9,7 +9,7 @@ import {ErasService} from '../../../../services/eras/eras.service';
   styleUrls: ['./eras-preview.component.scss']
 })
 export class ErasPreviewComponent implements OnInit {
-  eras: Style = null;
+  eras: Era = null;
   loadingErrorMessage = '';
 
   constructor(private route: ActivatedRoute, private erasService: ErasService) {

@@ -23,6 +23,15 @@ export class GalleriesService {
       }));
   }
 
+  getAllActive(): Observable<Response<Gallery[]>> {
+    return this.http.get(environment.apiUrl + '/api/v1/galleries')
+      .pipe(map((data: any) => {
+        const response = new Response<Gallery[]>();
+        Object.assign(response, data);
+        return response;
+      }));
+  }
+
   add(gallery: Gallery): Observable<Response<Gallery>> {
     return this.http.post(environment.apiUrl + '/api/v1/galleries', gallery)
       .pipe(map((data: any) => {

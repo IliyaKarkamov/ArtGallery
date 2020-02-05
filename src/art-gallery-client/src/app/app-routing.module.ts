@@ -38,6 +38,15 @@ import {GalleriesAddComponent} from './components/admin/galleies/galleries-add/g
 import {GalleriesEditComponent} from './components/admin/galleies/galleries-edit/galleries-edit.component';
 import {GalleriesActivationComponent} from './components/admin/galleies/galleries-activation/galleries-activation.component';
 import {GalleriesPreviewComponent} from './components/admin/galleies/galleries-preview/galleries-preview.component';
+import {ExhibitionsListComponent} from './components/admin/exhibitions/exhibitions-list/exhibitions-list.component';
+import {ExhibitionsAddComponent} from './components/admin/exhibitions/exhibitions-add/exhibitions-add.component';
+import {ExhibitionsEditComponent} from './components/admin/exhibitions/exhibitions-edit/exhibitions-edit.component';
+import {ExhibitionsPreviewComponent} from './components/admin/exhibitions/exhibitions-preview/exhibitions-preview.component';
+import {RoomsListComponent} from './components/admin/rooms/rooms-list/rooms-list.component';
+import {RoomsAddComponent} from './components/admin/rooms/rooms-add/rooms-add.component';
+import {RoomsEditComponent} from './components/admin/rooms/rooms-edit/rooms-edit.component';
+import {RoomsActivationComponent} from './components/admin/rooms/rooms-activation/rooms-activation.component';
+import {RoomsPreviewComponent} from './components/admin/rooms/rooms-preview/rooms-preview.component';
 
 const routes: Routes = [
   // Site routes
@@ -91,7 +100,20 @@ const routes: Routes = [
       {path: 'galleries/add', component: GalleriesAddComponent},
       {path: 'galleries/edit/:id', component: GalleriesEditComponent},
       {path: 'galleries/activation/:id', component: GalleriesActivationComponent},
-      {path: 'galleries/preview/:id', component: GalleriesPreviewComponent}
+      {path: 'galleries/preview/:id', component: GalleriesPreviewComponent},
+
+      // Rooms routes
+      {path: 'rooms', component: RoomsListComponent},
+      {path: 'rooms/add', component: RoomsAddComponent},
+      {path: 'rooms/edit/:id', component: RoomsEditComponent},
+      {path: 'rooms/activation/:id', component: RoomsActivationComponent},
+      {path: 'rooms/preview/:id', component: RoomsPreviewComponent},
+
+      // Exhibitions routes
+      {path: 'exhibitions', component: ExhibitionsListComponent},
+      {path: 'exhibitions/add', component: ExhibitionsAddComponent},
+      {path: 'exhibitions/edit/:id', component: ExhibitionsEditComponent},
+      {path: 'exhibitions/preview/:id', component: ExhibitionsPreviewComponent}
     ]
   }
 ];

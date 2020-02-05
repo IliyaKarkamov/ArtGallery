@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-title>Преглед на ера</mat-card-title>
-  <mat-card-content style="padding: 20px;">
+  <mat-card-content class="table-content">
     <mat-error *ngIf="loadingErrorMessage.length > 0"><b>An error occurred!</b> {{loadingErrorMessage}}</mat-error>
     <table *ngIf="eras != null">
       <tr>

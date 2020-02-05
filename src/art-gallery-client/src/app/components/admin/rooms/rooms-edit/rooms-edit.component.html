@@ -1,0 +1,46 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Редактиране на зала</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="form-content">
+    <mat-hint *ngIf="isEditedSuccessfully">Успешно редактирахте данните за избраната зала!</mat-hint>
+    <div *ngIf="!isEditedSuccessfully && form != null">
+      <mat-error *ngIf="errorMessage.length > 0">
+        <b>An error occurred!</b> {{errorMessage}}
+      </mat-error>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <!-- Name -->
+        <mat-form-field>
+          <input matInput placeholder="Име" formControlName="name">
+          <mat-error *ngIf="f.name.hasError('required')">
+            Моля въведете име!
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Location -->
+        <mat-form-field>
+          <input matInput placeholder="Местоположение" formControlName="location">
+        </mat-form-field>
+
+        <!-- Gallery -->
+        <mat-form-field>
+          <mat-label>Галерия</mat-label>
+          <mat-select formControlName="gallery">
+            <mat-option *ngFor="let gallery of galleries" [value]="gallery.id">
+              {{gallery.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Active -->
+        <mat-checkbox formControlName="active">Активна</mat-checkbox>
+
+        <button mat-raised-button type="submit" color="primary">Редактиране</button>
+        <button mat-button type="reset" color="primary" (click)="onReset()">Изчистване</button>
+      </form>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button [routerLink]="'/admin/rooms'">Назад</button>
+  </mat-card-actions>
+</mat-card>

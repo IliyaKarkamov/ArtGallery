@@ -16,7 +16,7 @@ import {
   MatCardModule,
   MatCheckboxModule, MatDatepickerModule,
   MatListModule, MatNativeDateModule,
-  MatPaginatorModule,
+  MatPaginatorModule, MatSelectModule,
   MatSortModule,
   MatTableModule,
   MatTooltipModule
@@ -64,6 +64,15 @@ import {GalleriesListComponent} from './components/admin/galleies/galleries-list
 import {GalleriesAddComponent} from './components/admin/galleies/galleries-add/galleries-add.component';
 import {GalleriesPreviewComponent} from './components/admin/galleies/galleries-preview/galleries-preview.component';
 import {GalleriesActivationComponent} from './components/admin/galleies/galleries-activation/galleries-activation.component';
+import { ExhibitionsListComponent } from './components/admin/exhibitions/exhibitions-list/exhibitions-list.component';
+import { ExhibitionsAddComponent } from './components/admin/exhibitions/exhibitions-add/exhibitions-add.component';
+import { ExhibitionsEditComponent } from './components/admin/exhibitions/exhibitions-edit/exhibitions-edit.component';
+import { ExhibitionsPreviewComponent } from './components/admin/exhibitions/exhibitions-preview/exhibitions-preview.component';
+import { RoomsListComponent } from './components/admin/rooms/rooms-list/rooms-list.component';
+import { RoomsAddComponent } from './components/admin/rooms/rooms-add/rooms-add.component';
+import { RoomsPreviewComponent } from './components/admin/rooms/rooms-preview/rooms-preview.component';
+import { RoomsActivationComponent } from './components/admin/rooms/rooms-activation/rooms-activation.component';
+import { RoomsEditComponent } from './components/admin/rooms/rooms-edit/rooms-edit.component';
 
 export function getJwtToken() {
   return localStorage.getItem('jwtToken');
@@ -110,7 +119,16 @@ export function getJwtToken() {
     GalleriesListComponent,
     GalleriesAddComponent,
     GalleriesPreviewComponent,
-    GalleriesActivationComponent
+    GalleriesActivationComponent,
+    ExhibitionsListComponent,
+    ExhibitionsAddComponent,
+    ExhibitionsEditComponent,
+    ExhibitionsPreviewComponent,
+    RoomsListComponent,
+    RoomsAddComponent,
+    RoomsPreviewComponent,
+    RoomsActivationComponent,
+    RoomsEditComponent
   ],
   imports: [
     BrowserModule,
@@ -144,6 +162,7 @@ export function getJwtToken() {
     MatTooltipModule,
     MatCheckboxModule,
     MatDatepickerModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
