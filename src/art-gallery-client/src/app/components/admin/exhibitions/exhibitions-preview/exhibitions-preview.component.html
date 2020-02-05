@@ -1,1 +1,47 @@
-<p>exhibitions-preview works!</p>
+<mat-card>
+  <mat-card-title>Преглед на изложба</mat-card-title>
+  <mat-card-content class="table-content">
+    <mat-error *ngIf="loadingErrorMessage.length > 0"><b>An error occurred!</b> {{loadingErrorMessage}}</mat-error>
+    <table *ngIf="exhibition != null">
+      <tr>
+        <td><b>Име:</b></td>
+        <td>{{exhibition.name}}</td>
+      </tr>
+      <tr>
+        <td><b>Начална дата:</b></td>
+        <td>{{exhibition.startDate}}</td>
+      </tr>
+      <tr>
+        <td><b>Крайна дата:</b></td>
+        <td>{{exhibition.endDate}}</td>
+      </tr>
+      <tr>
+        <td><b>Ера:</b></td>
+        <td>
+          <a [routerLink]="'/admin/eras/preview/' + exhibition.era.id" matTooltip="Преглед на ера">
+            {{exhibition.era.name}}
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Стил:</b></td>
+        <td>
+          <a [routerLink]="'/admin/styles/preview/' + exhibition.style.id" matTooltip="Преглед на стил">
+            {{exhibition.style.name}}
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Артист:</b></td>
+        <td>
+          <a [routerLink]="'/admin/artists/preview/' + exhibition.artist.id" matTooltip="Преглед на артист">
+            {{exhibition.artist.firstName}} {{exhibition.artist.lastName}}
+          </a>
+        </td>
+      </tr>
+    </table>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button [routerLink]="'/admin/exhibitions'">Назад</button>
+  </mat-card-actions>
+</mat-card>
