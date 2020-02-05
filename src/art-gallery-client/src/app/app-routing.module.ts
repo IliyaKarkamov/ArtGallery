@@ -23,6 +23,11 @@ import {StylesPreviewComponent} from './components/admin/styles/styles-preview/s
 import {StylesAddComponent} from './components/admin/styles/styles-add/styles-add.component';
 import {StylesEditComponent} from './components/admin/styles/styles-edit/styles-edit.component';
 import {StylesActivationComponent} from './components/admin/styles/styles-activation/styles-activation.component';
+import {ErasListComponent} from './components/admin/eras/eras-list/eras-list.component';
+import {ErasAddComponent} from './components/admin/eras/eras-add/eras-add.component';
+import {ErasEditComponent} from './components/admin/eras/eras-edit/eras-edit.component';
+import {ErasActivationComponent} from './components/admin/eras/eras-activation/eras-activation.component';
+import {ErasPreviewComponent} from './components/admin/eras/eras-preview/eras-preview.component';
 
 const routes: Routes = [
   // Site routes
@@ -55,7 +60,14 @@ const routes: Routes = [
       {path: 'styles/add', component: StylesAddComponent},
       {path: 'styles/edit/:id', component: StylesEditComponent},
       {path: 'styles/activation/:id', component: StylesActivationComponent},
-      {path: 'styles/preview/:id', component: StylesPreviewComponent}
+      {path: 'styles/preview/:id', component: StylesPreviewComponent},
+
+      // Eras routes
+      {path: 'eras', component: ErasListComponent},
+      {path: 'eras/add', component: ErasAddComponent},
+      {path: 'eras/edit/:id', component: ErasEditComponent},
+      {path: 'eras/activation/:id', component: ErasActivationComponent},
+      {path: 'eras/preview/:id', component: ErasPreviewComponent}
     ]
   }
 ];

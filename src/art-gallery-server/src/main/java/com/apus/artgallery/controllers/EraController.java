@@ -19,7 +19,7 @@ public class EraController {
         this.eraService = eraService;
     }
 
-    @GetMapping("/api/v1/era")
+    @GetMapping("/api/v1/eras")
     public ResponseEntity<Response> getEras() {
         Response response = new Response("EraController.getUsers", LocalDateTime.now());
 
@@ -37,7 +37,7 @@ public class EraController {
                 .body(response);
     }
 
-    @GetMapping("/api/v1/era/active")
+    @GetMapping("/api/v1/eras/active")
     public ResponseEntity<Response> getActiveEras() {
         Response response = new Response("EraController.getActiveEras", LocalDateTime.now());
 
@@ -55,7 +55,7 @@ public class EraController {
                 .body(response);
     }
 
-    @GetMapping("/api/v1/era/{id}")
+    @GetMapping("/api/v1/eras/{id}")
     public ResponseEntity<Response> getEraById(@PathVariable Long id) {
         Response response = new Response("EraController.getEraById", LocalDateTime.now());
 
@@ -73,7 +73,7 @@ public class EraController {
                 .body(response);
     }
 
-    @PostMapping("/api/v1/era")
+    @PostMapping("/api/v1/eras")
     public ResponseEntity<Response> addEra(@RequestBody Era era) {
         Response response = new Response("EraController.addEra", LocalDateTime.now());
 
