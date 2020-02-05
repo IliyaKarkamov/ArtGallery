@@ -74,8 +74,8 @@ public class RoomController {
     }
 
     @PutMapping("/api/v1/rooms/edit/{id}")
-    public ResponseEntity<Response> editGalleyById(@RequestBody Room room, @PathVariable Long id) {
-        Response response = new Response("RoomController.editGalleyById", LocalDateTime.now());
+    public ResponseEntity<Response> editRoomById(@RequestBody Room room, @PathVariable Long id) {
+        Response response = new Response("RoomController.editRoomById", LocalDateTime.now());
 
         HttpStatus status = HttpStatus.OK;
 

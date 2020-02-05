@@ -25,11 +25,11 @@ public class Picture {
     @Column(name = "stored_name")
     private String storedName;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "artefact_id")
-    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @JsonManagedReference
-    private Artefact artefact;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "artefact_id")
+//    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    @JsonManagedReference
+//    private Artefact artefact;
 
     public Long getId() {
         return id;

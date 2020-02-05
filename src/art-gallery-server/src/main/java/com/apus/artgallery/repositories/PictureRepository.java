@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface PictureRepository extends JpaRepository<Picture, Long> {
-    @Modifying
-    @Transactional(propagation = Propagation.REQUIRED)
-    @Query("update Picture p set p.artefact.id = ?1  where p.id = ?2")
-    void setArtefact(Long artefactId, Long id);
+//    @Modifying
+//    @Transactional(propagation = Propagation.REQUIRED)
+//    @Query("update Picture p set p.artefact.id = ?1  where p.id = ?2")
+//    void setArtefact(Long artefactId, Long id);
 }

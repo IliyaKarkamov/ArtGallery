@@ -63,9 +63,9 @@ public class PictureService {
         return new FileSystemResource(generateNewFile(picture.getStoredName()));
     }
 
-    public void updateArtefact(Long artefactId, Long id) {
-        pictureRepository.setArtefact(artefactId, id);
-    }
+//    public void updateArtefact(Long artefactId, Long id) {
+//        pictureRepository.setArtefact(artefactId, id);
+//    }
 
     public Picture getPictureById(Long id) {
         return pictureRepository.findById(id).orElse(null);
