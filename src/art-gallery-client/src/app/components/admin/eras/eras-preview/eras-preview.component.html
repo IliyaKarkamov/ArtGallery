@@ -1,1 +1,28 @@
-<p>eras-preview works!</p>
+<mat-card>
+  <mat-card-title>Преглед на ера</mat-card-title>
+  <mat-card-content style="padding: 20px;">
+    <mat-error *ngIf="loadingErrorMessage.length > 0"><b>An error occurred!</b> {{loadingErrorMessage}}</mat-error>
+    <table *ngIf="eras != null">
+      <tr>
+        <td><b>Име:</b></td>
+        <td>{{eras.name}}</td>
+      </tr>
+      <tr>
+        <td><b>Описание:</b></td>
+        <td>{{eras.description}}</td>
+      </tr>
+      <tr>
+        <td><b>Активен:</b></td>
+        <td *ngIf="eras.active">
+          <mat-icon color="primary">done</mat-icon>
+        </td>
+        <td *ngIf="!eras.active">
+          <mat-icon color="primary">clear</mat-icon>
+        </td>
+      </tr>
+    </table>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button [routerLink]="'/admin/eras'">Назад</button>
+  </mat-card-actions>
+</mat-card>

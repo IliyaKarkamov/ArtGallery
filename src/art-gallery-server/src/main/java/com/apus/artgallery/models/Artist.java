@@ -6,7 +6,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -35,8 +35,8 @@ public class Artist {
 
     @Column(name = "birth_date")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime birthDate;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate birthDate;
 
     @Column(name = "birth_place")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -73,7 +73,7 @@ public class Artist {
         return secondName;
     }
 
-    public LocalDateTime getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 

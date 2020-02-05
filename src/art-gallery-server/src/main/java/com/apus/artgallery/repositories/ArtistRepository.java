@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.websocket.server.PathParam;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Repository
@@ -35,7 +36,7 @@ public interface ArtistRepository extends JpaRepository<Artist, Long> {
             "set a.firstName = ?1, a.secondName = ?2, a.lastName = ?3, a.alias = ?4, a.birthDate = ?5, " +
             "a.birthPlace = ?6, a.longBio = ?7, a.shortBio = ?8, a.active = ?9 " +
             "where a.id = ?10")
-    void saveById(String fisrName, String secondName, String lastName, String alias, LocalDateTime birthDate,
+    void saveById(String fisrtName, String secondName, String lastName, String alias, LocalDate birthDate,
                   String birthplace, String longBio, String shortBio, Boolean active, Long id);
 
     @Modifying

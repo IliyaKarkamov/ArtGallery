@@ -1,5 +1,5 @@
 <mat-card>
-  <mat-card-title>Ери</mat-card-title>
+  <mat-card-title>Артисти</mat-card-title>
   <mat-card-content>
     <mat-form-field style="width: 100%;">
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Филтриране">
@@ -12,10 +12,22 @@
         <td mat-cell *matCellDef="let element">{{element.id}} </td>
       </ng-container>
 
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
+      <!-- First name Column -->
+      <ng-container matColumnDef="firstName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Име</th>
-        <td mat-cell *matCellDef="let element">{{element.name}} </td>
+        <td mat-cell *matCellDef="let element">{{element.firstName}} </td>
+      </ng-container>
+
+      <!-- Last name Column -->
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Фамилия</th>
+        <td mat-cell *matCellDef="let element">{{element.lastName}} </td>
+      </ng-container>
+
+      <!-- Alias Column -->
+      <ng-container matColumnDef="alias">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Псевдоним</th>
+        <td mat-cell *matCellDef="let element">{{element.alias}} </td>
       </ng-container>
 
       <!-- Active Column -->
@@ -31,18 +43,18 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Действия</th>
         <td mat-cell *matCellDef="let element">
-          <button mat-button [routerLink]="'/admin/eras/preview/' + element.id" matTooltip="Преглед на ера">
+          <button mat-button [routerLink]="'/admin/artists/preview/' + element.id" matTooltip="Преглед на артист">
             <mat-icon>search</mat-icon>
           </button>
-          <button mat-button [routerLink]="'/admin/eras/edit/' + element.id" matTooltip="Редактиране на ера">
+          <button mat-button [routerLink]="'/admin/artists/edit/' + element.id" matTooltip="Редактиране на артист">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-button [routerLink]="'/admin/eras/activation/' + element.id" [queryParams]="{activate:false}"
-                  *ngIf="element.active" matTooltip="Деактивиране на ера">
+          <button mat-button [routerLink]="'/admin/artists/activation/' + element.id" [queryParams]="{activate:false}"
+                  *ngIf="element.active" matTooltip="Деактивиране на артист">
             <mat-icon>visibility_off</mat-icon>
           </button>
-          <button mat-button [routerLink]="'/admin/eras/activation/' + element.id" [queryParams]="{activate:true}"
-                  *ngIf="!element.active" matTooltip="Активиране на ера">
+          <button mat-button [routerLink]="'/admin/artists/activation/' + element.id" [queryParams]="{activate:true}"
+                  *ngIf="!element.active" matTooltip="Активиране на артист">
             <mat-icon>visibility</mat-icon>
           </button>
         </td>
@@ -55,7 +67,7 @@
     <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button matTooltip="Добавяне на нова ера" [routerLink]="'/admin/eras/add'">
+    <button mat-button matTooltip="Добавяне на нов артист" [routerLink]="'/admin/artists/add'">
       <mat-icon>add</mat-icon>
     </button>
   </mat-card-actions>

@@ -28,6 +28,11 @@ import {ErasAddComponent} from './components/admin/eras/eras-add/eras-add.compon
 import {ErasEditComponent} from './components/admin/eras/eras-edit/eras-edit.component';
 import {ErasActivationComponent} from './components/admin/eras/eras-activation/eras-activation.component';
 import {ErasPreviewComponent} from './components/admin/eras/eras-preview/eras-preview.component';
+import {ArtistsListComponent} from './components/admin/artists/artists-list/artists-list.component';
+import {ArtistsAddComponent} from './components/admin/artists/artists-add/artists-add.component';
+import {ArtistsEditComponent} from './components/admin/artists/artists-edit/artists-edit.component';
+import {ArtistsActivationComponent} from './components/admin/artists/artists-activation/artists-activation.component';
+import {ArtistsPreviewComponent} from './components/admin/artists/artists-preview/artists-preview.component';
 
 const routes: Routes = [
   // Site routes
@@ -67,7 +72,14 @@ const routes: Routes = [
       {path: 'eras/add', component: ErasAddComponent},
       {path: 'eras/edit/:id', component: ErasEditComponent},
       {path: 'eras/activation/:id', component: ErasActivationComponent},
-      {path: 'eras/preview/:id', component: ErasPreviewComponent}
+      {path: 'eras/preview/:id', component: ErasPreviewComponent},
+
+      // Artists routes
+      {path: 'artists', component: ArtistsListComponent},
+      {path: 'artists/add', component: ArtistsAddComponent},
+      {path: 'artists/edit/:id', component: ArtistsEditComponent},
+      {path: 'artists/activation/:id', component: ArtistsActivationComponent},
+      {path: 'artists/preview/:id', component: ArtistsPreviewComponent}
     ]
   }
 ];

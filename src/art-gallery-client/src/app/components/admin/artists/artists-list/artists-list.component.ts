@@ -1,29 +1,29 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {ErasService} from '../../../../services/eras/eras.service';
-import {Era} from '../../../../models/era';
+import {Artist} from '../../../../models/artist';
+import {ArtistsService} from '../../../../services/artists/artists.service';
 
 @Component({
-  selector: 'app-eras-list',
-  templateUrl: './eras-list.component.html',
-  styleUrls: ['./eras-list.component.scss']
+  selector: 'app-artists-list',
+  templateUrl: './artists-list.component.html',
+  styleUrls: ['./artists-list.component.scss']
 })
-export class ErasListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'active', 'actions'];
-  dataSource: MatTableDataSource<Era>;
+export class ArtistsListComponent implements OnInit {
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'alias', 'active', 'actions'];
+  dataSource: MatTableDataSource<Artist>;
 
   loadingErrorMessage = '';
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(private erasService: ErasService) {
+  constructor(private artistsService: ArtistsService) {
   }
 
   ngOnInit() {
-    this.erasService.getAll()
+    this.artistsService.getAll()
       .subscribe(data => {
-        this.dataSource = new MatTableDataSource<Era>(data.result);
+        this.dataSource = new MatTableDataSource<Artist>(data.result);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }, error => {
