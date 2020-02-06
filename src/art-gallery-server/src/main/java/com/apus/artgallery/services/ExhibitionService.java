@@ -2,6 +2,8 @@ package com.apus.artgallery.services;
 
 import com.apus.artgallery.models.Exhibition;
 import com.apus.artgallery.repositories.*;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -78,5 +80,11 @@ public class ExhibitionService {
 
     public List<Exhibition> getExhibitionsFromRooms(Long roomId) {
         return exhibitionRepository.findByRoom_Id(roomId);
+    }
+
+    public List<Exhibition> getNewest(Integer maxCount) {
+        Pageable firstPageWithNElements = PageRequest.of(0, maxCount);
+
+        return exhibitionRepository.findAllByOrderByIdDesc(firstPageWithNElements);
     }
 }

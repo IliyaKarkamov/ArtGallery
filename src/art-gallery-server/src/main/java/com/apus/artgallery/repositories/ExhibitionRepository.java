@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -23,6 +24,9 @@ public interface ExhibitionRepository extends JpaRepository<Exhibition, Long> {
                                    @Param("id") Long id);
 
     List<Exhibition> findByRoom_Id(@Param("room_id") Long id);
+
+    List<Exhibition> findAllByOrderByIdDesc(Pageable pageable);
+
 
     @Modifying
     @Transactional(propagation = Propagation.REQUIRED)

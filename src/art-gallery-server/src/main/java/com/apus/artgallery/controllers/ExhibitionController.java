@@ -109,6 +109,24 @@ public class ExhibitionController {
                 .body(response);
     }
 
+    @GetMapping("/api/v1/exhibitions/newest/{count}")
+    public ResponseEntity<Response> getNewest(@PathVariable Integer count) {
+        Response response = new Response("ExhibitionController.getExhibitionsFromRooms", LocalDateTime.now());
+
+        HttpStatus status = HttpStatus.OK;
+
+        try {
+            response.setResult(exhibitionService.getNewest(count));
+        } catch (Exception e) {
+            response.addException(ResponseException.create(e));
+            status = HttpStatus.BAD_REQUEST;
+        }
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
+
     @PutMapping("/api/v1/exhibitions/edit/{id}")
     public ResponseEntity<Response> editExhibitionById(@RequestBody Exhibition exhibition, @PathVariable Long id) {
         Response response = new Response("ExhibitionController.editExhibitionById", LocalDateTime.now());
