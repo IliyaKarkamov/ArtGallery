@@ -10,12 +10,16 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 public interface RoomRepository extends JpaRepository<Room, Long> {
     Room findByNameIgnoreCase(@Param("name") String name);
 
     boolean existsByNameAndIdIsNot(@Param("name") String name,
                                    @Param("id") Long id);
+
+    List<Room> findByActiveTrueAndGallery_Id(@Param("gallery_id") Long id);
 
     @Modifying
     @Transactional(propagation = Propagation.REQUIRED)

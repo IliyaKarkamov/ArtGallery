@@ -49,4 +49,8 @@ public class RoomService {
     public void deactivate(Long id, Boolean active) {
         roomRepository.activate(active, id);
     }
+
+    public List<Room> getAllFromGallery(Long galleryId){
+        return roomRepository.findByActiveTrueAndGallery_Id(galleryId);
+    }
 }

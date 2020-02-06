@@ -55,6 +55,24 @@ public class RoomController {
                 .body(response);
     }
 
+    @GetMapping("/api/v1/rooms/gallery/{galleryId}")
+    public ResponseEntity<Response> getRoomsFromGallery(@PathVariable Long galleryId) {
+        Response response = new Response("RoomController.getRoomsFromGallery", LocalDateTime.now());
+
+        HttpStatus status = HttpStatus.OK;
+
+        try {
+            response.setResult(roomService.getAllFromGallery(galleryId));
+        } catch (Exception e) {
+            response.addException(ResponseException.create(e));
+            status = HttpStatus.BAD_REQUEST;
+        }
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
+
     @GetMapping("/api/v1/rooms/{id}")
     public ResponseEntity<Response> getRoomById(@PathVariable Long id) {
         Response response = new Response("RoomController.getRoomById", LocalDateTime.now());
