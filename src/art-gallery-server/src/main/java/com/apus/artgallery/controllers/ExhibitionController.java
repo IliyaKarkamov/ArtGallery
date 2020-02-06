@@ -91,6 +91,24 @@ public class ExhibitionController {
                 .body(response);
     }
 
+    @GetMapping("/api/v1/exhibitions/room/{roomId}")
+    public ResponseEntity<Response> getExhibitionsFromRooms(@PathVariable Long roomId) {
+        Response response = new Response("ExhibitionController.getExhibitionsFromRooms", LocalDateTime.now());
+
+        HttpStatus status = HttpStatus.OK;
+
+        try {
+            response.setResult(exhibitionService.getExhibitionsFromRooms(roomId));
+        } catch (Exception e) {
+            response.addException(ResponseException.create(e));
+            status = HttpStatus.BAD_REQUEST;
+        }
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
+
     @PutMapping("/api/v1/exhibitions/edit/{id}")
     public ResponseEntity<Response> editExhibitionById(@RequestBody Exhibition exhibition, @PathVariable Long id) {
         Response response = new Response("ExhibitionController.editExhibitionById", LocalDateTime.now());

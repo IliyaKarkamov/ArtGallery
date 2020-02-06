@@ -16,7 +16,7 @@ import java.util.List;
 public interface ArtefactRepository extends JpaRepository<Artefact, Long> {
     List<Artefact> findByNameIgnoreCase(@Param("name") String name);
 
-    List<Artefact> findByExhibition_Id(@Param("exhibition_id") Long id);
+    List<Artefact> findByActiveTrueAndExhibition_Id(@Param("exhibition_id") Long id);
 
     @Modifying
     @Transactional(propagation = Propagation.REQUIRED)

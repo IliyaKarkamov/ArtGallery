@@ -71,7 +71,7 @@ public class ArtefactService {
     }
 
     public List<Artefact> getArtefactFromExhibition(Long id) {
-        return artefactRepository.findByExhibition_Id(id);
+        return artefactRepository.findByActiveTrueAndExhibition_Id(id);
     }
 
     public Artefact getById(Long id) {

@@ -44,6 +44,10 @@ public class Exhibition {
     @ManyToOne
     private Artist artist;
 
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @ManyToOne
+    private Room room;
+
     public String getName() {
         return name;
     }
@@ -70,5 +74,9 @@ public class Exhibition {
 
     public Artist getArtist() {
         return artist;
+    }
+
+    public Room getRoom() {
+        return room;
     }
 }

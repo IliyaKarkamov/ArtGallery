@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -23,8 +22,10 @@ public interface ExhibitionRepository extends JpaRepository<Exhibition, Long> {
     boolean existsByNameAndIdIsNot(@Param("name") String name,
                                    @Param("id") Long id);
 
+    List<Exhibition> findByRoom_Id(@Param("room_id") Long id);
+
     @Modifying
     @Transactional(propagation = Propagation.REQUIRED)
-    @Query("update Exhibition e set e.name = ?1, e.startDate = ?2, e.endDate = ?3, e.artist = ?4, e.era = ?5, e.style = ?6  where e.id = ?7")
-    void saveById(String name, LocalDate startDate, LocalDate endDate, Artist artist, Era era, Style style, Long id);
+    @Query("update Exhibition e set e.name = ?1, e.startDate = ?2, e.endDate = ?3, e.artist = ?4, e.era = ?5, e.style = ?6, e.room = ?7  where e.id = ?8")
+    void saveById(String name, LocalDate startDate, LocalDate endDate, Artist artist, Era era, Style style, Room room, Long id);
 }
