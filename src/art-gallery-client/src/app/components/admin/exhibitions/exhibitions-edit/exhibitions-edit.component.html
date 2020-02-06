@@ -61,6 +61,16 @@
           </mat-select>
         </mat-form-field>
 
+        <!-- Room -->
+        <mat-form-field>
+          <mat-label>Зала</mat-label>
+          <mat-select formControlName="room">
+            <mat-option *ngFor="let room of rooms" [value]="room.id">
+              {{room.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
         <button mat-raised-button type="submit" color="primary">Редактиране</button>
         <button mat-button type="reset" color="primary" (click)="onReset()">Изчистване</button>
       </form>

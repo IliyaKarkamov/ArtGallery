@@ -11,6 +11,7 @@ import {ArtistsService} from '../../../../services/artists/artists.service';
 import {ExhibitionsService} from '../../../../services/exhibitions/exhibitions.service';
 import {Exhibition} from '../../../../models/exhibition';
 import {DatePipe} from '@angular/common';
+import {RoomsService} from '../../../../services/rooms/rooms.service';
 
 @Component({
   selector: 'app-exhibitions-edit',
@@ -25,6 +26,7 @@ export class ExhibitionsEditComponent implements OnInit {
   private eras: Era[] = [];
   private styles: Style[] = [];
   private artists: Artist[] = [];
+  private rooms: Room[] = [];
 
   private errorMessage = '';
   private isEditedSuccessfully = false;
@@ -34,7 +36,8 @@ export class ExhibitionsEditComponent implements OnInit {
               private exhibitionsService: ExhibitionsService,
               private erasService: ErasService,
               private stylesService: StylesService,
-              private artistsService: ArtistsService) {
+              private artistsService: ArtistsService,
+              private roomsService: RoomsService) {
   }
 
   ngOnInit() {
@@ -65,6 +68,7 @@ export class ExhibitionsEditComponent implements OnInit {
     const selectedEra = this.form.value.era;
     const selectedStyle = this.form.value.style;
     const selectedArtist = this.form.value.artist;
+    const selectedRoom = this.form.value.room;
 
     const exhibition = new Exhibition();
     Object.assign(exhibition, this.form.value);
@@ -72,9 +76,12 @@ export class ExhibitionsEditComponent implements OnInit {
     exhibition.era = this.eras.find(value => value.id === selectedEra);
     exhibition.style = this.styles.find(value => value.id === selectedStyle);
     exhibition.artist = this.artists.find(value => value.id === selectedArtist);
+    exhibition.room = this.rooms.find(value => value.id === selectedRoom);
 
     exhibition.startDate = new DatePipe('en').transform(this.form.value.startDate, 'yyyy-MM-dd');
     exhibition.endDate = new DatePipe('en').transform(this.form.value.endDate, 'yyyy-MM-dd');
+
+    console.log(this.form.value);
 
     this.exhibitionsService.edit(this.exhibition.id, exhibition)
       .subscribe(data => {
@@ -101,9 +108,10 @@ export class ExhibitionsEditComponent implements OnInit {
       name: [this.exhibition.name, Validators.required],
       startDate: [this.exhibition.startDate],
       endDate: [this.exhibition.endDate],
-      era: [this.exhibition.era.id],
-      style: [this.exhibition.style.id],
-      artist: [this.exhibition.artist.id]
+      era: [this.exhibition.era != null ? this.exhibition.era.id : ''],
+      style: [this.exhibition.style != null ? this.exhibition.style.id : ''],
+      artist: [this.exhibition.artist != null ? this.exhibition.artist.id : ''],
+      room: [this.exhibition.room != null ? this.exhibition.room.id : '']
     });
   }
 
@@ -133,6 +141,17 @@ export class ExhibitionsEditComponent implements OnInit {
     this.artistsService.getAllActive()
       .subscribe(data => {
         this.artists = data.result;
+      }, error => {
+        this.errorMessage = '';
+
+        for (const exception of error.error.exceptions) {
+          this.errorMessage += exception.message;
+        }
+      });
+
+    this.roomsService.getAllActive()
+      .subscribe(data => {
+        this.rooms = data.result;
       }, error => {
         this.errorMessage = '';
 

@@ -25,9 +25,9 @@ export class RoomsEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    const eraId = +this.route.snapshot.paramMap.get('id');
+    const roomId = +this.route.snapshot.paramMap.get('id');
 
-    this.roomsService.get(eraId)
+    this.roomsService.get(roomId)
       .subscribe(data => {
         this.room = data.result;
         this.loadGalleries();

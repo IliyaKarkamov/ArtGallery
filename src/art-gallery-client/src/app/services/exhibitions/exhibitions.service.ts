@@ -58,4 +58,13 @@ export class ExhibitionsService {
         return response;
       }));
   }
+
+  getAllForRoom(id: number): Observable<Response<Exhibition[]>> {
+    return this.http.get(environment.apiUrl + '/api/v1/exhibitions/room/' + id)
+      .pipe(map((data: any) => {
+        const response = new Response<Exhibition[]>();
+        Object.assign(response, data);
+        return response;
+      }));
+  }
 }

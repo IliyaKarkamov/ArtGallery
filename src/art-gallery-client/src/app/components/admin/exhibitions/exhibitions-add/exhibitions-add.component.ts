@@ -9,6 +9,8 @@ import {Artist} from '../../../../models/artist';
 import {StylesService} from '../../../../services/styles/styles.service';
 import {ArtistsService} from '../../../../services/artists/artists.service';
 import {DatePipe} from '@angular/common';
+import {RoomsService} from '../../../../services/rooms/rooms.service';
+import {Room} from '../../../../models/room';
 
 @Component({
   selector: 'app-exhibitions-add',
@@ -24,12 +26,14 @@ export class ExhibitionsAddComponent implements OnInit {
   private eras: Era[] = [];
   private styles: Style[] = [];
   private artists: Artist[] = [];
+  private rooms: Room[] = [];
 
   constructor(private formBuilder: FormBuilder,
               private exhibitionsService: ExhibitionsService,
               private erasService: ErasService,
               private stylesService: StylesService,
-              private artistsService: ArtistsService) {
+              private artistsService: ArtistsService,
+              private roomsService: RoomsService) {
   }
 
   ngOnInit() {
@@ -66,13 +70,25 @@ export class ExhibitionsAddComponent implements OnInit {
         }
       });
 
+    this.roomsService.getAllActive()
+      .subscribe(data => {
+        this.rooms = data.result;
+      }, error => {
+        this.errorMessage = '';
+
+        for (const exception of error.error.exceptions) {
+          this.errorMessage += exception.message;
+        }
+      });
+
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       startDate: [''],
       endDate: [''],
       era: [''],
       style: [''],
-      artist: ['']
+      artist: [''],
+      room: ['']
     });
   }
 
@@ -88,6 +104,7 @@ export class ExhibitionsAddComponent implements OnInit {
     const selectedEra = this.form.value.era;
     const selectedStyle = this.form.value.style;
     const selectedArtist = this.form.value.artist;
+    const selectedRoom = this.form.value.room;
 
     const exhibition = new Exhibition();
     Object.assign(exhibition, this.form.value);
@@ -95,6 +112,7 @@ export class ExhibitionsAddComponent implements OnInit {
     exhibition.era = this.eras.find(value => value.id === selectedEra);
     exhibition.style = this.styles.find(value => value.id === selectedStyle);
     exhibition.artist = this.artists.find(value => value.id === selectedArtist);
+    exhibition.room = this.rooms.find(value => value.id === selectedRoom);
 
     exhibition.startDate = new DatePipe('en').transform(this.form.value.startDate, 'yyyy-MM-dd');
     exhibition.endDate = new DatePipe('en').transform(this.form.value.endDate, 'yyyy-MM-dd');

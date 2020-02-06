@@ -1,0 +1,19 @@
+<mat-card *ngIf="room != null">
+  <mat-card-title>Зала {{room.name}}</mat-card-title>
+  <mat-card-content class="table-content">
+    <table>
+      <tr>
+        <td><b>Галерия:</b></td>
+        <td *ngIf="room.gallery != null">{{room.gallery.name}}</td>
+        <td *ngIf="room.gallery == null">Няма данни</td>
+      </tr>
+      <tr>
+        <td><b>Местоположение:</b></td>
+        <td>{{room.location}}</td>
+      </tr>
+    </table>
+  </mat-card-content>
+</mat-card>
+<app-exhibitions [exhibitions]="exhibitions"></app-exhibitions>
+
+

@@ -1,0 +1,7 @@
+<mat-menu #childMenu="matMenu" [overlapTrigger]="false">
+  <span *ngFor="let room of rooms">
+      <button mat-menu-item [routerLink]="'/rooms/' + room.id">
+        <span>{{room.name}}</span>
+      </button>
+  </span>
+</mat-menu>

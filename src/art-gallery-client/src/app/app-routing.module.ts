@@ -56,6 +56,7 @@ import {ArtefactsAddComponent} from './components/admin/artefacts/artefacts-add/
 import {ArtefactsEditComponent} from './components/admin/artefacts/artefacts-edit/artefacts-edit.component';
 import {ArtefactsActivationComponent} from './components/admin/artefacts/artefacts-activation/artefacts-activation.component';
 import {ArtefactsPreviewComponent} from './components/admin/artefacts/artefacts-preview/artefacts-preview.component';
+import {RoomComponent} from './components/site/room/room.component';
 
 const routes: Routes = [
   // Site routes
@@ -68,6 +69,7 @@ const routes: Routes = [
       {path: 'exhibitions', component: ExhibitionsComponent},
       {path: 'about', component: AboutComponent},
       {path: 'contacts', component: ContactComponent},
+      {path: 'rooms/:id', component: RoomComponent},
       {path: 'account/signup', component: AccountSignUpComponent, canActivate: [NoAuthGuard]},
       {path: 'account/signin', component: AccountSignInComponent, canActivate: [NoAuthGuard]},
       {path: 'account/signout', component: AccountSignOutComponent, canActivate: [AuthGuard]}

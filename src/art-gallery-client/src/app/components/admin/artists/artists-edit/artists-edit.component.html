@@ -2,7 +2,7 @@
   <mat-card-header>
     <mat-card-title>Редактиране на артист</mat-card-title>
   </mat-card-header>
-  <mat-card-content sclass="form-content">
+  <mat-card-content class="form-content">
     <mat-hint *ngIf="isEditedSuccessfully">Успешно редактирахте данните за избрания артист!</mat-hint>
     <div *ngIf="!isEditedSuccessfully && form != null">
       <mat-error *ngIf="errorMessage.length > 0">

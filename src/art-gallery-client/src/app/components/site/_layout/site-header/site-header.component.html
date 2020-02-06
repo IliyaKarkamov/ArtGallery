@@ -1,12 +1,33 @@
 <mat-toolbar class="mat-elevation-z6" color="primary">
   <span>Art Gallery</span>
   <button mat-button [routerLink]="''">Начало</button>
-  <button mat-button [routerLink]="'/galleries'">Галерии</button>
+
+  <button mat-button [matMenuTriggerFor]="menu" (click)="OnClick()">Галерии</button>
+  <mat-menu #menu="matMenu">
+    <span *ngFor="let gallery of galleries">
+      <button mat-menu-item
+              [matMenuTriggerFor]="menu.childMenu">
+        {{gallery.name}}
+      </button>
+
+      <app-menu-item #menu [galleryId]="gallery.id"></app-menu-item>
+    </span>
+  </mat-menu>
+
   <button mat-button [routerLink]="'/exhibitions'">Изложби</button>
   <button mat-button [routerLink]="'/about'">За нас</button>
   <button mat-button [routerLink]="'/contacts'">Контакти</button>
   <span class="fill-remaining-space"></span>
-  <button mat-button [routerLink]="'/account/signin'" *ngIf="!authenticationService.isAuthenticated()"><mat-icon>account_circle</mat-icon> Вписване</button>
-  <button mat-button [routerLink]="'/account/signup'" *ngIf="!authenticationService.isAuthenticated()"><mat-icon>person_add</mat-icon> Регистриране</button>
-  <button mat-button [routerLink]="'/account/signout'" *ngIf="authenticationService.isAuthenticated()"><mat-icon>exit_to_app</mat-icon> Изход</button>
+  <button mat-button [routerLink]="'/account/signin'" *ngIf="!authenticationService.isAuthenticated()">
+    <mat-icon>account_circle</mat-icon>
+    Вписване
+  </button>
+  <button mat-button [routerLink]="'/account/signup'" *ngIf="!authenticationService.isAuthenticated()">
+    <mat-icon>person_add</mat-icon>
+    Регистриране
+  </button>
+  <button mat-button [routerLink]="'/account/signout'" *ngIf="authenticationService.isAuthenticated()">
+    <mat-icon>exit_to_app</mat-icon>
+    Изход
+  </button>
 </mat-toolbar>

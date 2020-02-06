@@ -23,6 +23,15 @@ export class RoomsService {
       }));
   }
 
+  getAllActive(): Observable<Response<Room[]>> {
+    return this.http.get(environment.apiUrl + '/api/v1/rooms/active')
+      .pipe(map((data: any) => {
+        const response = new Response<Room[]>();
+        Object.assign(response, data);
+        return response;
+      }));
+  }
+
   add(room: Room): Observable<Response<Room>> {
     return this.http.post(environment.apiUrl + '/api/v1/rooms', room)
       .pipe(map((data: any) => {
@@ -56,6 +65,15 @@ export class RoomsService {
     return this.http.put(environment.apiUrl + '/api/v1/rooms/deactivate/' + id, {}, {params})
       .pipe(map((data: any) => {
         const response = new Response<boolean>();
+        Object.assign(response, data);
+        return response;
+      }));
+  }
+
+  getAllForGallery(galleryId: number): Observable<Response<Room[]>> {
+    return this.http.get(environment.apiUrl + '/api/v1/rooms/gallery/' + galleryId)
+      .pipe(map((data: any) => {
+        const response = new Response<Room[]>();
         Object.assign(response, data);
         return response;
       }));

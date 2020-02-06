@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from '../../../../services/account/authentication.service';
+import {GalleriesService} from '../../../../services/galleries/galleries.service';
+import {Gallery} from '../../../../models/gallery';
 
 @Component({
   selector: 'app-site-header',
@@ -8,9 +10,18 @@ import {AuthenticationService} from '../../../../services/account/authentication
 })
 export class SiteHeaderComponent implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService) { }
+  private galleries: Gallery[];
+
+  constructor(private authenticationService: AuthenticationService, private galleriesService: GalleriesService) {
+  }
 
   ngOnInit() {
   }
 
+  OnClick() {
+    this.galleriesService.getAllActive()
+      .subscribe(data => {
+        this.galleries = data.result;
+      });
+  }
 }
