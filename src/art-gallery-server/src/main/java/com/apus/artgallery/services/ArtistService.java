@@ -2,6 +2,8 @@ package com.apus.artgallery.services;
 
 import com.apus.artgallery.models.Artist;
 import com.apus.artgallery.repositories.ArtistRepository;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -51,5 +53,11 @@ public class ArtistService {
 
     public List<Artist> getAllActive(){
         return artistRepository.findByActiveTrue();
+    }
+
+    public List<Artist> getNewest(Integer maxCount) {
+        Pageable firstPageWithNElements = PageRequest.of(0, maxCount);
+
+        return artistRepository.findAllByOrderByIdDesc(firstPageWithNElements);
     }
 }
