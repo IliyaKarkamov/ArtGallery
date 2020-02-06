@@ -1,0 +1,49 @@
+<mat-card *ngIf="artefact != null">
+  <mat-card-header>
+    <mat-card-title>Артефакт „{{artefact.name}}“</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="table-content" style="width: 100%">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let i of imagesCount">
+        <div class="picsum-img-wrapper">
+          <img src="https://picsum.photos/1920/480?random={{i}}" style="width: 100%;" alt="{{artefact.name}}">
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="picsum-img-wrapper">
+          <img src="https://picsum.photos/1920/480?random=2" style="width: 100%;" alt="{{artefact.name}}">
+        </div>
+      </ng-template>
+    </ngb-carousel>
+    <table>
+      <tr>
+        <td><b>Създаден на:</b></td>
+        <td>{{artefact.createdAt}}</td>
+      </tr>
+      <tr>
+        <td><b>Цена (USD):</b></td>
+        <td>{{artefact.price}}</td>
+      </tr>
+      <tr>
+        <td><b>Ера:</b></td>
+        <td *ngIf="artefact.era != null">{{artefact.era.name}}</td>
+        <td *ngIf="artefact.era == null">Няма данни</td>
+      </tr>
+      <tr>
+        <td><b>Стил:</b></td>
+        <td *ngIf="artefact.style != null">{{artefact.style.name}}</td>
+        <td *ngIf="artefact.style == null">Няма данни</td>
+      </tr>
+      <tr>
+        <td><b>Изложба:</b></td>
+        <td *ngIf="artefact.exhibition != null"><a [routerLink]="'/exhibition/' + artefact.exhibition.id">{{artefact.exhibition.name}}</a></td>
+        <td *ngIf="artefact.exhibition == null">Няма данни</td>
+      </tr>
+      <tr>
+        <td><b>Артист:</b></td>
+        <td *ngIf="artefact.artist != null">{{artefact.artist.firstName}} {{artefact.artist.lastName}}</td>
+        <td *ngIf="artefact.artist == null">Няма данни</td>
+      </tr>
+    </table>
+  </mat-card-content>
+</mat-card>

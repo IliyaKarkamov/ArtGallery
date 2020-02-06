@@ -1,7 +1,32 @@
 <mat-card>
   <mat-card-title>Най-нови артисти</mat-card-title>
-  <mat-card-content>Simple card</mat-card-content>
-  <mat-card-actions>
-    <button mat-button>Покажи всички</button>
-  </mat-card-actions>
+  <mat-card-content *ngFor="let artist of artists">
+    <div
+      gdAreas="side content"
+      gdRows="auto"
+      gdColumns="20% auto"
+    >
+      <div gdArea="side">
+        <ngb-carousel>
+          <ng-template ngbSlide *ngFor="let i of imagesCount">
+            <div class="picsum-img-wrapper">
+              <img src="https://picsum.photos/300/200?random={{ artist.id * i + 1 }}">
+            </div>
+          </ng-template>
+        </ngb-carousel>
+      </div>
+      <div gdArea="content" style="padding-left: 20px">
+        <h5>Артист „{{artist.firstName}} {{artist.lastName}}“</h5>
+        <p>
+          <span
+            *ngIf="artist.shortBio != null && artist.shortBio.length > 0">Артистът е познат с псевдонима „{{artist.alias}}
+            “.</span>
+          <span>Роден е на {{artist.birthDate}} в {{artist.birthPlace}}</span><br>
+          {{artist.shortBio}}
+        </p>
+      </div>
+    </div>
+    <br>
+    <mat-divider [inset]="true"></mat-divider>
+  </mat-card-content>
 </mat-card>

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { LastArtefactsSlideshowComponent } from './last-artefacts-slideshow.component';
+import {LastArtefactsSlideshowComponent} from './last-artefacts-slideshow.component';
 
 describe('LastArtefactsSlideshowComponent', () => {
   let component: LastArtefactsSlideshowComponent;

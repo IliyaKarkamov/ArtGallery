@@ -11,9 +11,12 @@ import {AccountSignUpComponent} from './components/site/account/account-sign-up/
 import {AccountSignInComponent} from './components/site/account/account-sign-in/account-sign-in.component';
 import {AccountSignOutComponent} from './components/site/account/account-sign-out/account-sign-out.component';
 import {GalleriesComponent} from './components/site/galleries/galleries.component';
-import {ExhibitionsComponent} from './components/site/exhibitions/exhibitions.component';
 import {AboutComponent} from './components/site/about/about.component';
 import {ContactComponent} from './components/site/contact/contact.component';
+import {RoomComponent} from './components/site/room/room.component';
+import {PreviewExhibitionComponent} from './components/site/preview-exhibition/preview-exhibition.component';
+import {PreviewArtefactComponent} from './components/site/preview-artefact/preview-artefact.component';
+import {ListExhibitionsComponent} from './components/site/list-exhibitions/list-exhibitions.component';
 
 // Admin components
 import {AdminLayoutComponent} from './components/admin/_layout/admin-layout/admin-layout.component';
@@ -56,8 +59,7 @@ import {ArtefactsAddComponent} from './components/admin/artefacts/artefacts-add/
 import {ArtefactsEditComponent} from './components/admin/artefacts/artefacts-edit/artefacts-edit.component';
 import {ArtefactsActivationComponent} from './components/admin/artefacts/artefacts-activation/artefacts-activation.component';
 import {ArtefactsPreviewComponent} from './components/admin/artefacts/artefacts-preview/artefacts-preview.component';
-import {RoomComponent} from './components/site/room/room.component';
-import {PreviewExhibitionComponent} from './components/site/preview-exhibition/preview-exhibition.component';
+import {ListArtefactsComponent} from './components/site/list-artefacts/list-artefacts.component';
 
 const routes: Routes = [
   // Site routes
@@ -67,11 +69,13 @@ const routes: Routes = [
     children: [
       {path: '', component: SiteHomeComponent, pathMatch: 'full'},
       {path: 'galleries', component: GalleriesComponent},
-      {path: 'exhibitions', component: ExhibitionsComponent},
+      {path: 'exhibitions', component: ListExhibitionsComponent},
       {path: 'about', component: AboutComponent},
       {path: 'contacts', component: ContactComponent},
       {path: 'rooms/:id', component: RoomComponent},
       {path: 'exhibition/:id', component: PreviewExhibitionComponent},
+      {path: 'artefact/:id', component: PreviewArtefactComponent},
+      {path: 'artefacts', component: ListArtefactsComponent},
       {path: 'account/signup', component: AccountSignUpComponent, canActivate: [NoAuthGuard]},
       {path: 'account/signin', component: AccountSignInComponent, canActivate: [NoAuthGuard]},
       {path: 'account/signout', component: AccountSignOutComponent, canActivate: [AuthGuard]}

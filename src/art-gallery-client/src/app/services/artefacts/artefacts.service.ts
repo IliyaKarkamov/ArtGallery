@@ -23,6 +23,24 @@ export class ArtefactsService {
       }));
   }
 
+  getAllForExhibition(id: number): Observable<Response<Artefact[]>> {
+    return this.http.get(environment.apiUrl + '/api/v1/artefacts/exh/' + id)
+      .pipe(map((data: any) => {
+        const response = new Response<Artefact[]>();
+        Object.assign(response, data);
+        return response;
+      }));
+  }
+
+  getNewest(count: number): Observable<Response<Artefact[]>> {
+    return this.http.get(environment.apiUrl + '/api/v1/artefacts/newest/' + count)
+      .pipe(map((data: any) => {
+        const response = new Response<Artefact[]>();
+        Object.assign(response, data);
+        return response;
+      }));
+  }
+
   add(artefact: Artefact): Observable<Response<Artefact>> {
     return this.http.post(environment.apiUrl + '/api/v1/artefacts', artefact)
       .pipe(map((data: any) => {

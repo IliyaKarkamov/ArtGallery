@@ -50,6 +50,15 @@ export class ArtistsService {
       }));
   }
 
+  getNewest(count: number): Observable<Response<Artist[]>> {
+    return this.http.get(environment.apiUrl + '/api/v1/artists/newest/' + count)
+      .pipe(map((data: any) => {
+        const response = new Response<Artist[]>();
+        Object.assign(response, data);
+        return response;
+      }));
+  }
+
   edit(id: number, artist: Artist): Observable<Response<boolean>> {
     return this.http.put(environment.apiUrl + '/api/v1/artists/edit/' + id, artist)
       .pipe(map((data: any) => {

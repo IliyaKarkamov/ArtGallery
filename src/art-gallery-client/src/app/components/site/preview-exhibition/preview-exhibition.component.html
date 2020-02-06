@@ -1,3 +1,4 @@
+<app-last-artefacts-slideshow></app-last-artefacts-slideshow>
 <mat-card *ngIf="exhibition != null">
   <mat-card-header>
     <mat-card-title>Изложба „{{exhibition.name}}“</mat-card-title>
@@ -24,3 +25,4 @@
     </table>
   </mat-card-content>
 </mat-card>
+<app-artefacts [artefacts]="artefacts" *ngIf="artefacts != null"></app-artefacts>

@@ -94,6 +94,9 @@ import { MenuItemComponent } from './components/site/menu-item/menu-item.compone
 import { RoomComponent } from './components/site/room/room.component';
 import { PreviewExhibitionComponent } from './components/site/preview-exhibition/preview-exhibition.component';
 import { ArtefactsComponent } from './components/site/artefacts/artefacts.component';
+import { PreviewArtefactComponent } from './components/site/preview-artefact/preview-artefact.component';
+import { ListExhibitionsComponent } from './components/site/list-exhibitions/list-exhibitions.component';
+import { ListArtefactsComponent } from './components/site/list-artefacts/list-artefacts.component';
 
 export function getJwtToken() {
   return localStorage.getItem('jwtToken');
@@ -169,7 +172,10 @@ export function getJwtToken() {
     MenuItemComponent,
     RoomComponent,
     PreviewExhibitionComponent,
-    ArtefactsComponent
+    ArtefactsComponent,
+    PreviewArtefactComponent,
+    ListExhibitionsComponent,
+    ListArtefactsComponent
   ],
   imports: [
     BrowserModule,

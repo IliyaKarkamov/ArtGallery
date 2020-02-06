@@ -32,6 +32,15 @@ export class ExhibitionsService {
       }));
   }
 
+  getNewest(count: number): Observable<Response<Exhibition[]>> {
+    return this.http.get(environment.apiUrl + '/api/v1/exhibitions/newest/' + count)
+      .pipe(map((data: any) => {
+        const response = new Response<Exhibition[]>();
+        Object.assign(response, data);
+        return response;
+      }));
+  }
+
   add(exhibition: Exhibition): Observable<Response<Exhibition>> {
     return this.http.post(environment.apiUrl + '/api/v1/exhibitions', exhibition)
       .pipe(map((data: any) => {

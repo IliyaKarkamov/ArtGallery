@@ -1,3 +1,4 @@
+<app-last-artefacts-slideshow></app-last-artefacts-slideshow>
 <mat-card *ngIf="room != null">
   <mat-card-title>Зала „{{room.name}}“</mat-card-title>
   <mat-card-content class="table-content">
@@ -14,6 +15,6 @@
     </table>
   </mat-card-content>
 </mat-card>
-<app-exhibitions [exhibitions]="exhibitions"></app-exhibitions>
+<app-exhibitions [exhibitions]="exhibitions" *ngIf="exhibitions != null"></app-exhibitions>
 
 

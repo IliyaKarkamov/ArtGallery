@@ -1,7 +1,46 @@
 <mat-card>
   <mat-card-title>Най-нови артефакти</mat-card-title>
-  <mat-card-content>Simple card</mat-card-content>
+  <mat-card-content *ngFor="let artefact of artefacts">
+    <div
+      gdAreas="side content"
+      gdRows="auto"
+      gdColumns="20% auto"
+    >
+      <div gdArea="side">
+        <ngb-carousel interval="6000">
+          <ng-template ngbSlide *ngFor="let i of imagesCount">
+            <div class="picsum-img-wrapper">
+              <img src="https://picsum.photos/300/200?random={{ artefact.id * i + 1 }}">
+            </div>
+          </ng-template>
+          <ng-template ngbSlide>
+            <div class="picsum-img-wrapper">
+              <img src="https://picsum.photos/300/200?random=2">
+            </div>
+          </ng-template>
+        </ngb-carousel>
+      </div>
+      <div gdArea="content" style="padding-left: 20px">
+        <h5>Артефакт „{{artefact.name}}“</h5>
+        <p>
+          <span
+            *ngIf="artefact.artist != null">Артефактът е изработен от артист <strong>„{{artefact.artist.firstName}} {{artefact.artist.lastName}}
+            “</strong> през <strong>{{artefact.createdAt}}</strong>.</span><br>
+          Цената на артефакта е на стройност <strong>{{artefact.price}}</strong> щатски долара. <br>
+          <span
+            *ngIf="artefact.style != null">Творбата е в стил <strong>„{{artefact.style.name}}
+            “</strong>.</span><br>
+          <span *ngIf="artefact.exhibition != null">Заповядайте на изложбата <a
+            [routerLink]="'/exhibition/' + artefact.exhibition.id">{{artefact.exhibition.name}}</a> всеки делничен ден от 11:00 до 17:00 ч. и в почивните дни от 14:00 до 18:00 ч.</span>
+        </p>
+        <button mat-raised-button [routerLink]="'/artefact/' + artefact.id">Преглед</button>
+      </div>
+    </div>
+    <br>
+    <mat-divider [inset]="true"></mat-divider>
+  </mat-card-content>
+
   <mat-card-actions>
-    <button mat-button>Покажи всички</button>
+    <button mat-button [routerLink]="'/artefacts'">Покажи всички</button>
   </mat-card-actions>
 </mat-card>
