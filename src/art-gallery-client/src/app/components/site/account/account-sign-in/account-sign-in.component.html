@@ -1,6 +1,7 @@
-<mat-card style="width: 500px; margin: 20px;">
+<mat-card>
   <mat-card-header>
     <mat-card-title>Sign in</mat-card-title>
+    <mat-card-subtitle>Dont have an account? <a [routerLink]="'/account/signup'">Sign up</a> for free!</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content class="form-content">
     <mat-hint *ngIf="isSignedInSuccessfully">

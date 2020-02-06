@@ -1,60 +1,17 @@
-<mat-card>
-  <mat-card-title>Начало</mat-card-title>
-  <mat-card-content>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ultrices tortor quis magna volutpat, at
-      hendrerit metus lacinia. Vestibulum interdum turpis vitae tortor egestas, vel blandit lectus scelerisque. Praesent
-      ornare ultricies odio ut mattis. Suspendisse gravida et turpis eu lacinia. Class aptent taciti sociosqu ad litora
-      torquent per conubia nostra, per inceptos himenaeos. Vivamus purus augue, mattis a turpis a, iaculis eleifend
-      tortor. Praesent semper orci ut tellus eleifend, quis porta dui interdum.
-
-      Vivamus porttitor felis in velit porttitor bibendum. Ut tempus porta dolor, eget ornare diam consectetur in.
-      Mauris sagittis augue ullamcorper justo mattis, dapibus pharetra tellus maximus. Suspendisse ornare ornare neque,
-      et semper ipsum bibendum malesuada. Donec quis mi purus. In at cursus dui. Vivamus in mollis est, sed lobortis
-      turpis. Cras consectetur lorem orci, sed rutrum risus vestibulum ut. Proin lacinia fringilla magna, in pulvinar
-      nisi tempus sit amet. Donec fringilla augue at urna fringilla mollis. Praesent lacinia dolor quam, interdum mollis
-      nibh sodales et. Nulla in ante mollis, euismod libero non, mattis velit.
-
-      Integer id fermentum massa, et egestas elit. Morbi sollicitudin sapien metus, a ultrices nibh posuere luctus.
-      Vestibulum et ornare augue. Fusce ligula metus, egestas a lacinia et, venenatis eget nisl. Fusce porttitor lorem
-      sed erat dictum commodo. In hac habitasse platea dictumst. Quisque ultrices neque in enim elementum, eu
-      pellentesque purus maximus.
-
-      Etiam nec eros accumsan, gravida velit congue, accumsan quam. Maecenas congue libero sit amet diam consequat, quis
-      sodales erat tincidunt. Vivamus dictum finibus ullamcorper. Maecenas a leo in nisi tempor tincidunt. Fusce
-      fermentum, nulla nec dapibus blandit, nulla enim maximus lectus, non eleifend dolor tellus ut ligula. Ut imperdiet
-      elit at nisi faucibus, fermentum egestas risus tincidunt. Fusce cursus iaculis odio eget fermentum. Aenean vitae
-      auctor lorem, eget rutrum nulla. Sed non laoreet nulla, suscipit fermentum nunc.
-
-      Aliquam sit amet commodo turpis, eu scelerisque nisl. Maecenas pulvinar felis et semper tincidunt. Curabitur et
-      maximus justo. Quisque nec nibh velit. Sed rhoncus neque id nulla tristique cursus. Fusce auctor quam est, eu
-      cursus magna mattis nec. Sed at lorem quis lorem feugiat faucibus eget vitae sapien. Nam ut velit erat. Etiam
-      accumsan rhoncus urna, rutrum ornare dui consectetur id.
-
-      Duis venenatis odio at lacus blandit egestas. Phasellus ac odio rhoncus, blandit turpis sed, consectetur massa. Ut
-      vitae cursus arcu. Donec neque lacus, consequat malesuada mauris feugiat, suscipit sollicitudin lectus. Aenean at
-      convallis sapien, quis consectetur turpis. Nunc nibh nibh, lacinia nec nunc id, tempor ultricies eros. Donec
-      molestie leo vel diam pellentesque, non varius leo tincidunt. Etiam magna eros, dictum sed est vel, dignissim
-      pharetra ipsum. Phasellus venenatis tortor lacus, non molestie enim ullamcorper a. Aliquam vitae massa fringilla,
-      consequat lorem eget, porta quam. Curabitur quis consequat diam, ac imperdiet sapien. Nullam consequat interdum
-      enim, et venenatis dolor venenatis non. Suspendisse molestie viverra massa, at volutpat augue volutpat vitae.
-      Curabitur imperdiet sapien at tempus sollicitudin.
-
-      Pellentesque et justo aliquet, fringilla nibh at, aliquam enim. Vivamus quis dui at neque lacinia pellentesque vel
-      vitae dolor. Nunc finibus dapibus lacus non ornare. Aliquam condimentum mi tortor, ac gravida magna euismod sed.
-      Ut viverra posuere ex, at accumsan erat tempor sed. Ut sed tincidunt odio. Duis pharetra massa vel neque interdum
-      pellentesque. Nullam quis diam iaculis, fringilla urna ut, bibendum odio. Duis vel ultricies sem. Mauris orci
-      ligula, imperdiet fermentum augue eu, ultrices tempus nulla. Nulla sit amet diam vitae velit convallis placerat id
-      ac urna. In velit enim, congue ut auctor et, viverra id leo. Fusce lobortis id nulla a malesuada. Fusce tincidunt
-      porta nunc in viverra. In ut ligula at turpis porta aliquet ac fermentum diam.
-
-      Morbi in erat risus. Morbi ut felis eu quam ultricies vulputate ac vel massa. Donec mollis, quam id pharetra
-      pretium, elit risus lobortis lectus, a dictum arcu sem in risus. Fusce cursus nec elit in mattis. Fusce vel odio
-      quis velit pulvinar dictum. Aenean velit ex, pretium non augue venenatis, euismod tristique diam. Sed laoreet
-      faucibus est, id consequat mi luctus sit amet. Quisque volutpat felis libero, egestas venenatis diam ornare a.
-      Nunc ut faucibus sapien. Phasellus nunc ante, ultrices ac tempor a, euismod quis libero. Mauris sed sem ornare
-      felis interdum ultrices eu in diam. Donec luctus faucibus laoreet. </p>
-  </mat-card-content>
-  <mat-card-actions>
-  </mat-card-actions>
-</mat-card>
+<div
+  style="margin: 16px 50px 16px 50px;"
+  gdAreas="exhibitions | artefacts | artists"
+  gdGap="16px"
+  gdRows="auto auto auto"
+  gdColumns="auto"
+>
+  <div gdArea="exhibitions">
+    <app-last-exhibitions></app-last-exhibitions>
+  </div>
+  <div gdArea="artefacts">
+    <app-last-artefacts></app-last-artefacts>
+  </div>
+  <div gdArea="artists">
+    <app-last-artists></app-last-artists>
+  </div>
+</div>

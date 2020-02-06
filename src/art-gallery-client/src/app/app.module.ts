@@ -14,7 +14,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {
   MatCardModule,
-  MatCheckboxModule, MatDatepickerModule,
+  MatCheckboxModule, MatDatepickerModule, MatGridListModule,
   MatListModule, MatNativeDateModule,
   MatPaginatorModule, MatSelectModule,
   MatSortModule,
@@ -25,6 +25,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Site components
 import {SiteLayoutComponent} from './components/site/_layout/site-layout/site-layout.component';
@@ -81,6 +82,14 @@ import {ArtefactsActivationComponent} from './components/admin/artefacts/artefac
 import { SiteHeaderComponent } from './components/site/_layout/site-header/site-header.component';
 import { SiteContentComponent } from './components/site/_layout/site-content/site-content.component';
 import { SiteFooterComponent } from './components/site/_layout/site-footer/site-footer.component';
+import { LastArtefactsComponent } from './components/site/last-artefacts/last-artefacts.component';
+import { LastArtefactsSlideshowComponent } from './components/site/last-artefacts-slideshow/last-artefacts-slideshow.component';
+import { LastExhibitionsComponent } from './components/site/last-exhibitions/last-exhibitions.component';
+import { LastArtistsComponent } from './components/site/last-artists/last-artists.component';
+import { GalleriesComponent } from './components/site/galleries/galleries.component';
+import { ExhibitionsComponent } from './components/site/exhibitions/exhibitions.component';
+import { AboutComponent } from './components/site/about/about.component';
+import { ContactComponent } from './components/site/contact/contact.component';
 
 export function getJwtToken() {
   return localStorage.getItem('jwtToken');
@@ -144,7 +153,15 @@ export function getJwtToken() {
     ArtefactsActivationComponent,
     SiteHeaderComponent,
     SiteContentComponent,
-    SiteFooterComponent
+    SiteFooterComponent,
+    LastArtefactsComponent,
+    LastArtefactsSlideshowComponent,
+    LastExhibitionsComponent,
+    LastArtistsComponent,
+    GalleriesComponent,
+    ExhibitionsComponent,
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
@@ -179,6 +196,8 @@ export function getJwtToken() {
     MatCheckboxModule,
     MatDatepickerModule,
     MatSelectModule,
+    NgbModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

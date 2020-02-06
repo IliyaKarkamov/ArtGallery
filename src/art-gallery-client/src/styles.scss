@@ -28,7 +28,7 @@ $art-gallery-theme: mat-light-theme($art-gallery-primary, $art-gallery-accent, $
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; background-color: #ecf0f1; }
+html, body { height: 100%; background-color: #ecf0f1 !important; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .form-content {

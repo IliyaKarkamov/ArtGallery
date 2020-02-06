@@ -10,6 +10,10 @@ import {HomeComponent as SiteHomeComponent} from './components/site/home/home.co
 import {AccountSignUpComponent} from './components/site/account/account-sign-up/account-sign-up.component';
 import {AccountSignInComponent} from './components/site/account/account-sign-in/account-sign-in.component';
 import {AccountSignOutComponent} from './components/site/account/account-sign-out/account-sign-out.component';
+import {GalleriesComponent} from './components/site/galleries/galleries.component';
+import {ExhibitionsComponent} from './components/site/exhibitions/exhibitions.component';
+import {AboutComponent} from './components/site/about/about.component';
+import {ContactComponent} from './components/site/contact/contact.component';
 
 // Admin components
 import {AdminLayoutComponent} from './components/admin/_layout/admin-layout/admin-layout.component';
@@ -60,6 +64,10 @@ const routes: Routes = [
     component: SiteLayoutComponent,
     children: [
       {path: '', component: SiteHomeComponent, pathMatch: 'full'},
+      {path: 'galleries', component: GalleriesComponent},
+      {path: 'exhibitions', component: ExhibitionsComponent},
+      {path: 'about', component: AboutComponent},
+      {path: 'contacts', component: ContactComponent},
       {path: 'account/signup', component: AccountSignUpComponent, canActivate: [NoAuthGuard]},
       {path: 'account/signin', component: AccountSignInComponent, canActivate: [NoAuthGuard]},
       {path: 'account/signout', component: AccountSignOutComponent, canActivate: [AuthGuard]}
