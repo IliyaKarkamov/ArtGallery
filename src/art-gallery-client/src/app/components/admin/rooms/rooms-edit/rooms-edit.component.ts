@@ -88,7 +88,9 @@ export class RoomsEditComponent implements OnInit {
   private loadGalleries() {
     this.galleriesService.getAllActive()
       .subscribe(data => {
-        this.galleries = data.result;
+        if (data.result != null) {
+          this.galleries = data.result;
+        }
         this.createForm();
       }, error => {
         this.errorMessage = '';

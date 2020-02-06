@@ -25,7 +25,9 @@ export class RoomsAddComponent implements OnInit {
   ngOnInit() {
     this.galleriesService.getAllActive()
       .subscribe(data => {
-        this.galleries = data.result;
+        if (data.result != null) {
+          this.galleries = data.result;
+        }
       }, error => {
         this.errorMessage = '';
 

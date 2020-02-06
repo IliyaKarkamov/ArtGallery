@@ -118,7 +118,9 @@ export class ExhibitionsEditComponent implements OnInit {
   private loadNomenclatures() {
     this.erasService.getAllActive()
       .subscribe(data => {
-        this.eras = data.result;
+        if (data.result != null) {
+          this.eras = data.result;
+        }
       }, error => {
         this.errorMessage = '';
 
@@ -129,7 +131,9 @@ export class ExhibitionsEditComponent implements OnInit {
 
     this.stylesService.getAllActive()
       .subscribe(data => {
-        this.styles = data.result;
+        if (data.result != null) {
+          this.styles = data.result;
+        }
       }, error => {
         this.errorMessage = '';
 
@@ -140,7 +144,9 @@ export class ExhibitionsEditComponent implements OnInit {
 
     this.artistsService.getAllActive()
       .subscribe(data => {
-        this.artists = data.result;
+        if (data.result != null) {
+          this.artists = data.result;
+        }
       }, error => {
         this.errorMessage = '';
 
@@ -151,7 +157,9 @@ export class ExhibitionsEditComponent implements OnInit {
 
     this.roomsService.getAllActive()
       .subscribe(data => {
-        this.rooms = data.result;
+        if (data.result != null) {
+          this.rooms = data.result;
+        }
       }, error => {
         this.errorMessage = '';
 

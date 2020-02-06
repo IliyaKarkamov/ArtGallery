@@ -116,7 +116,9 @@ export class ArtefactsEditComponent implements OnInit {
   private loadNomenclatures() {
     this.erasService.getAllActive()
       .subscribe(data => {
-        this.eras = data.result;
+        if (data.result != null) {
+          this.eras = data.result;
+        }
       }, error => {
         this.errorMessage = '';
 
@@ -127,7 +129,9 @@ export class ArtefactsEditComponent implements OnInit {
 
     this.stylesService.getAllActive()
       .subscribe(data => {
-        this.styles = data.result;
+        if (data.result != null) {
+          this.styles = data.result;
+        }
       }, error => {
         this.errorMessage = '';
 
@@ -138,7 +142,9 @@ export class ArtefactsEditComponent implements OnInit {
 
     this.exhibitionsService.getAll()
       .subscribe(data => {
-        this.exhibitions = data.result;
+        if (data.result != null) {
+          this.exhibitions = data.result;
+        }
       }, error => {
         this.errorMessage = '';
 
@@ -149,7 +155,9 @@ export class ArtefactsEditComponent implements OnInit {
 
     this.artistsService.getAllActive()
       .subscribe(data => {
-        this.artists = data.result;
+        if (data.result != null) {
+          this.artists = data.result;
+        }
       }, error => {
         this.errorMessage = '';
 
