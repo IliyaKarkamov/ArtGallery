@@ -15,7 +15,7 @@
         <td><b>Цена (USD):</b></td>
         <td>{{artefact.price}}</td>
       </tr>
-      <tr>
+      <tr *ngIf="artefact.era != null">
         <td><b>Ера:</b></td>
         <td>
           <a [routerLink]="'/admin/eras/preview/' + artefact.era.id" matTooltip="Преглед на ера">
@@ -23,7 +23,7 @@
           </a>
         </td>
       </tr>
-      <tr>
+      <tr *ngIf="artefact.style">
         <td><b>Стил:</b></td>
         <td>
           <a [routerLink]="'/admin/styles/preview/' + artefact.style.id" matTooltip="Преглед на стил">
@@ -31,7 +31,7 @@
           </a>
         </td>
       </tr>
-      <tr>
+      <tr *ngIf="artefact.exhibition != null">
         <td><b>Изложба:</b></td>
         <td>
           <a [routerLink]="'/admin/exhibitions/preview/' + artefact.exhibition.id" matTooltip="Преглед на изложба">
@@ -39,7 +39,7 @@
           </a>
         </td>
       </tr>
-      <tr>
+      <tr *ngIf="artefact.artist != null">
         <td><b>Артист:</b></td>
         <td>
           <a [routerLink]="'/admin/artists/preview/' + artefact.artist.id" matTooltip="Преглед на артист">

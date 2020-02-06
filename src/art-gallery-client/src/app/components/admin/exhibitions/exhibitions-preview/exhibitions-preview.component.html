@@ -15,7 +15,7 @@
         <td><b>Крайна дата:</b></td>
         <td>{{exhibition.endDate}}</td>
       </tr>
-      <tr>
+      <tr *ngIf="exhibition.era != null">
         <td><b>Ера:</b></td>
         <td>
           <a [routerLink]="'/admin/eras/preview/' + exhibition.era.id" matTooltip="Преглед на ера">
@@ -23,7 +23,7 @@
           </a>
         </td>
       </tr>
-      <tr>
+      <tr *ngIf="exhibition.style != null">
         <td><b>Стил:</b></td>
         <td>
           <a [routerLink]="'/admin/styles/preview/' + exhibition.style.id" matTooltip="Преглед на стил">
@@ -31,7 +31,7 @@
           </a>
         </td>
       </tr>
-      <tr>
+      <tr *ngIf="exhibition.artist != null">
         <td><b>Артист:</b></td>
         <td>
           <a [routerLink]="'/admin/artists/preview/' + exhibition.artist.id" matTooltip="Преглед на артист">

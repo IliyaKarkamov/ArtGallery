@@ -11,7 +11,7 @@
         <td><b>Местоположение:</b></td>
         <td>{{room.location}}</td>
       </tr>
-      <tr>
+      <tr *ngIf="room.gallery != null">
         <td><b>Галерия:</b></td>
         <td>
           <a [routerLink]="'/admin/galleries/preview/' + room.gallery.id" matTooltip="Преглед на галерия">
