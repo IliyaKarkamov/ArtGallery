@@ -1,6 +1,7 @@
 package com.apus.artgallery.repositories;
 
 import com.apus.artgallery.models.*;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -17,6 +18,8 @@ public interface ArtefactRepository extends JpaRepository<Artefact, Long> {
     List<Artefact> findByNameIgnoreCase(@Param("name") String name);
 
     List<Artefact> findByActiveTrueAndExhibition_Id(@Param("exhibition_id") Long id);
+
+    List<Artefact> findAllByOrderByIdDesc(Pageable pageable);
 
     @Modifying
     @Transactional(propagation = Propagation.REQUIRED)

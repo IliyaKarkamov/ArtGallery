@@ -118,6 +118,25 @@ public class ArtefactController {
                 .body(response);
     }
 
+
+    @GetMapping("/api/v1/artefacts/newest/{count}")
+    public ResponseEntity<Response> getNewest(@PathVariable Integer count) {
+        Response response = new Response("ArtefactController.getNewest", LocalDateTime.now());
+
+        HttpStatus status = HttpStatus.OK;
+
+        try {
+            response.setResult(artefactService.getNewest(count));
+        } catch (Exception e) {
+            response.addException(ResponseException.create(e));
+            status = HttpStatus.BAD_REQUEST;
+        }
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
+
     @GetMapping("/api/v1/artefacts/pictures/{id}")
     public ResponseEntity<Response> getPictures(@PathVariable Long id) {
         Response response = new Response("ArtefactController.getPictures", LocalDateTime.now());

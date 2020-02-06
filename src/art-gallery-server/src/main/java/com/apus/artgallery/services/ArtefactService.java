@@ -3,6 +3,8 @@ package com.apus.artgallery.services;
 import com.apus.artgallery.models.Artefact;
 import com.apus.artgallery.models.Picture;
 import com.apus.artgallery.repositories.*;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -85,5 +87,11 @@ public class ArtefactService {
 
     public List<Picture> getPictures(Long id){
         return pictureService.getPicturesForArtefact(id);
+    }
+
+    public List<Artefact> getNewest(Integer maxCount){
+        Pageable firstPageWithNElements = PageRequest.of(0, maxCount);
+
+        return artefactRepository.findAllByOrderByIdDesc(firstPageWithNElements); 
     }
 }
