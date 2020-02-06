@@ -73,6 +73,24 @@ public class RoomController {
                 .body(response);
     }
 
+    @GetMapping("/api/v1/rooms/active")
+    public ResponseEntity<Response> getActiveRooms() {
+        Response response = new Response("RoomController.getActiveRooms", LocalDateTime.now());
+
+        HttpStatus status = HttpStatus.OK;
+
+        try {
+            response.setResult(roomService.getAllActive());
+        } catch (Exception e) {
+            response.addException(ResponseException.create(e));
+            status = HttpStatus.BAD_REQUEST;
+        }
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
+
     @GetMapping("/api/v1/rooms/{id}")
     public ResponseEntity<Response> getRoomById(@PathVariable Long id) {
         Response response = new Response("RoomController.getRoomById", LocalDateTime.now());

@@ -21,6 +21,8 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
 
     List<Room> findByActiveTrueAndGallery_Id(@Param("gallery_id") Long id);
 
+    List<Room> findByActiveTrue();
+
     @Modifying
     @Transactional(propagation = Propagation.REQUIRED)
     @Query("update Room r set r.name = ?1, r.location = ?2, r.gallery = ?3, r.active = ?4 where r.id = ?5")

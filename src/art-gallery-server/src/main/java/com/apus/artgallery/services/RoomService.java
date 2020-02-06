@@ -50,7 +50,11 @@ public class RoomService {
         roomRepository.activate(active, id);
     }
 
-    public List<Room> getAllFromGallery(Long galleryId){
+    public List<Room> getAllFromGallery(Long galleryId) {
         return roomRepository.findByActiveTrueAndGallery_Id(galleryId);
+    }
+
+    public List<Room> getAllActive() {
+        return roomRepository.findByActiveTrue();
     }
 }
