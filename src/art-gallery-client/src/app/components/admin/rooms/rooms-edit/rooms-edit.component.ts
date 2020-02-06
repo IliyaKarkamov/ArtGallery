@@ -80,7 +80,7 @@ export class RoomsEditComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: [this.room.name, Validators.required],
       location: [this.room.location],
-      gallery: [this.room.gallery.id],
+      gallery: [this.room.gallery != null ? this.room.gallery.id : ''],
       active: [this.room.active]
     });
   }

@@ -6,6 +6,7 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -48,7 +49,7 @@ public class Artefact {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "artefact")
     @JsonBackReference
-    private Set<Picture> pictures;
+    private Set<Picture> pictures = new HashSet<>();
 
     public Long getId() {
         return id;

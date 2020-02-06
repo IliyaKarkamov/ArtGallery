@@ -105,10 +105,10 @@ export class ArtefactsEditComponent implements OnInit {
       name: [this.artefact.name, Validators.required],
       createdAt: [this.artefact.createdAt],
       price: [this.artefact.price],
-      era: [this.artefact.era.id],
-      style: [this.artefact.style.id],
-      exhibition: [this.artefact.exhibition.id],
-      artist: [this.artefact.artist.id],
+      era: [this.artefact.era != null ? this.artefact.era.id : ''],
+      style: [this.artefact.style != null ? this.artefact.style.id : ''],
+      exhibition: [this.artefact.exhibition != null ? this.artefact.exhibition.id : ''],
+      artist: [this.artefact.artist != null ? this.artefact.artist.id : ''],
       active: [this.artefact.active]
     });
   }

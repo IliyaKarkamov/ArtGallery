@@ -1,0 +1,36 @@
+<mat-grid-list
+  *ngIf="artefacts != null && artefacts.length > 0"
+  [cols]="breakpoint"
+  (window:resize)="onResize($event)"
+  rowHeight="350px"
+  gutterSize="16px"
+  style="margin-left: 16px; margin-right: 16px"
+>
+  <mat-grid-tile *ngFor="let artefact of artefacts">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>Артефакт „{{artefact.name}}“</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="table-content2">
+        <table>
+          <tr>
+            <td><b>Дата на създаване:</b></td>
+            <td>{{artefact.createdAt}}</td>
+          </tr>
+          <tr>
+            <td><b>Цена (USD):</b></td>
+            <td>{{artefact.price}}</td>
+          </tr>
+          <tr>
+            <td><b>Артист:</b></td>
+            <td *ngIf="artefact.artist != null">{{artefact.artist.firstName}} {{artefact.artist.lastName}}</td>
+            <td *ngIf="artefact.artist == null">Няма данни</td>
+          </tr>
+        </table>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button [routerLink]="'/artefact/' + artefact.id">Преглед</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

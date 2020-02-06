@@ -1,0 +1,26 @@
+<mat-card *ngIf="exhibition != null">
+  <mat-card-header>
+    <mat-card-title>Изложба „{{exhibition.name}}“</mat-card-title>
+    <mat-card-subtitle *ngIf="exhibition.startDate != null">{{exhibition.startDate}}
+      - {{exhibition.endDate}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="table-content">
+    <table>
+      <tr>
+        <td><b>Артист:</b></td>
+        <td *ngIf="exhibition.artist != null">{{exhibition.artist.firstName}} {{exhibition.artist.lastName }}</td>
+        <td *ngIf="exhibition.artist == null">Няма данни</td>
+      </tr>
+      <tr>
+        <td><b>Ера:</b></td>
+        <td *ngIf="exhibition.era != null">{{exhibition.era.name}}</td>
+        <td *ngIf="exhibition.era == null">Няма данни</td>
+      </tr>
+      <tr>
+        <td><b>Стил:</b></td>
+        <td *ngIf="exhibition.style != null">{{exhibition.style.name}}</td>
+        <td *ngIf="exhibition.style == null">Няма данни</td>
+      </tr>
+    </table>
+  </mat-card-content>
+</mat-card>

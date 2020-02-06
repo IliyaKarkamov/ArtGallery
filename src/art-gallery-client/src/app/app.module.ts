@@ -92,6 +92,8 @@ import { AboutComponent } from './components/site/about/about.component';
 import { ContactComponent } from './components/site/contact/contact.component';
 import { MenuItemComponent } from './components/site/menu-item/menu-item.component';
 import { RoomComponent } from './components/site/room/room.component';
+import { PreviewExhibitionComponent } from './components/site/preview-exhibition/preview-exhibition.component';
+import { ArtefactsComponent } from './components/site/artefacts/artefacts.component';
 
 export function getJwtToken() {
   return localStorage.getItem('jwtToken');
@@ -165,7 +167,9 @@ export function getJwtToken() {
     AboutComponent,
     ContactComponent,
     MenuItemComponent,
-    RoomComponent
+    RoomComponent,
+    PreviewExhibitionComponent,
+    ArtefactsComponent
   ],
   imports: [
     BrowserModule,
